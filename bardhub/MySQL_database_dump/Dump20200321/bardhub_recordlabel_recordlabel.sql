@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `playlist_playlist`
+-- Table structure for table `recordlabel_recordlabel`
 --
 
-DROP TABLE IF EXISTS `playlist_playlist`;
+DROP TABLE IF EXISTS `recordlabel_recordlabel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `playlist_playlist` (
+CREATE TABLE `recordlabel_recordlabel` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Playlist_image` varchar(255) DEFAULT NULL,
-  `Name` varchar(80) NOT NULL,
-  `Description` varchar(255) DEFAULT NULL,
-  `Play_count` int NOT NULL,
+  `Name` varchar(255) DEFAULT NULL,
+  `City` varchar(255) NOT NULL,
+  `Video_playlist_Url` varchar(255) DEFAULT NULL,
   `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `playlist_playlist`
+-- Dumping data for table `recordlabel_recordlabel`
 --
 
-LOCK TABLES `playlist_playlist` WRITE;
-/*!40000 ALTER TABLE `playlist_playlist` DISABLE KEYS */;
-INSERT INTO `playlist_playlist` VALUES (1,'Hold my beer','Love and Soccer','What is in your mind?',1,'2020-03-21 07:00:32'),(2,'Hold my hand','My love will go on another person','Ex, Next',5,'2020-03-21 07:01:44');
-/*!40000 ALTER TABLE `playlist_playlist` ENABLE KEYS */;
+LOCK TABLES `recordlabel_recordlabel` WRITE;
+/*!40000 ALTER TABLE `recordlabel_recordlabel` DISABLE KEYS */;
+INSERT INTO `recordlabel_recordlabel` VALUES (1,'BardHub Holding','Houston','To be updated','2020-03-21 07:27:54');
+/*!40000 ALTER TABLE `recordlabel_recordlabel` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:08
+-- Dump completed on 2020-03-21 20:35:40

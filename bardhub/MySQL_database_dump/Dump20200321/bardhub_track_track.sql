@@ -16,30 +16,36 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `recordlabel_recordlabel`
+-- Table structure for table `track_track`
 --
 
-DROP TABLE IF EXISTS `recordlabel_recordlabel`;
+DROP TABLE IF EXISTS `track_track`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `recordlabel_recordlabel` (
+CREATE TABLE `track_track` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) DEFAULT NULL,
-  `City` varchar(255) NOT NULL,
-  `Video_playlist_Url` varchar(255) DEFAULT NULL,
+  `Music_key_type` varchar(80) DEFAULT NULL,
+  `Lright_type` varchar(80) DEFAULT NULL,
+  `Artist_note` varchar(255) DEFAULT NULL,
+  `Genre` varchar(80) NOT NULL,
   `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Album_id` int DEFAULT NULL,
+  `Tag_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Tag_id` (`Tag_id`),
+  KEY `track_track_Album_id_cfa5bc9f_fk_album_album_id` (`Album_id`),
+  CONSTRAINT `track_track_Album_id_cfa5bc9f_fk_album_album_id` FOREIGN KEY (`Album_id`) REFERENCES `album_album` (`id`),
+  CONSTRAINT `track_track_Tag_id_5931af59_fk_tag_tag_id` FOREIGN KEY (`Tag_id`) REFERENCES `tag_tag` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `recordlabel_recordlabel`
+-- Dumping data for table `track_track`
 --
 
-LOCK TABLES `recordlabel_recordlabel` WRITE;
-/*!40000 ALTER TABLE `recordlabel_recordlabel` DISABLE KEYS */;
-INSERT INTO `recordlabel_recordlabel` VALUES (1,'BardHub Holding','Houston','To be updated','2020-03-21 07:27:54');
-/*!40000 ALTER TABLE `recordlabel_recordlabel` ENABLE KEYS */;
+LOCK TABLES `track_track` WRITE;
+/*!40000 ALTER TABLE `track_track` DISABLE KEYS */;
+/*!40000 ALTER TABLE `track_track` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -51,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:07
+-- Dump completed on 2020-03-21 20:36:08

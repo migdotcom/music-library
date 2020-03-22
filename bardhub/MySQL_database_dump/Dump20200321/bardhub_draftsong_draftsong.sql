@@ -16,37 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `auth_user`
+-- Table structure for table `draftsong_draftsong`
 --
 
-DROP TABLE IF EXISTS `auth_user`;
+DROP TABLE IF EXISTS `draftsong_draftsong`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `auth_user` (
+CREATE TABLE `draftsong_draftsong` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `password` varchar(128) NOT NULL,
-  `last_login` datetime(6) DEFAULT NULL,
-  `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) NOT NULL,
-  `first_name` varchar(30) NOT NULL,
-  `last_name` varchar(150) NOT NULL,
-  `email` varchar(254) NOT NULL,
-  `is_staff` tinyint(1) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `date_joined` datetime(6) NOT NULL,
+  `Image` varchar(255) DEFAULT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `Name` varchar(80) DEFAULT NULL,
+  `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Album_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `draftsong_draftsong_Album_id_c5ed39f2_fk_album_album_id` (`Album_id`),
+  CONSTRAINT `draftsong_draftsong_Album_id_c5ed39f2_fk_album_album_id` FOREIGN KEY (`Album_id`) REFERENCES `album_album` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `auth_user`
+-- Dumping data for table `draftsong_draftsong`
 --
 
-LOCK TABLES `auth_user` WRITE;
-/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$180000$DPyrZ4hX5UUo$oga72REgT9ylWXdYfHubn4BnY4ov+m+snECSL4KDunI=','2020-03-21 06:55:55.991816',1,'group9','','','group9@gmail.com',1,1,'2020-03-21 06:55:39.974229');
-/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+LOCK TABLES `draftsong_draftsong` WRITE;
+/*!40000 ALTER TABLE `draftsong_draftsong` DISABLE KEYS */;
+/*!40000 ALTER TABLE `draftsong_draftsong` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -58,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:09
+-- Dump completed on 2020-03-21 20:36:14

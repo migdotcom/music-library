@@ -16,34 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `album_album`
+-- Table structure for table `event_event`
 --
 
-DROP TABLE IF EXISTS `album_album`;
+DROP TABLE IF EXISTS `event_event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `album_album` (
+CREATE TABLE `event_event` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Description` varchar(255) DEFAULT NULL,
-  `Name` varchar(80) NOT NULL,
-  `Cover_image` varchar(255) DEFAULT NULL,
-  `Count` int NOT NULL DEFAULT '0',
+  `Location` varchar(255) NOT NULL,
+  `Time_happening` time(6) NOT NULL,
   `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `User_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `album_album_User_id_e606c4f2_fk_user_user_id` (`User_id`),
-  CONSTRAINT `album_album_User_id_e606c4f2_fk_user_user_id` FOREIGN KEY (`User_id`) REFERENCES `user_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `album_album`
+-- Dumping data for table `event_event`
 --
 
-LOCK TABLES `album_album` WRITE;
-/*!40000 ALTER TABLE `album_album` DISABLE KEYS */;
-INSERT INTO `album_album` VALUES (1,'Happy New Year!!!','No More Champagne','N/a',0,'2020-03-21 06:57:49',1),(2,'World Cup','Vietnam Champion','No',0,'2020-03-21 06:58:57',1);
-/*!40000 ALTER TABLE `album_album` ENABLE KEYS */;
+LOCK TABLES `event_event` WRITE;
+/*!40000 ALTER TABLE `event_event` DISABLE KEYS */;
+INSERT INTO `event_event` VALUES (1,'UH Stadium','07:26:17.000000','2020-03-21 07:26:20');
+/*!40000 ALTER TABLE `event_event` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -55,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:07
+-- Dump completed on 2020-03-21 20:35:31

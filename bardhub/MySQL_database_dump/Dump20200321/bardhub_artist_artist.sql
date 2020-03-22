@@ -32,7 +32,7 @@ CREATE TABLE `artist_artist` (
   KEY `artist_artist_RecordLabel_id_7faa27fd_fk_recordLab` (`RecordLabel_id`),
   CONSTRAINT `artist_artist_RecordLabel_id_7faa27fd_fk_recordLab` FOREIGN KEY (`RecordLabel_id`) REFERENCES `recordlabel_recordlabel` (`id`),
   CONSTRAINT `artist_artist_User_id_b101fd22_fk_user_user_id` FOREIGN KEY (`User_id`) REFERENCES `user_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `artist_artist` (
 
 LOCK TABLES `artist_artist` WRITE;
 /*!40000 ALTER TABLE `artist_artist` DISABLE KEYS */;
-INSERT INTO `artist_artist` VALUES (1,'2020-03-21 07:24:04',1,1),(3,'2020-03-21 02:32:18',NULL,2);
+INSERT INTO `artist_artist` VALUES (1,'2020-03-21 07:24:04',1,1),(3,'2020-03-21 02:32:18',NULL,2),(4,'2020-03-21 20:30:38',NULL,NULL),(5,'2020-03-21 20:33:14',NULL,3);
 /*!40000 ALTER TABLE `artist_artist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:08
+-- Dump completed on 2020-03-21 20:36:12

@@ -16,36 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `track_track`
+-- Table structure for table `playlist_playlist`
 --
 
-DROP TABLE IF EXISTS `track_track`;
+DROP TABLE IF EXISTS `playlist_playlist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `track_track` (
+CREATE TABLE `playlist_playlist` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Music_key_type` varchar(80) DEFAULT NULL,
-  `Lright_type` varchar(80) DEFAULT NULL,
-  `Artist_note` varchar(255) DEFAULT NULL,
-  `Genre` varchar(80) NOT NULL,
+  `Playlist_image` varchar(255) DEFAULT NULL,
+  `Name` varchar(80) NOT NULL,
+  `Description` varchar(255) DEFAULT NULL,
+  `Play_count` int NOT NULL,
   `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Album_id` int DEFAULT NULL,
-  `Tag_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Tag_id` (`Tag_id`),
-  KEY `track_track_Album_id_cfa5bc9f_fk_album_album_id` (`Album_id`),
-  CONSTRAINT `track_track_Album_id_cfa5bc9f_fk_album_album_id` FOREIGN KEY (`Album_id`) REFERENCES `album_album` (`id`),
-  CONSTRAINT `track_track_Tag_id_5931af59_fk_tag_tag_id` FOREIGN KEY (`Tag_id`) REFERENCES `tag_tag` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `track_track`
+-- Dumping data for table `playlist_playlist`
 --
 
-LOCK TABLES `track_track` WRITE;
-/*!40000 ALTER TABLE `track_track` DISABLE KEYS */;
-/*!40000 ALTER TABLE `track_track` ENABLE KEYS */;
+LOCK TABLES `playlist_playlist` WRITE;
+/*!40000 ALTER TABLE `playlist_playlist` DISABLE KEYS */;
+INSERT INTO `playlist_playlist` VALUES (1,'Hold my beer','Love and Soccer','What is in your mind?',1,'2020-03-21 07:00:32'),(2,'Hold my hand','My love will go on another person','Ex, Next',5,'2020-03-21 07:01:44');
+/*!40000 ALTER TABLE `playlist_playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -57,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:08
+-- Dump completed on 2020-03-21 20:35:55

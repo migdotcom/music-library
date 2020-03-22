@@ -16,29 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `django_session`
+-- Table structure for table `track_track_playlist`
 --
 
-DROP TABLE IF EXISTS `django_session`;
+DROP TABLE IF EXISTS `track_track_playlist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `django_session` (
-  `session_key` varchar(40) NOT NULL,
-  `session_data` longtext NOT NULL,
-  `expire_date` datetime(6) NOT NULL,
-  PRIMARY KEY (`session_key`),
-  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+CREATE TABLE `track_track_playlist` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `track_id` int NOT NULL,
+  `playlist_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `track_track_Playlist_track_id_playlist_id_e0a871e0_uniq` (`track_id`,`playlist_id`),
+  KEY `track_track_Playlist_playlist_id_b3fecd14_fk_playlist_` (`playlist_id`),
+  CONSTRAINT `track_track_Playlist_playlist_id_b3fecd14_fk_playlist_` FOREIGN KEY (`playlist_id`) REFERENCES `playlist_playlist` (`id`),
+  CONSTRAINT `track_track_Playlist_track_id_2275ac2a_fk_track_track_id` FOREIGN KEY (`track_id`) REFERENCES `track_track` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `django_session`
+-- Dumping data for table `track_track_playlist`
 --
 
-LOCK TABLES `django_session` WRITE;
-/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('qm527cdmeny2rcuckvh2efmt3ryorzu0','M2NiMWQwZWI3YzUzMDU0OGRkODU3MDgzNWJjMmY5NThiMjg4OTMyNTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJhNmEwZjg0OTY1NmI1MjE1ZTkzYTRkMDViMDgzYTNkOWRiMTA4Yzk4In0=','2020-04-04 06:55:55.995805');
-/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+LOCK TABLES `track_track_playlist` WRITE;
+/*!40000 ALTER TABLE `track_track_playlist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `track_track_playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:08
+-- Dump completed on 2020-03-21 20:35:30

@@ -16,31 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `track_track_playlist`
+-- Table structure for table `artist_artist_event`
 --
 
-DROP TABLE IF EXISTS `track_track_playlist`;
+DROP TABLE IF EXISTS `artist_artist_event`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `track_track_playlist` (
+CREATE TABLE `artist_artist_event` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `track_id` int NOT NULL,
-  `playlist_id` int NOT NULL,
+  `artist_id` int NOT NULL,
+  `event_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `track_track_Playlist_track_id_playlist_id_e0a871e0_uniq` (`track_id`,`playlist_id`),
-  KEY `track_track_Playlist_playlist_id_b3fecd14_fk_playlist_` (`playlist_id`),
-  CONSTRAINT `track_track_Playlist_playlist_id_b3fecd14_fk_playlist_` FOREIGN KEY (`playlist_id`) REFERENCES `playlist_playlist` (`id`),
-  CONSTRAINT `track_track_Playlist_track_id_2275ac2a_fk_track_track_id` FOREIGN KEY (`track_id`) REFERENCES `track_track` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `artist_artist_Event_ID_artist_id_event_id_b4be98ac_uniq` (`artist_id`,`event_id`),
+  KEY `artist_artist_Event_event_id_e408b5a0_fk_event_event_id` (`event_id`),
+  CONSTRAINT `artist_artist_Event_artist_id_4c2c0ff8_fk_artist_artist_id` FOREIGN KEY (`artist_id`) REFERENCES `artist_artist` (`id`),
+  CONSTRAINT `artist_artist_Event_event_id_e408b5a0_fk_event_event_id` FOREIGN KEY (`event_id`) REFERENCES `event_event` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `track_track_playlist`
+-- Dumping data for table `artist_artist_event`
 --
 
-LOCK TABLES `track_track_playlist` WRITE;
-/*!40000 ALTER TABLE `track_track_playlist` DISABLE KEYS */;
-/*!40000 ALTER TABLE `track_track_playlist` ENABLE KEYS */;
+LOCK TABLES `artist_artist_event` WRITE;
+/*!40000 ALTER TABLE `artist_artist_event` DISABLE KEYS */;
+INSERT INTO `artist_artist_event` VALUES (1,1,1);
+/*!40000 ALTER TABLE `artist_artist_event` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:07
+-- Dump completed on 2020-03-21 20:35:33

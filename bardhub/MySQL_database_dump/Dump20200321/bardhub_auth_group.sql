@@ -16,32 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `artist_artist_event`
+-- Table structure for table `auth_group`
 --
 
-DROP TABLE IF EXISTS `artist_artist_event`;
+DROP TABLE IF EXISTS `auth_group`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `artist_artist_event` (
+CREATE TABLE `auth_group` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `artist_id` int NOT NULL,
-  `event_id` int NOT NULL,
+  `name` varchar(150) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `artist_artist_Event_ID_artist_id_event_id_b4be98ac_uniq` (`artist_id`,`event_id`),
-  KEY `artist_artist_Event_event_id_e408b5a0_fk_event_event_id` (`event_id`),
-  CONSTRAINT `artist_artist_Event_artist_id_4c2c0ff8_fk_artist_artist_id` FOREIGN KEY (`artist_id`) REFERENCES `artist_artist` (`id`),
-  CONSTRAINT `artist_artist_Event_event_id_e408b5a0_fk_event_event_id` FOREIGN KEY (`event_id`) REFERENCES `event_event` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `artist_artist_event`
+-- Dumping data for table `auth_group`
 --
 
-LOCK TABLES `artist_artist_event` WRITE;
-/*!40000 ALTER TABLE `artist_artist_event` DISABLE KEYS */;
-INSERT INTO `artist_artist_event` VALUES (1,1,1);
-/*!40000 ALTER TABLE `artist_artist_event` ENABLE KEYS */;
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -53,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21 19:56:07
+-- Dump completed on 2020-03-21 20:35:24
