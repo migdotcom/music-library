@@ -16,31 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `playlist_playlist`
+-- Table structure for table `draftsong_draftsong`
 --
 
-DROP TABLE IF EXISTS `playlist_playlist`;
+DROP TABLE IF EXISTS `draftsong_draftsong`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `playlist_playlist` (
+CREATE TABLE `draftsong_draftsong` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Playlist_image` varchar(255) DEFAULT NULL,
-  `Name` varchar(80) NOT NULL,
+  `Image` varchar(255) DEFAULT NULL,
   `Description` varchar(255) DEFAULT NULL,
-  `Play_count` int NOT NULL,
+  `Name` varchar(80) DEFAULT NULL,
   `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Album_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `draftsong_draftsong_Album_id_c5ed39f2_fk_album_album_id` (`Album_id`),
+  CONSTRAINT `draftsong_draftsong_Album_id_c5ed39f2_fk_album_album_id` FOREIGN KEY (`Album_id`) REFERENCES `album_album` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `playlist_playlist`
+-- Dumping data for table `draftsong_draftsong`
 --
 
-LOCK TABLES `playlist_playlist` WRITE;
-/*!40000 ALTER TABLE `playlist_playlist` DISABLE KEYS */;
-INSERT INTO `playlist_playlist` VALUES (1,'Hold my beer','Love and Soccer','What is in your mind?',1,'2020-03-21 07:00:32'),(2,'Hold my hand','My love will go on another person','Ex, Next',5,'2020-03-21 07:01:44');
-/*!40000 ALTER TABLE `playlist_playlist` ENABLE KEYS */;
+LOCK TABLES `draftsong_draftsong` WRITE;
+/*!40000 ALTER TABLE `draftsong_draftsong` DISABLE KEYS */;
+/*!40000 ALTER TABLE `draftsong_draftsong` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21  2:44:47
+-- Dump completed on 2020-03-21 19:56:09

@@ -16,29 +16,38 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tag_tag`
+-- Table structure for table `user_user`
 --
 
-DROP TABLE IF EXISTS `tag_tag`;
+DROP TABLE IF EXISTS `user_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tag_tag` (
+CREATE TABLE `user_user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Genre` varchar(80) DEFAULT NULL,
-  `Mood` varchar(80) DEFAULT NULL,
-  `Instruments` varchar(80) DEFAULT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Bio` varchar(255) DEFAULT NULL,
+  `Artist_trigger` int NOT NULL DEFAULT '0',
+  `Followers` int NOT NULL DEFAULT '0',
+  `Image` varchar(255) DEFAULT NULL,
+  `Display_name` varchar(80) NOT NULL,
   `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `Music_player_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `Email_UNIQUE` (`Email`),
+  UNIQUE KEY `Music_player_id` (`Music_player_id`),
+  CONSTRAINT `user_user_Music_player_id_9cc90a2f_fk_musicplay` FOREIGN KEY (`Music_player_id`) REFERENCES `musicplayersetting_musicplayersetting` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tag_tag`
+-- Dumping data for table `user_user`
 --
 
-LOCK TABLES `tag_tag` WRITE;
-/*!40000 ALTER TABLE `tag_tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tag_tag` ENABLE KEYS */;
+LOCK TABLES `user_user` WRITE;
+/*!40000 ALTER TABLE `user_user` DISABLE KEYS */;
+INSERT INTO `user_user` VALUES (1,'_1_@gmail.com','bardhub1','UH funny boy',0,0,NULL,'ManyFacesGod_1','2020-03-21 00:51:06',NULL),(2,'_2_@gmail.com','bardhub2','UH funny girl',0,51,NULL,'ManyFacesGod_2','2020-03-21 00:51:27',NULL);
+/*!40000 ALTER TABLE `user_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -50,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21  2:44:48
+-- Dump completed on 2020-03-21 19:56:09

@@ -16,38 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_user`
+-- Table structure for table `playlist_playlist_user`
 --
 
-DROP TABLE IF EXISTS `user_user`;
+DROP TABLE IF EXISTS `playlist_playlist_user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user_user` (
+CREATE TABLE `playlist_playlist_user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `Email` varchar(255) NOT NULL,
-  `Password` varchar(255) NOT NULL,
-  `Bio` varchar(255) DEFAULT NULL,
-  `Artist_trigger` int NOT NULL DEFAULT '0',
-  `Followers` int NOT NULL DEFAULT '0',
-  `Image` varchar(255) DEFAULT NULL,
-  `Display_name` varchar(80) NOT NULL,
-  `Time_stamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Music_player_id` int DEFAULT NULL,
+  `playlist_id` int NOT NULL,
+  `user_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `Email_UNIQUE` (`Email`),
-  UNIQUE KEY `Music_player_id` (`Music_player_id`),
-  CONSTRAINT `user_user_Music_player_id_9cc90a2f_fk_musicplay` FOREIGN KEY (`Music_player_id`) REFERENCES `musicplayersetting_musicplayersetting` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `playlist_playlist_User_playlist_id_user_id_7773b8fb_uniq` (`playlist_id`,`user_id`),
+  KEY `playlist_playlist_User_user_id_bbd445f7_fk_user_user_id` (`user_id`),
+  CONSTRAINT `playlist_playlist_Us_playlist_id_18bb4feb_fk_playlist_` FOREIGN KEY (`playlist_id`) REFERENCES `playlist_playlist` (`id`),
+  CONSTRAINT `playlist_playlist_User_user_id_bbd445f7_fk_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_user` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_user`
+-- Dumping data for table `playlist_playlist_user`
 --
 
-LOCK TABLES `user_user` WRITE;
-/*!40000 ALTER TABLE `user_user` DISABLE KEYS */;
-INSERT INTO `user_user` VALUES (1,'_1_@gmail.com','bardhub1','UH funny boy',0,0,NULL,'ManyFacesGod_1','2020-03-21 00:51:06',NULL),(2,'_2_@gmail.com','bardhub2','UH funny girl',0,51,NULL,'ManyFacesGod_2','2020-03-21 00:51:27',NULL);
-/*!40000 ALTER TABLE `user_user` ENABLE KEYS */;
+LOCK TABLES `playlist_playlist_user` WRITE;
+/*!40000 ALTER TABLE `playlist_playlist_user` DISABLE KEYS */;
+INSERT INTO `playlist_playlist_user` VALUES (1,1,1),(2,1,2),(3,2,1),(4,2,2);
+/*!40000 ALTER TABLE `playlist_playlist_user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -59,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-21  2:44:48
+-- Dump completed on 2020-03-21 19:56:08
