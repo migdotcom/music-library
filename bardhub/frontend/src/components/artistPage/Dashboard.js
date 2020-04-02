@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
-import artistPage from "./artistPage";
+import ArtistPage from "./ArtistPage";
 
 export default function Dashboard() {
   return (
     <div>
       <Fragment>
-        <artistPage>
+        <ArtistPage />
       </Fragment>
     </div>
   );

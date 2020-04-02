@@ -2,7 +2,7 @@ from user.models import User
 from rest_framework import viewsets, permissions
 from .serializers import UserSerializer
 
-# Lead ViewSet
+# User ViewSet
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -2,7 +2,7 @@ from track.models import track
 from rest_framework import viewsets, permissions
 from .serializers import TrackSerializer
 
-# Lead ViewSet
+# Track ViewSet
 
 
 class TrackViewSet(viewsets.ModelViewSet):
