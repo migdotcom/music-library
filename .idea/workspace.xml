@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ab7a767-9d92-4022-9f9f-da9c622d52c6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bardhub/album/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bardhub/album/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bardhub/artist/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/bardhub/artist/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bardhub/artist/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/bardhub/artist/models.py" afterDir="false" />
@@ -59,19 +60,18 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-453969218">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/bardhub/bardhub/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="107" selection-start-line="107" selection-end-line="107" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -98,23 +98,23 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="music-library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="music-library" type="462c0819:PsiDirectoryNode" />
+              <item name="Merged" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Merged" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="music-library" type="b2602c69:ProjectViewProjectNode" />
-              <item name="music-library" type="462c0819:PsiDirectoryNode" />
+              <item name="Merged" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Merged" type="462c0819:PsiDirectoryNode" />
               <item name="bardhub" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -176,13 +176,9 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" sideWeight="0.49925596" visible="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.50074404" side_tool="true" weight="0.3289689" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
@@ -190,6 +186,10 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.49925596" visible="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Python Console" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50074404" side_tool="true" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -224,13 +224,7 @@
     <entry file="file://$PROJECT_DIR$/bardhub/leads/models.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/bardhub/frontend/src/actions/tracks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="33" column="23" selection-start-line="33" selection-start-column="11" selection-end-line="33" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bardhub/frontend/src/actions/tracks.js" />
     <entry file="file://$PROJECT_DIR$/bardhub/frontend/src/reducers/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -240,11 +234,7 @@
     <entry file="file://$PROJECT_DIR$/bardhub/frontend/src/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/bardhub/frontend/src/reducers/tracks.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/bardhub/frontend/src/reducers/tracks.js" />
     <entry file="file://$PROJECT_DIR$/bardhub/frontend/src/components/leads/Leads.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -253,13 +243,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bardhub/user/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/bardhub/user/api.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -280,20 +264,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bardhub/frontend/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/bardhub/frontend/apps.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -302,13 +277,7 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/bardhub/leads/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/bardhub/leads/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -326,9 +295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

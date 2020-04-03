@@ -45,6 +45,12 @@ INSTALLED_APPS = [
     'track',
     'tag',
     'playlist',
+    'artist',
+    'event',
+    'recordLabel',
+    'musicplayersetting',
+    'draftsong',
+
 ]
 
 MIDDLEWARE = [
@@ -91,7 +97,7 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_2',
+        'NAME': 'bardhub',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'USER': 'root',
