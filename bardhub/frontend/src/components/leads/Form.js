@@ -49,6 +49,7 @@ export class Form extends Component {
               value={email}
             />
           </div>
+
           <div className="form-group">
             <label>Message</label>
             <input
@@ -59,6 +60,7 @@ export class Form extends Component {
               value={message}
             />
           </div>
+
           <div className="form-group">
             <button type="submit" className="btn btn-primary">
               Submit
