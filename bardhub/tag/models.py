@@ -6,7 +6,6 @@ class Tag(models.Model):
     Genre = models.CharField(max_length=80, default=None, blank=True, null=True)
     Mood = models.CharField(max_length=80, default=None, blank=True, null=True)
     Instruments = models.CharField(max_length=80, default=None, blank=True, null=True)
-    Track_ID = models.ForeignKey('track.track', on_delete=models.CASCADE)
     Time_stamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
