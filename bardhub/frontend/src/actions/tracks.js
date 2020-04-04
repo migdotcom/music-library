@@ -8,7 +8,7 @@ export const getTracks = () => dispatch => {
     .get("/api/tracks/")
     .then(res => {
       dispatch({
-        type: G,
+        type: GET_TRACKS,
         payload: res.data
       });
     })

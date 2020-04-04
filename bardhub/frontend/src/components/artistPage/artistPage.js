@@ -1,15 +1,20 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { getTracks, deleteTracks } from "../../actions/tracks";
 
 export class ArtistPage extends Component {
-  static PropTypes = {
-    tracks: PropTypes.array.isRequired,
-    getTracks: PropTypes.func.isRequired,
-    deleteTracks: PropTypes.func.isRequired
+  static propTypes = {
+    tracks: propTypes.array,
+    getTracks: propTypes.func.isRequired,
+    deleteTracks: propTypes.func.isRequired
   };
+
+constructor(props) {   
+	super(props)     
+	this.state =
+		{tracks: ["blank"]     } }
 
   componentDidMount() {
 	      this.props.getTracks();
@@ -30,33 +35,32 @@ export class ArtistPage extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.tracks.map(track => (
-              <tr key={Track.id}>
+          {this.props.tracks.map(track => (
+              <tr key={track.Track_id}>
                 <td>{track.Track_id}</td>
-				<td>We dont have track name</td>
-                <td>{track.Tags}</td>
+				<td>(track.Track_id)</td>
+                <td>{track.Tags}</td> 
                 <td>{track.Artist_note}</td>
                 <td>
                   <button
                     onClick={this.props.deleteTracks.bind(this, track.id)}
-                    className="btn btn-danger btn-sm"
-                  >
+                    className="btn btn-danger btn-sm">
                     {""}
                     Delete
                   </button>
                 </td>
               </tr>
-            ))}
+		  ))}
           </tbody>
         </table>
       </Fragment>
-    );
+    )
   }
 }
 
 
 const mapStateToProps = state => ({
-  ArtistPage: state.tracks.tracks
+  tracks: state.tracks.tracks
 });
 
 export default connect(mapStateToProps, { getTracks, deleteTracks })(ArtistPage);
