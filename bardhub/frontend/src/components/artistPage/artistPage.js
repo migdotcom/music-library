@@ -36,8 +36,8 @@ constructor(props) {
           </thead>
           <tbody>
           {this.props.tracks.map(track => (
-              <tr key={track.Track_id}>
-                <td>{track.Track_id}</td>
+              <tr key={track.id.toString(10)}>
+                <td>{track.id.toString(10) }</td>
 				<td>(track.Track_id)</td>
                 <td>{track.Tags}</td> 
                 <td>{track.Artist_note}</td>
