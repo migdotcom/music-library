@@ -4,6 +4,7 @@ from django.db import models
 class Track(models.Model):
     # Django already created unique ID
     Album = models.ForeignKey('album.Album', on_delete=models.CASCADE, blank=True, null=True)
+    Name = models.CharField(max_length=80, default=None, blank=True, null=True)
     Playlist = models.ManyToManyField('playlist.Playlist', blank=True)
     Music_key_type = models.CharField(max_length=80, default=None, blank=True, null=True)
     Lright_type = models.CharField(max_length=80, default=None, blank=True, null=True)

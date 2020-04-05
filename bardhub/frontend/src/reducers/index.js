@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import leads from "./leads";
+import tracks from "./tracks";
+import albums from "./albums";
 
 export default combineReducers({
-  leads
+  tracks,
+  albums
 });
