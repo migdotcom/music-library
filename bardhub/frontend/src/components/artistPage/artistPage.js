@@ -23,12 +23,12 @@ constructor(props) {
   render() {
     return (
       <Fragment>
-        <h2>Songs Hello World!</h2>
+        <h2>All tracks</h2>
         <table className="table table-striped">
           <thead>
             <tr>
               <th>ID</th>
-              <th>Title ????????</th>
+              <th>Title</th>
               <th>Tags</th>
               <th>Artist note</th>
               <th />
