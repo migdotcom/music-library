@@ -30,7 +30,7 @@ constructor(props) {
               <th>ID</th>
               <th>Title</th>
               <th>Tags</th>
-              <th>Artist note</th>
+              <th>Notes</th>
               <th />
             </tr>
           </thead>
@@ -38,7 +38,7 @@ constructor(props) {
           {this.props.tracks.map(track => (
               <tr key={track.id.toString(10)}>
                 <td>{track.id.toString(10) }</td>
-				<td>(track.Track_id)</td>
+				<td>{track.Name}</td>
                 <td>{track.Tags}</td> 
                 <td>{track.Artist_note}</td>
                 <td>
