@@ -5,7 +5,7 @@ import { GET_ALBUMS, DELETE_ALBUMS } from "./types";
 //GETS TRACKS
 export const getAlbums = () => dispatch => {
   axios
-    .get("/api/albums/", {
+    .get("/api/albums-newest", {
         params: {
             id: 2,
             //Name: "Vietnam Champion"

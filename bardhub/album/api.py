@@ -5,7 +5,6 @@ from .serializers import AlbumSerializer
 # Album ViewSet
 
 class AlbumViewSet(viewsets.ModelViewSet):
-    #queryset = Album.objects.all()
     def get_queryset(self):
         """
         Optionally restricts the returned purchases to a given user,
@@ -30,10 +29,20 @@ class AlbumViewSet(viewsets.ModelViewSet):
         id = self.request.query_params.get('id', None)
         if id is not None:
             #queryset = Album.objects.all().order_by('-Time_stamp')[:5]
-            queryset = Album.objects.filter(id=id)
+            queryset = Album.objects.filter(User=id)
         return queryset
-
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = AlbumSerializer
+
+
+# AlbumNewestViewSet
+
+class AlbumNewestViewSet(viewsets.ModelViewSet):
+    queryset = Album.objects.all().order_by('-Time_stamp')[:5]
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = AlbumSerializer
+
