@@ -23,32 +23,18 @@ constructor(props) {
   render() {
     return (
       <Fragment>
-        <h2>Songs Hello World!</h2>
+        
+		<h3>Albums for specific artist</h3>
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Title ????????</th>
-              <th>Tags</th>
-              <th>Artist note</th>
-              <th />
+              <th>Album name</th>
             </tr>
           </thead>
           <tbody>
           {this.props.tracks.map(track => (
-              <tr key={track.id.toString(10)}>
-                <td>{track.id.toString(10) }</td>
+              <tr key={track.id}>
 				<td>{track.Name}</td>
-                <td>{track.Tags}</td> 
-                <td>{track.Artist_note}</td>
-                <td>
-                  <button
-                    onClick={this.props.deleteTracks.bind(this, track.id)}
-                    className="btn btn-danger btn-sm">
-                    {""}
-                    Delete
-                  </button>
-                </td>
               </tr>
 		  ))}
           </tbody>
