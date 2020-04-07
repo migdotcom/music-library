@@ -5,12 +5,7 @@ import { GET_TRACKS, DELETE_TRACK } from "./types";
 //GETS TRACKS
 export const getTracks = () => dispatch => {
     axios
-    .get("/api/users/", {
-		params: {
-			Display_name: "ManyFacesGod_2",
-			// test user
-	    }
-	})
+    .get("/api/users/")
 	.then(res => {
 		    console.log(res.data);
        	    console.log("start res");

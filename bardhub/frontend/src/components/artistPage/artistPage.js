@@ -14,7 +14,7 @@ export class ArtistPage extends Component {
 constructor(props) {   
 	super(props)     
 	this.state =
-		{tracks: ["blank"]     } }
+		{tracks: []     } }
 
   componentDidMount() {
 	      this.props.getTracks();
