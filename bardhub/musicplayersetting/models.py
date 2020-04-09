@@ -9,4 +9,8 @@ class MusicPlayerSetting(models.Model):
     Time_stamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.Last_volume + " --- " + self.Button_size + " --- " +self.Track
+
+        if self.Track: 
+            return str(self.Last_volume) + " --- " + str(self.Button_size) + " --- " +self.Track
+        else: 
+            return str(self.Last_volume) + " --- " + str(self.Button_size) 

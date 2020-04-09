@@ -9,4 +9,4 @@ class Tag(models.Model):
     Time_stamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.Mood
+        return self.Genre + "---" + self.Mood
