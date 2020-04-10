@@ -1,0 +1,5 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `user_user_AFTER_UPDATE` AFTER UPDATE ON `user_user` FOR EACH ROW BEGIN
+IF NEW.Followers > 50
+THEN INSERT INTO artist_artist(User_id) VALUE (NEW.id);
+END IF;
+END
