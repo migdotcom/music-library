@@ -17,7 +17,7 @@ constructor(props) {
 		{tracks: []     } }
 
   componentDidMount() {
-	      this.props.getTracks();
+	      this.props.getTracks(this.props.searchedUser);
   }
 
   render() {

@@ -3,9 +3,9 @@ import axios from "axios";
 import { GET_TRACKS, DELETE_TRACK } from "./types";
 
 //GETS TRACKS
-export const getTracks = () => dispatch => {
+export const getTracks = userName => dispatch => {
     axios
-    .get("/api/users/")
+    .get("/api/users/", {params: {Display_name: userName} })
 	.then(res => {
 		    console.log(res.data);
        	    console.log("start res");
