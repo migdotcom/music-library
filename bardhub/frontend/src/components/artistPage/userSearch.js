@@ -1,32 +1,34 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getUser } from "../../actions/users";
+//import { getUser } from "../../actions/users"; we merely pass the searchedUser through to the artistpage
 
 export class userSearch extends Component {
   state = {
     name: ""
   };
     
-/*     childFunction=(e)=>
-    {
-        e.preventDefault();
-        this.props.functionCallFromParent("apogii");
-    }
+    onChange = e => this.setState({ [e.target.name]: e.target.value });
 
+       childFunction=(e)=>{
+           console.log(e)
+            this.props.functionCallFromParent(e.name);
+        };
+
+     onSubmit = e => {
+            e.preventDefault();
+            const { name } = this.state;
+            this.state.userSearchQuery = { name };
+            this.childFunction(this.state.userSearchQuery);
+          };
+          
+       
+    /*    
   static propTypes = {
     getUser: PropTypes.func.isRequired
   };
 
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
-
-  onSubmit = e => {
-    e.preventDefault();
-    const { name } = this.state;
-    const userSearchQuery = { name };
-    this.props.getUser(userSearchQuery);
-  };
-
+  
   render()
   {
   return(
@@ -64,4 +66,5 @@ export class userSearch extends Component {
   }
 }
 
-export default connect(null, { getUser })(userSearch);
+//export default connect(null, { getUser })(userSearch); if we were to do the retrieval in here
+export default userSearch;

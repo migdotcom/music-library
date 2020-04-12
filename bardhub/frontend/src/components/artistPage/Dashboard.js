@@ -10,18 +10,9 @@ function Message(props)
         return <h1>Please Search for User</h1>; 
 } 
   
-// Search button Component 
-function Login(props) 
-{ 
-   return( 
-           <button onClick = {props.clickFunc}> 
-               Search 
-           </button> 
-       ); 
-} 
-  
+
 // Return button Component 
-function Logout(props) 
+function BackButton(props) 
 { 
     return( 
            <button onClick = {props.clickFunc}> 
@@ -37,19 +28,17 @@ class Homepage extends React.Component{
         super(props); 
   
         this.state = {searchedUser : null}; 
-  
-        this.ifLoginClicked = this.ifLoginClicked.bind(this); 
-        this.ifLogoutClicked = this.ifLogoutClicked.bind(this); 
+        this.ifBackButtonClicked = this.ifBackButtonClicked.bind(this); 
     } 
   
-    ifLoginClicked() 
+    parentFunction=(data_from_child)=>{
+        this.setState({searchedUser : data_from_child})
+        console.log(this.state.searchedUser);
+            }
+            
+    ifBackButtonClicked() 
     { 
-        this.setState({searchedUser : "apogii"}); 
-    } 
-  
-    ifLogoutClicked() 
-    { 
-        this.setState({searchedUser : "null"}); 
+        this.setState({searchedUser : null}); 
     } 
   
     render(){ 
@@ -62,11 +51,14 @@ class Homepage extends React.Component{
                   
                 { 
                     (this.state.searchedUser)?( 
-                    <ArtistPage searchedUser = {this.state.searchedUser} /> ,
-                    //<Logout clickFunc = {this.ifLogoutClicked} /> 
-                    <UserSearch/>
+                    [
+                    <ArtistPage searchedUser = {this.state.searchedUser}/>
+                    ,<BackButton clickFunc = {this.ifBackButtonClicked}/> 
+                    ]
+                    //currently i can't render both of them at once, only the button shows
                     ) : ( 
-                    <Login clickFunc = {this.ifLoginClicked} />
+                    <UserSearch functionCallFromParent={this.parentFunction.bind(this)}/>
+                    
                     ) 
                 } 
   

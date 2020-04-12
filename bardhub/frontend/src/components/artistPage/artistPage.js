@@ -5,6 +5,7 @@ import propTypes from "prop-types";
 import { getTracks, deleteTracks } from "../../actions/tracks";
 
 export class ArtistPage extends Component {
+    
   static propTypes = {
     tracks: propTypes.array,
     getTracks: propTypes.func.isRequired,
@@ -12,13 +13,15 @@ export class ArtistPage extends Component {
   };
 
 constructor(props) {   
-	super(props)     
+	super(props)  
+    console.log(props);
 	this.state =
 		{tracks: []     } }
 
   componentDidMount() {
 	      this.props.getTracks(this.props.searchedUser);
-  }
+          
+          }
 
   render() {
     return (
@@ -43,6 +46,7 @@ constructor(props) {
     )
   }
 }
+
 
 
 const mapStateToProps = state => ({
