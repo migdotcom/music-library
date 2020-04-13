@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from "react";
 import ArtistPage from "./ArtistPage";
-import UserSearch from "./UserSearch"; 
+import UserSearch from "./UserSearch";
+import SingleAlbumPage from "./SingleAlbumPage" 
 // Message Component 
 function Message(props) 
 { 
@@ -21,13 +22,50 @@ function BackButton(props)
        ); 
 } 
 
+function ConditionalView(props)
+{
+    var searchedUser = props.searchedUser;
+    var selectedAlbum = props.selectedAlbum;
+    var ifBackButtonClicked = props.ifBackButtonClicked
+    if (searchedUser)
+        if (!selectedAlbum)                 
+            return( 
+        [
+            (<div key = "Album_display">
+                <ArtistPage key={searchedUser} searchedUser = {searchedUser}/>
+            </div> ), (
+            <div key = "backbutton">
+            <BackButton clickFunc = {ifBackButtonClicked}/> 
+        </div>) , 
+        (
+            <SingleAlbumPage message = {searchedUser + "singleAlbumMessage"}/> )
+            ]
+            )
+        else
+            return(
+                <BackButton clickFunc = {ifBackButtonClicked} />
+        ) //AlbumPage
+    else
+        return (                 <BackButton clickFunc = {ifBackButtonClicked} /> )
+/*         return (
+        <UserSearch functionCallFromParent={this.parentFunction.bind(this)}/>
+                ) */
+ 
+/*     else 
+        return( 
+    <div key="search">
+        <UserSearch functionCallFromParent={this.parentFunction.bind(this)}/>
+    </div>
+    )  */
+    
+}
 class Homepage extends React.Component{ 
   
     constructor(props) 
     { 
         super(props); 
   
-        this.state = {searchedUser : null}; 
+        this.state = {searchedUser : null, selectedAlbum: null}; 
         this.ifBackButtonClicked = this.ifBackButtonClicked.bind(this); 
     } 
   
@@ -42,28 +80,13 @@ class Homepage extends React.Component{
     } 
   
     render(){ 
-  
+    //keys added in an attempt to force remounting of components to fix bug
         return( 
-  
-            <div> 
-  
-                <Message searchedUser = {this.state.searchedUser}/> 
-                  
-                { 
-                    (this.state.searchedUser)?( 
-                    [
-                    <ArtistPage searchedUser = {this.state.searchedUser}/>
-                    ,<BackButton clickFunc = {this.ifBackButtonClicked}/> 
-                    ]
-                    //currently i can't render both of them at once, only the button shows
-                    ) : ( 
+                <div>
+                    <Message searchedUser = {this.state.searchedUser}/> 
                     <UserSearch functionCallFromParent={this.parentFunction.bind(this)}/>
-                    
-                    ) 
-                } 
-  
-            </div> 
-                  
+                    <ConditionalView searchedUser = {this.state.searchedUser} selectedAlbum = {this.state.selectedAlbum} ifBackButtonClicked = {this.ifBackButtonClicked}/>
+                </div>
             ); 
     } 
 } 

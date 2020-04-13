@@ -28,9 +28,13 @@ class AlbumViewSet(viewsets.ModelViewSet):
         queryset = Album.objects.all()
         id = self.request.query_params.get('id', None)
         if id is not None:
-            #queryset = Album.objects.all().order_by('-Time_stamp')[:5]
+            print("ID in Albums: " + str(id))
+           #queryset = Album.objects.all().order_by('-Time_stamp')[:5]
             queryset = Album.objects.filter(User=id)
-        return queryset
+            return queryset
+        else:
+            queryset = Album.objects.none()
+            return queryset
     permissions_classes = [
         permissions.AllowAny
     ]

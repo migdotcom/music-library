@@ -16,37 +16,26 @@ constructor(props) {
 	super(props)  
     console.log(props);
 	this.state =
-		{tracks: []     , selectedAlbum: null}
-}
+		{tracks: []     } }
 
   componentDidMount() {
-      console.log(this.props.searchedUser);
-            this.setState({tracks: []});
-	      this.props.getTracks(this.props.searchedUser);
-          console.log(this.props.tracks);
+          this.setState({tracks: []});
+	      //this.props.getTracks(this.props.searchedUser);
           }
 
-    viewSingleAlbumPage(selectedAlbum)
-    {
-        this.setState({selectedAlbum: selectedAlbum});
-        console.log("Clicked album: " + this.state.selectedAlbum);
-    }
   render() {
     return (
       <Fragment>
         
-		<h3>Albums for specific artist</h3>
+		<h3>Album title (pull from db)</h3>
         <table className="table table-striped">
           <thead>
             <tr>
             </tr>
           </thead>
-          <tbody >
-          {this.props.tracks.map(track => (
-              <tr key={track.id}>
-				<td><a href="#" onClick = {() => this.viewSingleAlbumPage(track.Name)}> {track.Name} </a> </td>                    
-              </tr>
-		  ))}
+          <tbody>
+          <tr>
+          <td>{this.props.message}</td></tr>
           </tbody>
         </table>
       </Fragment>
