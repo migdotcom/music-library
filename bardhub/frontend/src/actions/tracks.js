@@ -6,9 +6,9 @@ var noResults = {id: 1, Description: "Sorry, no results", Name: "No Results Foun
 //GETS TRACKS
 export const getTracks = userName => dispatch => {
     axios
-    .get("/api/users/", {params: {Display_name: userName} })
+    .get("/api/users/", {params: {username: userName} })
 	.catch(
-    err => console.log("ERROR FOOL"),
+    err => console.log("Error getting user from query "+ userName),
     dispatch({
         type: "error",
         payload: null
@@ -16,10 +16,7 @@ export const getTracks = userName => dispatch => {
     )
     .then(res => {
 		    console.log(res.data);
-       	    console.log("start res");
-       	    console.log("res.data.id = ", typeof(res.data[0].id))
        	    var id_params = res.data[0].id;
-            console.log(id_params);
             if (typeof(id_params) == "number"){
                 axios
                 .get("/api/albums/", {
@@ -32,20 +29,17 @@ export const getTracks = userName => dispatch => {
                         type: GET_TRACKS,
                         payload: res2.data
                     });
-                    console.log("id inside then" + res2.data[0].Name);
-
                 })
                 .catch(err => console.log(err));
-                console.log("res2 data" + res2.data);
             }
     })
     .catch(
-    err => console.log("ERROR FOOL2"),
-    
-    dispatch({
+    err => console.log("Error getting albums from user id ")
+/*    , dispatch({
         type: "error",
         payload: noResults
-    })
+    }) */
+    // todo: create noResults object in our code (or maybe in the database under a specific user) that will show upon No Results preventing bugs that we have
     );
 };
 //DELETE TRACKS

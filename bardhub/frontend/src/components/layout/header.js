@@ -1,7 +1,20 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logout } from '../../actions/login'
 
 export class header extends Component {
+    static propTypes = {
+      auth: PropTypes.object.isRequired,
+      logout: PropTypes.func.isRequired,
+    };
     render() {
+        const { isAuthenticated, user } = this.props.auth;
+      console.log(user);
+     /*  if(!isAuthenticated){ // todo: create Login button and behavior (pass isAuthenticated in state as prop to components)
+        return(<div />); */
+      
+      
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
             <a className="navbar-brand" href="#">BardHub</a>
@@ -19,6 +32,11 @@ export class header extends Component {
                 <li className="nav-item">
                   <a className="nav-link" href="#">Streaming</a>
                 </li>
+                 <li className="nav-item">
+                  <button onClick={this.props.logout} className="nav-link btn">
+                      Logout
+                  </button>
+                </li>
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown link
@@ -35,5 +53,8 @@ export class header extends Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+  auth: state.login,
+});
 
-export default header
+export default connect(mapStateToProps, { logout })(header);

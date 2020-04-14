@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'knox',
     'leads',
     'frontend',
     'user',
@@ -50,9 +51,15 @@ INSTALLED_APPS = [
     'recordLabel',
     'musicplayersetting',
     'draftsong',
+    'login',
 
 ]
 
+AUTH_USER_MODEL = 'user.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+}
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -86,7 +93,7 @@ WSGI_APPLICATION = 'bardhub.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -104,7 +111,7 @@ DATABASES = {
         'PASSWORD': '123456',
     }
 }
-
+"""
 
 
 # Password validation

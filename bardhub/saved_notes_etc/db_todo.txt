@@ -13,4 +13,4 @@ Nicholas -
 album-tracks display page
 integrate with artist albums display page and searchbar 
 
-
+create "follow" button that increments user follower count to activate trigger at 50 followers

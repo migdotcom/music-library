@@ -12,7 +12,7 @@ djangorestframework = "*"
 markdown = "*"
 django-filter = "*"
 django-rest-knox = "*"
-
+knox = "*"
 
 [requires]
 python_version = "3.8"
