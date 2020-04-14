@@ -12,7 +12,7 @@ export class userSearch extends Component {
 
        childFunction=(e)=>{
            console.log(e)
-            this.props.functionCallFromParent(e.name);
+            this.props.messageToParent(e.name);
         };
 
      onSubmit = e => {

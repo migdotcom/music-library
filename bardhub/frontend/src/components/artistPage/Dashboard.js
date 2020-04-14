@@ -38,7 +38,7 @@ function ConditionalView(props)
             <BackButton clickFunc = {ifBackButtonClicked}/> 
         </div>) , 
         (
-            <SingleAlbumPage message = {searchedUser + "singleAlbumMessage"}/> )
+            <SingleAlbumPage message = {props.messageToParent + ": singleAlbumMessage"}/> )
             ]
             )
         else
@@ -48,13 +48,13 @@ function ConditionalView(props)
     else
         return (                 <BackButton clickFunc = {ifBackButtonClicked} /> )
 /*         return (
-        <UserSearch functionCallFromParent={this.parentFunction.bind(this)}/>
+        <UserSearch messageToParent={this.updateSearchedUserFromChild.bind(this)}/>
                 ) */
  
 /*     else 
         return( 
     <div key="search">
-        <UserSearch functionCallFromParent={this.parentFunction.bind(this)}/>
+        <UserSearch messageToParent={this.updateSearchedUserFromChild.bind(this)}/>
     </div>
     )  */
     
@@ -69,9 +69,13 @@ class Homepage extends React.Component{
         this.ifBackButtonClicked = this.ifBackButtonClicked.bind(this); 
     } 
   
-    parentFunction=(data_from_child)=>{
+    updateSearchedUserFromChild=(data_from_child)=>{
         this.setState({searchedUser : data_from_child})
         console.log(this.state.searchedUser);
+            }
+    updateSelectedAlbumFromChild=(data_from_child)=>{
+        this.setState({selectedAlbum : data_from_child})
+        console.log(this.state.selectedAlbum);
             }
             
     ifBackButtonClicked() 
@@ -84,8 +88,8 @@ class Homepage extends React.Component{
         return( 
                 <div>
                     <Message searchedUser = {this.state.searchedUser}/> 
-                    <UserSearch functionCallFromParent={this.parentFunction.bind(this)}/>
-                    <ConditionalView searchedUser = {this.state.searchedUser} selectedAlbum = {this.state.selectedAlbum} ifBackButtonClicked = {this.ifBackButtonClicked}/>
+                    <UserSearch messageToParent={this.updateSearchedUserFromChild.bind(this)}/>
+                    <ConditionalView messageToParent={() => this.updateSelectedAlbumFromChild} searchedUser = {this.state.searchedUser} selectedAlbum = {this.state.selectedAlbum} ifBackButtonClicked = {this.ifBackButtonClicked}/>
                 </div>
             ); 
     } 
