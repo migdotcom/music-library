@@ -32,10 +32,8 @@ class App extends Component {
           </Fragment>
         </Router>    
   }
-  render() {
-    return (
-      <Provider store={store}>
-        <Fragment>
+  /* 
+  <Fragment>
           <Header />
           <div className="container">
             <Dashboard />
@@ -43,10 +41,24 @@ class App extends Component {
           <div className="container">
             <NewAlbum_Dashboard />
           </div>
-        </Fragment>
-      </Provider>
-	  
-    );
+        </Fragment> */
+        
+  render() {     
+  return (  
+  <Provider store={store}>     
+  <Router>       
+  <Fragment>       
+  <Header />      
+  <div className="container">       
+  <Switch>         
+  <PrivateRoute exact path="/" component={Dashboard} />          
+  <Route exact path="/register" component={CreateAccount} />         
+  <Route exact path="/login" component={SignIn} />        
+  </Switch>    
+  </div>   
+  </Fragment>
+  </Router>
+  </Provider>);   
   }
 }
 ReactDom.render(<App />, document.getElementById("app"));
