@@ -1,0 +1,3 @@
+To query with timestamp, use SELECT whatever FROM wherever WHERE Time_stamp BETWEEN "YYYY-MM-DD" AND "YYYY-MM-DD"
+
+use (now(), interval 1 week) AND (now(), interval 3 days) for between those values

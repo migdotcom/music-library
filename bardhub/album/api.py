@@ -49,4 +49,9 @@ class AlbumNewestViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = AlbumSerializer
-
+    
+class AlbumsFromPastMonth(viewsets.ModelViewSet):
+    queryset = raw("SELECT * FROM album_album WHERE Time_stamp BETWEEN date_sub(now(), interval 1 month) AND date_add(now(), interval 1 day");
+    permissions_classes = [
+        permissions.AllowAny ]
+    serializer_class = AlbumSerializer

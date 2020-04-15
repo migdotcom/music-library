@@ -44,3 +44,16 @@ export const addAlbums = Album => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+export const getAlbumsFromPastMonth = () => dispatch => {
+  axios
+    .get("/api/albums-pastmonth")
+    .then(res => {
+    console.log("Albums from past month: " + res.data);
+      dispatch({
+        type: GET_ALBUMS,
+        payload: res.data
+      });
+    })
+    .catch(err => console.log(err));
+};

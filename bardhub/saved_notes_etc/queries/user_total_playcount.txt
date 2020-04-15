@@ -1,0 +1,1 @@
+SELECT SUM(Count) FROM album_album WHERE id IN (SELECT id FROM user_user WHERE username="apogii");

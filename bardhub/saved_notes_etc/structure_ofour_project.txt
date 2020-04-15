@@ -1,0 +1,3 @@
+structure of our project notes 
+
+Artistpage -> getTracks from tracks.js -> api call /api/whatever 

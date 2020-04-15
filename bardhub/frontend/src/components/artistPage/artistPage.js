@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 
 import propTypes from "prop-types";
 import { getTracks, deleteTracks } from "../../actions/tracks";
-
+//new below
+import { getAlbumsFromPastMonth } from "../../actions/albums"
 export class ArtistPage extends Component {
     
   static propTypes = {
     tracks: propTypes.array,
     getTracks: propTypes.func.isRequired,
     deleteTracks: propTypes.func.isRequired
+    getAlbumsFromPastMonth: propTypes.func.isRequired
   };
 
 constructor(props) {   
@@ -23,6 +25,7 @@ constructor(props) {
       console.log(this.props.searchedUser);
             this.setState({tracks: []});
 	      this.props.getTracks(this.props.searchedUser);
+          this.props.getAlbumsFromPastMonth();
           console.log(this.props.tracks);
           }
 

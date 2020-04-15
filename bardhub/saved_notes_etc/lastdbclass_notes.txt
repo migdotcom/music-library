@@ -1,0 +1,38 @@
+last lecture db notes
+
+security
+reports
+	Can be data listing from a set of tables (analagous to our album view, and to our carousel feed)
+	could be tracking it with charts bar graphs data display like this (we won't be)
+
+SSRS sql server reporting services- can be linked with any dbms. it's a software that generates data reports. etc. 
+	It isn't pulling data with a SELECT * , it's a restricted view. 
+	She is looking for us to use aggregate functions, and minimalistic computation, and time window paramters from two dates and provide data for that time window. 
+
+		-> So we're gonna need to have diverse release dates for the music library tracks and pull by date. T_T
+		-> At least two data reports. 
+
+questions: can we do "newest albums" and "user albums"? 
+ make sure the output of our query is what is populating our report. (sql query) 
+don't compute from the frontend, only backend aggregate functions. WILL BE GRADED HERE. 
+
+go beyond the newest albums
+count the number of albums released last week
+we could do total play count <----------done
+how many artists
+how many new artists
+how many new albums added in past month <------------
+get the numbers not data listings.
+
+data insertion and data modification (delete is not important)
+
+So atleast 2 reports
+ 1
+-Enter new data and updating existing data
+-user authentication
+-2 triggers
+-2 reports
+
+Project due date is 24th
+
+MS team downloaded on desktop for the presentation
