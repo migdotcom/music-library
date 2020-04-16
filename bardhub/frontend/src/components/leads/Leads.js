@@ -1,14 +1,13 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-
+import { getLeads, deleteLead } from "../../actions/leads";
 import propTypes from "prop-types";
-import { getLeads, deleteLeads } from "../../actions/leads";
 
 export class Leads extends Component {
-  static PropTypes = {
-    leads: PropTypes.array.isRequired,
-    getLeads: PropTypes.func.isRequired,
-    deleteLeads: PropTypes.func.isRequired
+  static propTypes = {
+    leads: propTypes.array.isRequired,
+    getLeads: propTypes.func.isRequired,
+    deleteLead: propTypes.func.isRequired,
   };
 
   componentDidMount() {
@@ -29,7 +28,7 @@ export class Leads extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.leads.map(lead => (
+            {this.props.leads.map((lead) => (
               <tr key={lead.id}>
                 <td>{lead.id}</td>
                 <td>{lead.name}</td>
@@ -37,7 +36,7 @@ export class Leads extends Component {
                 <td>{lead.message}</td>
                 <td>
                   <button
-                    onClick={this.props.deleteLeads.bind(this, lead.id)}
+                    onClick={this.props.deleteLead.bind(this, lead.id)}
                     className="btn btn-danger btn-sm"
                   >
                     {""}
@@ -53,8 +52,8 @@ export class Leads extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  leads: state.leads.leads
+const mapStateToProps = (state) => ({
+  leads: state.leads.leads,
 });
 
-export default connect(mapStateToProps, { getLeads, deleteLeads })(Leads);
+export default connect(mapStateToProps, { getLeads, deleteLead })(Leads);
