@@ -1,0 +1,17 @@
+bardhub - Dashboard
+
+userSearch -> pass searchedUser to Dashboard , change state to searchedUser: searchedUser, pass Dashboard searchedUser to ArtistPage
+load ArtistPage with tracks as is
+
+optional: reload userSearch with back button (clear state of Dashboard to null) 
+
+upon using the built artistpage: 
+a search for "notauser" still returns two tracks from the previously searched valid user. it experiences a TypeError: Cannot read property 'id' of undefined at eval tracks.js(22)
+
+so that's because there is no user for "notauser". perhaps because there is an error, the tracks value is not updated. 
+
+so on the first search of a valid user, the tracks prop is empty after the search even while the albums are displaying. then on the next search, the same prop will be full of the tracks that were showing previously. 
+
+artistPage has tracks as props that are passed in? 
+
+//probably a react thing, not django

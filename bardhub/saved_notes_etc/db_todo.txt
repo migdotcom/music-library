@@ -1,0 +1,16 @@
+miguel: 
+
+
+needs to be done:
+user dashboard
+add, edit, delete albums and tracks 
+based on api and existing ArtistPage?
+submit form
+
+triggers with django 
+
+Nicholas - 
+album-tracks display page
+integrate with artist albums display page and searchbar 
+
+create "follow" button that increments user follower count to activate trigger at 50 followers

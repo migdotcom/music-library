@@ -1,0 +1,45 @@
+Structure: 
+
+Homepage
+	Dashboard
+	NewAlbumDashboard
+
+Dashboard
+	if searchedUser:
+		ArtistPage
+		BackButton
+	else:
+		userSearch searchbar
+
+new structure:
+
+Homepage should display the Featured content carousel Viet made at the top, and underneath, a big search bar. "search for artists"
+to implement a general search function for all types of content would be too much right now. 
+artists -> albums -> tracks
+There will be an "artists" tab that's selected by default, where the searchbar is
+There will also be a playlists tab and events + recordlabels tab
+
+Playlists will just show your playlists and "add playlist"
+Events + recordlabels will show all events, and in another component, show all recordlabels. 
+
+In Artist tab, the search will return an artist with their profile image and albums with images. 
+
+if searchedUser:
+	if !selectedAlbum:
+		ArtistPage
+	else:
+		AlbumPage
+	BackButton
+else:
+	userSearch
+
+
+I need to lay out the conditional logic inside a discrete function that gets called inside the render() function. 
+
+i'm getting closer
+
+i can define an onClick in an <a> tag with the link, now how to make the link send nowhere but instead change the react state? 
+use a href="#" hack for now
+create ViewSingleAlbumPage handler function for onClick of table entry
+ViewSingleAlbumPage doesn't update the state one time before switching
+

@@ -1,28 +1,37 @@
 import axios from "axios";
 
-import { GET_TRACKS, DELETE_TRACK, ADD_TRACK } from "./types";
+import {
+  GET_TRACKS,
+  DELETE_TRACK,
+  GET_TRACKS_USER,
+  GET_TRACKS_ALBUM,
+} from "./types";
 
-//GETS TRACKS
-export const getTracks = () => (dispatch) => {
+//GETS TRACKS OF AN ALBUM
+export const getTracksAlbum = (albumName) => (dispatch) => {
   axios
-    .get("/api/users/")
+    .get("/api/albums-name/", {
+      params: {
+        Name: albumName,
+      },
+    })
     .then((res) => {
       console.log(res.data);
-      console.log("start res");
-      console.log("res.data.id = ", typeof res.data[0].id);
+      console.log("start res hehehe ==============");
+      console.log("res.data.id = ", res.data[0].id);
       var id_params = res.data[0].id;
       if (typeof id_params == "number") {
         axios
-          .get("/api/albums/", {
+          .get("/api/tracks-album/", {
             params: {
               id: id_params,
             },
           })
           .then((res2) => {
-            console.log("in res2");
+            console.log("in res2 ===============    ");
             console.log(res2);
             dispatch({
-              type: GET_TRACKS,
+              type: GET_TRACKS_ALBUM,
               payload: res2.data,
             });
           })
@@ -32,8 +41,24 @@ export const getTracks = () => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
+
+//GETS ALL TRACKS
+export const getTracks = () => (dispatch) => {
+  axios
+    .get("/api/tracks", {
+      params: {},
+    })
+    .then((res) => {
+      dispatch({
+        type: GET_TRACKS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 //DELETE TRACKS
-export const deleteTrack = (id) => (dispatch) => {
+export const deleteTracks = (id) => (dispatch) => {
   axios
     .delete(`/api/tracks/${id}/`)
     .then((res) => {
@@ -47,15 +72,10 @@ export const deleteTrack = (id) => (dispatch) => {
 
 //ADD TRACKS
 export const addTrack = (Track) => (dispatch) => {
-  console.log(Track, "helo");
   axios
     .post("/api/tracks/", Track)
     .then((res) => {
-      console.log(Track, "helo");
       dispatch({
-        headers: {
-          "Content-Type": "application/json",
-        },
         type: ADD_TRACK,
         payload: res.data,
       });

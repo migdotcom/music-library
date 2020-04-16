@@ -1,7 +1,37 @@
 import React, { Component } from 'react'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logout, CheatFollowers } from '../../actions/login';
+import { Link }  from 'react-router-dom';
+
 
 export class header extends Component {
+    static propTypes = {
+      auth: PropTypes.object.isRequired,
+      logout: PropTypes.func.isRequired,
+	  CheatFollowers: PropTypes.func.isRequired
+
+    };
     render() {
+      const { isAuthenticated, user } = this.props.auth;
+      const logout_button = (
+        <li className="nav-item">
+          <button onClick={this.props.logout} className="nav-link btn">
+              Logout
+          </button>
+        </li>)
+      const login_button = (
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">
+              Login
+          </Link>
+</li>)
+      const follower_button = (
+        <li className="nav-item">
+          <button onClick={this.props.CheatFollowers} className="nav-link btn">
+             Cheat Followers
+          </button>
+        </li>)
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
             <a className="navbar-brand" href="#">BardHub</a>
@@ -14,12 +44,14 @@ export class header extends Component {
                   <a className="nav-link" href="#">Profile <span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Features</a>
+                  <a className="nav-link" href="/">Features</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Streaming</a>
+                  <Link className="btn" to="/newsfeed">NewsFeed</Link>
                 </li>
-                <li className="nav-item dropdown">
+                {isAuthenticated ? logout_button : login_button}
+                {isAuthenticated ? follower_button : <div></div>}
+                <li> className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown link
                   </a>
@@ -35,5 +67,8 @@ export class header extends Component {
         )
     }
 }
+const mapStateToProps = (state) => ({
+  auth: state.login,
+});
 
-export default header
+export default connect(mapStateToProps, { logout, CheatFollowers })(header);

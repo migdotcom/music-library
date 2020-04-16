@@ -1,10 +1,16 @@
 import { combineReducers } from "redux";
 import tracks from "./tracks";
 import albums from "./albums";
-import leads from "./leads";
+import login from "./login";
+import playlists from "./playlists";
+import tags from "./tags";
+import errors from "./errors";
 
 export default combineReducers({
+  login,
   tracks,
   albums,
-  leads,
+  playlists,
+  errors,
+  tags
 });

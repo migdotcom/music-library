@@ -2,7 +2,8 @@ import {
   GET_TRACKS,
   DELETE_TRACK,
   ADD_TRACK,
-  CLEAR_TRACKS,
+  GET_ALBUMS_USER,
+  GET_TRACKS_ALBUM,
 } from "../actions/types.js";
 
 const intialState = {
@@ -19,17 +20,19 @@ export default function (state = intialState, action) {
     case DELETE_TRACK:
       return {
         ...state,
-        tracks: state.tracks.filter((track) => track.id !== action.payload),
+        tracks: state.tracks.filter(
+          (tracks) => tracks.Track_id !== action.payload
+        ),
       };
     case ADD_TRACK:
       return {
         ...state,
         tracks: [...state.tracks, action.payload],
       };
-    case CLEAR_TRACKS:
+    case GET_TRACKS_ALBUM:
       return {
         ...state,
-        tracks: [],
+        tracks: action.payload,
       };
     default:
       return state;

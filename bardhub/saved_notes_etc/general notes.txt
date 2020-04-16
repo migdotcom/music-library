@@ -1,0 +1,52 @@
+need to do npm install and npm run-script, finally  npm run dev
+some of the below are steps and some are actual console commands
+
+inside music-library/bardhub you run these commands
+install latest python 3.8
+git clone the repository
+pip install pipenv
+cd into repo 
+pipenv shell
+pipenv install
+pipenv install mysqlclient
+
+
+python manage.py createsuperuser
+group9
+123456
+to access the api for editing db
+
+react components always named with capital letter first, even if the JS file and folder are lowercase first
+example: import ArtistPage from "./ArtistPage" when the folder is artistPage and file is artistPage.js 
+
+SQL does not support one-to-one
+so instead, db tools like Django will either create mapping tables, or will make the target value unique
+
+.get only returns 1
+we are using User in place of artist for all intents and purposes
+button onClick = {this.props.deleteLead.bind(this, lead.id)} className = "whatever"
+
+use one queryset for one function
+
+
+
+What you as a user have to install on your system: 
+SQL server, command line tool, workbench, service
+npm through node.js which will install vs code, python2, many other things
+make sure root password matches development root password
+
+in sql command line tool, show databases;
+create database bardhub;
+(our db name)
+use bardhub
+(no semicolon)
+
+in project directory, python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+npm run dev
+
+goto localhost:8000
+with api endpoints such as localhost:8000/api/tracks
+
+
