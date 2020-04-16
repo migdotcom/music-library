@@ -44,3 +44,22 @@ export const addAlbums = Album => dispatch => {
     })
     .catch(err => console.log(err));
 };
+<<<<<<< Updated upstream
+=======
+
+var count;
+export const getAlbumsFromPastMonth = () => dispatch => {
+  axios
+    .get("/api/albums-pastmonth")
+    .then(res => {
+    count = Object.keys(res.data).length;
+    console.log("Count of albums past month: ")
+    console.log(count);
+      dispatch({
+        type: GET_ALBUMS_PASTMONTH,
+        payload: count
+      });
+    })
+    .catch(err => console.log(err));
+};
+>>>>>>> Stashed changes

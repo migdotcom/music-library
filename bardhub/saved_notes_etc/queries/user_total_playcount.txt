@@ -1,0 +1,13 @@
+SELECT SUM(Count) FROM album_album WHERE id IN (SELECT id FROM user_user WHERE username="apogii");
+
+getUser(username) 
+returns User object 
+from User object get user.id 
+
+getUserTotalPlayCount(id)
+queries api/albums filter by id
+queryset
+SUM (queryset) 
+
+... 
+
