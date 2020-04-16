@@ -132,6 +132,7 @@ export const IncView = album_id => dispatch => {
 };
 
 export const CheatViews = album_id => dispatch => {
+    console.log(album_id);
     const config = {
         headers: {
             'Content-Type': 'application/json',

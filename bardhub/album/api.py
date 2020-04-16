@@ -82,7 +82,8 @@ class AlbumsFromPastMonth(viewsets.ModelViewSet):
     #queryset = Album.objects.raw('SELECT * FROM album_album WHERE Time_stamp BETWEEN date_sub(now(), interval 1 month) AND date_add(now(), interval 1 day');
     #in sqlite:
     def get_queryset(self):
-        queryset = Album.objects.raw("SELECT * FROM album_album WHERE Time_stamp BETWEEN date('now','-1 month') AND date('now','+1 day')");
+        queryset = []
+        # queryset = Album.objects.raw("SELECT * FROM album_album WHERE Time_stamp BETWEEN %s AND %s", [date('now','-1 month'), date('now','+1 day')]);
         return queryset
     #We're gonna get this info and then on the front end summarize it into a single number, and explain to professor that getting it to work with our framework otherwise would be impossible to finish in our time limit
     permissions_classes = [  

@@ -2,12 +2,13 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import propTypes from "prop-types";
-import { getAlbumsUser, getAlbumsFromPastMonth } from "../../actions/albums";
+import { getAlbumsUser, getAlbumsFromPastMonth, CheatViews } from "../../actions/albums";
 //import { getUserTotalPlaycount } from "../../actions/users";
 export class ArtistPage extends Component {
   static propTypes = {
     albums: propTypes.array,
     getAlbumsUser: propTypes.func.isRequired,
+    CheatViews: propTypes.func.isRequired
   };
 
   constructor(props) {
@@ -29,6 +30,7 @@ export class ArtistPage extends Component {
     console.log("Clicked album: " + this.state.selectedAlbum);
   }
   render() {
+
     return (
       <Fragment>
         <h3>Albums for specific artist</h3>
@@ -49,7 +51,8 @@ export class ArtistPage extends Component {
                       height="350"
                       alt="Card image cap"
                     />
-                    <p className="card-text">Number of tracks: {album.Count}</p>
+                    <p className="card-text">Views: {album.Count}</p>
+                    <button onClick={() => this.props.CheatViews(album.id)}>Cheat Viewcount</button>
                     <p className="card-text">{album.Time_stamp}</p>
                   </div>
                 </div>
@@ -92,4 +95,4 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps, {getAlbumsUser, getAlbumsFromPastMonth })(ArtistPage);
+export default connect(mapStateToProps, {getAlbumsUser, getAlbumsFromPastMonth, CheatViews })(ArtistPage);
