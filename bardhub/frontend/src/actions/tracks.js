@@ -47,7 +47,9 @@ export const deleteTrack = (id) => (dispatch) => {
 
 //ADD TRACKS
 export const addTrack = (Track) => (dispatch) => {
-  console.log(Track, "helo");
+  console.log(typeof(Track.Artist), "helo");
+  console.log(typeof(Track.Artist), "helo");
+    console.log((Track), "helo");
   axios
     .post("/api/tracks/", Track)
     .then((res) => {
