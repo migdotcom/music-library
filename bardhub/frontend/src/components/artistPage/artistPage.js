@@ -6,21 +6,25 @@ import PropTypes from "prop-types";
 import { getTracks, deleteTracks } from "../../actions/tracks";
 //new below
 import { getAlbumsFromPastMonth } from "../../actions/albums";
+import { getUserTotalPlaycount } from "../../actions/users";
+console.log(getUserTotalPlaycount())
 export class ArtistPage extends Component {
 
   static propTypes = {
     tracks: PropTypes.array,
     getTracks: PropTypes.func.isRequired,
     deleteTracks: PropTypes.func.isRequired,
-    getAlbumsFromPastMonth: PropTypes.func.isRequired
+    getAlbumsFromPastMonth: PropTypes.func.isRequired,
+    getUserTotalPlaycount: PropTypes.func.isRequired
     };
 
 constructor(props) {   
+    //the constructor isn't loading because of error in maptstatetoprops
     //super(props) may not be necessary
 	super(props)  
     console.log(props);
 	this.state =
-		{tracks: []     , selectedAlbum: null, album_pastmonth_count: null};
+		{tracks: []     , selectedAlbum: null, album_pastmonth_count: null, userTotalPlaycount: null};
     }
 
 componentDidMount() {
@@ -32,10 +36,12 @@ componentDidMount() {
   console.log("album_pastmonth_count: " + this.props.album_pastmonth_count);
 }
 
+//{this.setState({userTotalPlaycount: this.props.getUserTotalPlaycount()}); } 
     viewSingleAlbumPage(selectedAlbum)
     {
         this.setState({selectedAlbum: selectedAlbum});
         console.log("Clicked album: " + this.state.selectedAlbum);
+        this.props.getUserTotalPlaycount();
     }
   render() {
     return (
@@ -66,7 +72,8 @@ componentDidMount() {
 //map state of redux in reducers/albums.js to props of this component in here artistpage
 const mapStateToProps = state => ({
   tracks: state.tracks.tracks,
-  album_pastmonth_count: state.albums.album_pastmonth_count
-});
+  album_pastmonth_count: state.albums.album_pastmonth_count,
+  userTotalPlaycount: state.users.users
+})
 
-export default connect(mapStateToProps, { getTracks, deleteTracks, getAlbumsFromPastMonth })(ArtistPage);
+export default connect(mapStateToProps, { getTracks, deleteTracks, getAlbumsFromPastMonth, getUserTotalPlaycount })(ArtistPage);

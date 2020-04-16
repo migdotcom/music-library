@@ -1,7 +1,8 @@
-import { GET_USER, ADD_USER } from "../actions/types.js";
+import { GET_USER, ADD_USER, GET_USERTOTALPLAYCOUNT } from "../actions/types.js";
 
 const initialState = {
-  users: []
+  users: [] ,
+  userTotalPlaycount: null
 };
 
 export default function(state = initialState, action) {
@@ -10,7 +11,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         users: [...state.users, action.payload]
-      };
+    };
+    case GET_USERTOTALPLAYCOUNT:
+        return {
+        ...state, 
+        userTotalPlaycount: action.payload ] 
+    };
     default:
       return state;
   }

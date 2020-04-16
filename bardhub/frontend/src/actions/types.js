@@ -10,7 +10,7 @@ export const GET_ALBUMS_PASTMONTH = "GET_ALBUMS_PASTMONTH";
 
 export const GET_USER = "GET_USER";
 export const GET_SEARCH = "GET_SEARCH";
-
+export const GET_USERTOTALPLAYCOUNT = "GET_USERTOTALPLAYCOUNT"
 export const USER_LOADING = 'USER_LOADING';
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';

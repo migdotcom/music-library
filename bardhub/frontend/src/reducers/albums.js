@@ -1,13 +1,13 @@
 import { GET_ALBUMS, GET_ALBUMS_PASTMONTH, DELETE_ALBUMS, ADD_ALBUMS } from "../actions/types.js";
 
-const intialState = {
+const initialState = {
   albums: [] , 
-  album_pastmonth_count: 0
+  album_pastmonth_count: null
 };
 
 //... includes all in state
 // dispatch action to this reducer
-export default function(state = intialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ALBUMS:
       return {
