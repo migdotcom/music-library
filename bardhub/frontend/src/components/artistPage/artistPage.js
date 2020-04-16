@@ -1,33 +1,36 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
-import propTypes from "prop-types";
+//leads come down from reducer to component as a prop
+import PropTypes from "prop-types";
 import { getTracks, deleteTracks } from "../../actions/tracks";
 //new below
-import { getAlbumsFromPastMonth } from "../../actions/albums"
+import { getAlbumsFromPastMonth } from "../../actions/albums";
 export class ArtistPage extends Component {
-    
+
   static propTypes = {
-    tracks: propTypes.array,
-    getTracks: propTypes.func.isRequired,
-    deleteTracks: propTypes.func.isRequired
-    getAlbumsFromPastMonth: propTypes.func.isRequired
-  };
+    tracks: PropTypes.array,
+    getTracks: PropTypes.func.isRequired,
+    deleteTracks: PropTypes.func.isRequired,
+    getAlbumsFromPastMonth: PropTypes.func.isRequired
+    };
 
 constructor(props) {   
+    //super(props) may not be necessary
 	super(props)  
     console.log(props);
 	this.state =
-		{tracks: []     , selectedAlbum: null}
-}
+		{tracks: []     , selectedAlbum: null, album_pastmonth_count: null};
+    }
 
-  componentDidMount() {
-      console.log(this.props.searchedUser);
-            this.setState({tracks: []});
-	      this.props.getTracks(this.props.searchedUser);
-          this.props.getAlbumsFromPastMonth();
-          console.log(this.props.tracks);
-          }
+componentDidMount() {
+  console.log("Searched user: " + this.props.searchedUser);
+  this.props.getTracks(this.props.searchedUser);
+  this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
+  console.log("Albums for user " + this.props.searchedUser + ": ");
+  console.log(this.props.tracks);
+  console.log("album_pastmonth_count: " + this.props.album_pastmonth_count);
+}
 
     viewSingleAlbumPage(selectedAlbum)
     {
@@ -37,7 +40,6 @@ constructor(props) {
   render() {
     return (
       <Fragment>
-        
 		<h3>Albums for specific artist</h3>
         <table className="table table-striped">
           <thead>
@@ -52,15 +54,19 @@ constructor(props) {
 		  ))}
           </tbody>
         </table>
+        <div> 
+            <p> album pastmonth_count: {this.props.album_pastmonth_count} </p>
+            </div>
       </Fragment>
+      
     )
   }
 }
 
-
-
+//map state of redux in reducers/albums.js to props of this component in here artistpage
 const mapStateToProps = state => ({
-  tracks: state.tracks.tracks
+  tracks: state.tracks.tracks,
+  album_pastmonth_count: state.albums.album_pastmonth_count
 });
 
-export default connect(mapStateToProps, { getTracks, deleteTracks })(ArtistPage);
+export default connect(mapStateToProps, { getTracks, deleteTracks, getAlbumsFromPastMonth })(ArtistPage);

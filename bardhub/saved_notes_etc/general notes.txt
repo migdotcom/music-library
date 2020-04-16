@@ -1,3 +1,8 @@
+models.py returns Album.Name --> this is related to previous error
+we have basic setup for serializers (with albums, albumserializer serializes all the fields in Album model)
+
+Tracks and albums are mismatched (we're using getTracks to get albums ... it works but it's misleading) 
+
 need to do npm install and npm run-script, finally  npm run dev
 some of the below are steps and some are actual console commands
 

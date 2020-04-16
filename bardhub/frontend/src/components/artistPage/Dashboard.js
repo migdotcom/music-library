@@ -2,9 +2,22 @@ import React, { Fragment, Component } from "react";
 import ArtistPage from "./ArtistPage";
 import UserSearch from "./UserSearch";
 import SingleAlbumPage from "./SingleAlbumPage" 
+import {addTrack} from "../../actions/tracks"
+import {getAlbumsFromPastMonth} from "../../actions/albums"
 // Message Component 
 function Message(props) 
-{ 
+{
+    console.log(addTrack({
+    Name: "Test",
+    URL: "test.html",
+    Licensing_rights: "teswt",
+    Notes: "test",
+    Artist: 1,
+    Album: 1,
+    Tag: "1",
+    Playlist: []
+}) );
+    console.log(getAlbumsFromPastMonth() );
     if (props.searchedUser) 
         return <h1>{props.searchedUser}</h1>; 
     else

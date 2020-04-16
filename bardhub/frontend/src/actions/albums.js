@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import { GET_ALBUMS, DELETE_ALBUMS } from "./types";
+import { GET_ALBUMS, GET_ALBUMS_PASTMONTH, DELETE_ALBUMS } from "./types";
 
-//GETS TRACKS
+//make all http requests here, fire off actions here with dispatch
 export const getAlbums = () => dispatch => {
   axios
     .get("/api/albums-newest", {
@@ -18,7 +18,7 @@ export const getAlbums = () => dispatch => {
     })
     .catch(err => console.log(err));
 };
-//DELETE TRACKS
+
 export const deleteAlbums = id => dispatch => {
   axios
     .delete(`/api/albums/${id}/`)
@@ -32,7 +32,6 @@ export const deleteAlbums = id => dispatch => {
 };
 
 
-//ADD TRACKS
 export const addAlbums = Album => dispatch => {
   axios
     .post("/api/albums/", Album)
@@ -44,15 +43,17 @@ export const addAlbums = Album => dispatch => {
     })
     .catch(err => console.log(err));
 };
-
+var count;
 export const getAlbumsFromPastMonth = () => dispatch => {
   axios
     .get("/api/albums-pastmonth")
     .then(res => {
-    console.log("Albums from past month: " + res.data);
+    count = Object.keys(res.data).length;
+    console.log("Count of albums past month: ")
+    console.log(count);
       dispatch({
-        type: GET_ALBUMS,
-        payload: res.data
+        type: GET_ALBUMS_PASTMONTH,
+        payload: count
       });
     })
     .catch(err => console.log(err));

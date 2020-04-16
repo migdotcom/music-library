@@ -1,9 +1,12 @@
-import { GET_ALBUMS, DELETE_ALBUMS, ADD_ALBUMS } from "../actions/types.js";
+import { GET_ALBUMS, GET_ALBUMS_PASTMONTH, DELETE_ALBUMS, ADD_ALBUMS } from "../actions/types.js";
 
 const intialState = {
-  albums: []
+  albums: [] , 
+  album_pastmonth_count: 0
 };
 
+//... includes all in state
+// dispatch action to this reducer
 export default function(state = intialState, action) {
   switch (action.type) {
     case GET_ALBUMS:
@@ -21,6 +24,11 @@ export default function(state = intialState, action) {
         ...state,
         albums: [...state.albums, action.payload]
       };
+    case GET_ALBUMS_PASTMONTH:
+        return {
+        ...state,
+        album_pastmonth_count: action.payload
+        };
     default:
       return state;
   }

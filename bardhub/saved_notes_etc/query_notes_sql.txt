@@ -1,3 +1,11 @@
 To query with timestamp, use SELECT whatever FROM wherever WHERE Time_stamp BETWEEN "YYYY-MM-DD" AND "YYYY-MM-DD"
 
 use (now(), interval 1 week) AND (now(), interval 3 days) for between those values
+
+Raw SQL expressions¶
+class RawSQL(sql, params, output_field=None)¶
+Sometimes database expressions can’t easily express a complex WHERE clause. In these edge cases, use the RawSQL expression. For example:
+
+>>> from django.db.models.expressions import RawSQL
+>>> queryset.annotate(val=RawSQL("select col from sometable where othercol = %s", (someparam,)))
+These extra lookups may not be portable to different database engines (because you’re explicitly writing SQL code) and violate the DRY principle, so you should avoid them if possible.
