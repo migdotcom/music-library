@@ -59,7 +59,9 @@ class MakeAlbum(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
     def post(self, request, *args, **kwargs):
+        print("request.data", request.data)
         request.data["User"] = request.user.id
+        print(request.user.id," user id of create album")
         album_serializer = AlbumSerializer(data=request.data, partial=True)
         # album_data = album_serializer.data
         # album_data["User"] = request.user

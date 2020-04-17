@@ -26,6 +26,11 @@ export class header extends Component {
                 Create Album
             </Link>
         </li>
+        <li className="nav-item">
+            <Link to="/maketrack" className="nav-link">
+                Create Track
+            </Link>
+        </li>
         </Fragment>)//
       const login_button = (
         <Fragment>

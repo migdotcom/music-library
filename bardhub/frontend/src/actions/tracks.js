@@ -5,6 +5,7 @@ import {
   DELETE_TRACK,
   GET_TRACKS_USER,
   GET_TRACKS_ALBUM,
+  ADD_TRACK,
 } from "./types";
 
 //GETS TRACKS OF AN ALBUM
@@ -73,7 +74,7 @@ export const deleteTracks = (id) => (dispatch) => {
 //ADD TRACKS
 export const addTrack = (Track) => (dispatch) => {
   axios
-    .post("/api/tracks/", Track)
+    .post("/api/tracks", Track)
     .then((res) => {
       dispatch({
         type: ADD_TRACK,
@@ -81,4 +82,38 @@ export const addTrack = (Track) => (dispatch) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+//MAKE TRACKS
+export const makeTrack = (Track) => (dispatch, getState) => {
+  console.log(Track);
+  axios
+    .post("/api/tracks/create", Track, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_TRACK,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+// Setup config with token - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().login.token;
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+
+  // If token, add to headers config
+  if (token) {
+    config.headers['Authorization'] = `Token ${token}`;
+  }
+
+  return config;
 };
