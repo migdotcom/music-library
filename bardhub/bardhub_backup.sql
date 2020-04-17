@@ -33,7 +33,7 @@ CREATE TABLE `album_album` (
   PRIMARY KEY (`id`),
   KEY `album_album_User_id_e606c4f2_fk_user_user_id` (`User_id`),
   CONSTRAINT `album_album_User_id_e606c4f2_fk_user_user_id` FOREIGN KEY (`User_id`) REFERENCES `user_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `album_album` (
 
 LOCK TABLES `album_album` WRITE;
 /*!40000 ALTER TABLE `album_album` DISABLE KEYS */;
+INSERT INTO `album_album` VALUES (1,'funky stuff','Chiptunes','album_images/taptoescapedesk_zmczLj8.png',0,'2020-04-17 23:04:09.745946',4),(2,'EDM','EDM Stuff','album_images/apogii.jpg',90,'2020-04-17 23:04:35.296774',4),(3,'first release','Matter Jam EP','album_images/Matter_jam.png',0,'2020-04-17 23:07:50.280172',5),(4,'Second release','Backlog','album_images/Backlog.jpg',13,'2020-04-17 23:09:35.194993',6),(5,'Big star','thank u, next','album_images/Thank_U_Next_album_cover.png',55000000,'2020-04-17 23:10:41.503118',7),(6,'Older Tracks','Archive','album_images/KrUY8SX_-_Imgur.png',0,'2020-04-17 23:14:16.637175',8);
 /*!40000 ALTER TABLE `album_album` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,7 +63,7 @@ CREATE TABLE `artist_artist` (
   KEY `artist_artist_RecordLabel_id_7faa27fd_fk_recordLab` (`RecordLabel_id`),
   CONSTRAINT `artist_artist_RecordLabel_id_7faa27fd_fk_recordLab` FOREIGN KEY (`RecordLabel_id`) REFERENCES `recordlabel_recordlabel` (`id`),
   CONSTRAINT `artist_artist_User_id_b101fd22_fk_user_user_id` FOREIGN KEY (`User_id`) REFERENCES `user_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -71,6 +72,7 @@ CREATE TABLE `artist_artist` (
 
 LOCK TABLES `artist_artist` WRITE;
 /*!40000 ALTER TABLE `artist_artist` DISABLE KEYS */;
+INSERT INTO `artist_artist` VALUES (1,'2020-04-17 23:48:25.928930',2,7);
 /*!40000 ALTER TABLE `artist_artist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +92,7 @@ CREATE TABLE `artist_artist_event` (
   KEY `artist_artist_Event_event_id_e408b5a0_fk_event_event_id` (`event_id`),
   CONSTRAINT `artist_artist_Event_artist_id_4c2c0ff8_fk_artist_artist_id` FOREIGN KEY (`artist_id`) REFERENCES `artist_artist` (`id`),
   CONSTRAINT `artist_artist_Event_event_id_e408b5a0_fk_event_event_id` FOREIGN KEY (`event_id`) REFERENCES `event_event` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,6 +101,7 @@ CREATE TABLE `artist_artist_event` (
 
 LOCK TABLES `artist_artist_event` WRITE;
 /*!40000 ALTER TABLE `artist_artist_event` DISABLE KEYS */;
+INSERT INTO `artist_artist_event` VALUES (1,1,1),(2,1,2);
 /*!40000 ALTER TABLE `artist_artist_event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +207,7 @@ CREATE TABLE `django_admin_log` (
   CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
   CONSTRAINT `django_admin_log_user_id_c564eba6_fk_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_user` (`id`),
   CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +216,7 @@ CREATE TABLE `django_admin_log` (
 
 LOCK TABLES `django_admin_log` WRITE;
 /*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
-INSERT INTO `django_admin_log` VALUES (1,'2020-04-17 22:23:17.750737','4','apogiimusic@gmail.com --- apogii',1,'[{\"added\": {}}]',8,1),(2,'2020-04-17 22:24:00.564871','5','bbs@bgnat.com --- Brown Bag Special',1,'[{\"added\": {}}]',8,1),(3,'2020-04-17 22:24:33.204955','6','sikorasaur@sik.com --- sikorasaur',1,'[{\"added\": {}}]',8,1),(4,'2020-04-17 22:26:04.848209','7','arianagrande@gmail.com --- Ariana Grande',1,'[{\"added\": {}}]',8,1),(5,'2020-04-17 22:26:35.319444','8','cidetraq@gmail.com --- cidetraq',1,'[{\"added\": {}}]',8,1),(6,'2020-04-17 22:26:44.136038','8','cidetraq@gmail.com --- cidetraq',2,'[{\"changed\": {\"fields\": [\"Is staff\"]}}]',8,1);
+INSERT INTO `django_admin_log` VALUES (1,'2020-04-17 22:23:17.750737','4','apogiimusic@gmail.com --- apogii',1,'[{\"added\": {}}]',8,1),(2,'2020-04-17 22:24:00.564871','5','bbs@bgnat.com --- Brown Bag Special',1,'[{\"added\": {}}]',8,1),(3,'2020-04-17 22:24:33.204955','6','sikorasaur@sik.com --- sikorasaur',1,'[{\"added\": {}}]',8,1),(4,'2020-04-17 22:26:04.848209','7','arianagrande@gmail.com --- Ariana Grande',1,'[{\"added\": {}}]',8,1),(5,'2020-04-17 22:26:35.319444','8','cidetraq@gmail.com --- cidetraq',1,'[{\"added\": {}}]',8,1),(6,'2020-04-17 22:26:44.136038','8','cidetraq@gmail.com --- cidetraq',2,'[{\"changed\": {\"fields\": [\"Is staff\"]}}]',8,1),(7,'2020-04-17 23:04:09.749941','1','Chiptunes',1,'[{\"added\": {}}]',9,1),(8,'2020-04-17 23:04:35.298773','2','EDM Stuff',1,'[{\"added\": {}}]',9,1),(9,'2020-04-17 23:07:50.282169','3','Matter Jam EP',1,'[{\"added\": {}}]',9,1),(10,'2020-04-17 23:09:35.196993','4','Backlog',1,'[{\"added\": {}}]',9,1),(11,'2020-04-17 23:10:41.504119','5','thank u, next',1,'[{\"added\": {}}]',9,1),(12,'2020-04-17 23:14:16.639173','6','Archive',1,'[{\"added\": {}}]',9,1),(13,'2020-04-17 23:40:38.567228','1','Chiptune---Energetic',1,'[{\"added\": {}}]',11,1),(14,'2020-04-17 23:40:40.096366','1','Final Rush',1,'[{\"added\": {}}]',10,1),(15,'2020-04-17 23:41:07.611936','2','Dream Pop---Dreamy',1,'[{\"added\": {}}]',11,1),(16,'2020-04-17 23:41:08.427951','2','Matter Jam',1,'[{\"added\": {}}]',10,1),(17,'2020-04-17 23:41:41.405441','3','Electronic---Searching',1,'[{\"added\": {}}]',11,1),(18,'2020-04-17 23:41:42.715278','3','Microtonal Mountain Jazz',1,'[{\"added\": {}}]',10,1),(19,'2020-04-17 23:42:15.184905','4','Pop---Grateful',1,'[{\"added\": {}}]',11,1),(20,'2020-04-17 23:42:19.969280','4','thank u, next',1,'[{\"added\": {}}]',10,1),(21,'2020-04-17 23:42:59.725530','5','Drum n Bass---Energetic',1,'[{\"added\": {}}]',11,1),(22,'2020-04-17 23:43:00.830228','5','Ocean Base',1,'[{\"added\": {}}]',10,1),(23,'2020-04-17 23:43:18.026966','1','B-GNAT records --- Houston',1,'[{\"added\": {}}]',15,1),(24,'2020-04-17 23:46:11.459023','1','Brown Bag Beyond',1,'[{\"added\": {}}]',12,1),(25,'2020-04-17 23:46:37.494275','2','Favorites',1,'[{\"added\": {}}]',12,1),(26,'2020-04-17 23:47:22.531019','1','Houston',1,'[{\"added\": {}}]',14,1),(27,'2020-04-17 23:48:07.009954','2','Columbia Records --- New York, NY',1,'[{\"added\": {}}]',15,1),(28,'2020-04-17 23:48:22.995227','2','New York, NY',1,'[{\"added\": {}}]',14,1),(29,'2020-04-17 23:48:25.935901','1','secret information',1,'[{\"added\": {}}]',13,1);
 /*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,7 +340,7 @@ CREATE TABLE `event_event` (
   `Time_happening` time(6) NOT NULL,
   `Time_stamp` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,6 +349,7 @@ CREATE TABLE `event_event` (
 
 LOCK TABLES `event_event` WRITE;
 /*!40000 ALTER TABLE `event_event` DISABLE KEYS */;
+INSERT INTO `event_event` VALUES (1,'Houston','23:47:15.000000','2020-04-17 23:47:22.528021'),(2,'New York, NY','23:48:22.000000','2020-04-17 23:48:22.993223');
 /*!40000 ALTER TABLE `event_event` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,7 +455,7 @@ CREATE TABLE `playlist_playlist` (
   `Play_count` int NOT NULL,
   `Time_stamp` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -460,6 +464,7 @@ CREATE TABLE `playlist_playlist` (
 
 LOCK TABLES `playlist_playlist` WRITE;
 /*!40000 ALTER TABLE `playlist_playlist` DISABLE KEYS */;
+INSERT INTO `playlist_playlist` VALUES (1,NULL,'Brown Bag Beyond','Brown Bag Special\'s Supported Artists',158,'2020-04-17 23:46:11.452022'),(2,NULL,'Favorites','I like these',35,'2020-04-17 23:46:37.491277');
 /*!40000 ALTER TABLE `playlist_playlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -479,7 +484,7 @@ CREATE TABLE `playlist_playlist_user` (
   KEY `playlist_playlist_User_user_id_bbd445f7_fk_user_user_id` (`user_id`),
   CONSTRAINT `playlist_playlist_Us_playlist_id_18bb4feb_fk_playlist_` FOREIGN KEY (`playlist_id`) REFERENCES `playlist_playlist` (`id`),
   CONSTRAINT `playlist_playlist_User_user_id_bbd445f7_fk_user_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -488,6 +493,7 @@ CREATE TABLE `playlist_playlist_user` (
 
 LOCK TABLES `playlist_playlist_user` WRITE;
 /*!40000 ALTER TABLE `playlist_playlist_user` DISABLE KEYS */;
+INSERT INTO `playlist_playlist_user` VALUES (1,1,5),(2,2,4);
 /*!40000 ALTER TABLE `playlist_playlist_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -505,7 +511,7 @@ CREATE TABLE `recordlabel_recordlabel` (
   `Video_playlist_Url` varchar(255) DEFAULT NULL,
   `Time_stamp` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -514,6 +520,7 @@ CREATE TABLE `recordlabel_recordlabel` (
 
 LOCK TABLES `recordlabel_recordlabel` WRITE;
 /*!40000 ALTER TABLE `recordlabel_recordlabel` DISABLE KEYS */;
+INSERT INTO `recordlabel_recordlabel` VALUES (1,'B-GNAT records','Houston',NULL,'2020-04-17 23:43:18.022972'),(2,'Columbia Records','New York, NY',NULL,'2020-04-17 23:48:07.007952');
 /*!40000 ALTER TABLE `recordlabel_recordlabel` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -531,7 +538,7 @@ CREATE TABLE `tag_tag` (
   `Instruments` varchar(80) DEFAULT NULL,
   `Time_stamp` datetime(6) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -540,6 +547,7 @@ CREATE TABLE `tag_tag` (
 
 LOCK TABLES `tag_tag` WRITE;
 /*!40000 ALTER TABLE `tag_tag` DISABLE KEYS */;
+INSERT INTO `tag_tag` VALUES (1,'Chiptune','Energetic','Synth, drums','2020-04-17 23:40:38.565230'),(2,'Dream Pop','Dreamy','Female vocals, guitar, bass, drums, synth','2020-04-17 23:41:07.609940'),(3,'Electronic','Searching','Synth, drum machine','2020-04-17 23:41:41.404441'),(4,'Pop','Grateful','Female vocals, synth, drum machine','2020-04-17 23:42:15.182905'),(5,'Drum n Bass','Energetic','FM Synth, drum samples, game samples','2020-04-17 23:42:59.723531');
 /*!40000 ALTER TABLE `tag_tag` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -567,7 +575,7 @@ CREATE TABLE `track_track` (
   CONSTRAINT `track_track_Album_id_cfa5bc9f_fk_album_album_id` FOREIGN KEY (`Album_id`) REFERENCES `album_album` (`id`),
   CONSTRAINT `track_track_Artist_id_977388e7_fk_user_user_id` FOREIGN KEY (`Artist_id`) REFERENCES `user_user` (`id`),
   CONSTRAINT `track_track_Tag_id_5931af59_fk_tag_tag_id` FOREIGN KEY (`Tag_id`) REFERENCES `tag_tag` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -576,6 +584,7 @@ CREATE TABLE `track_track` (
 
 LOCK TABLES `track_track` WRITE;
 /*!40000 ALTER TABLE `track_track` DISABLE KEYS */;
+INSERT INTO `track_track` VALUES (1,'Final Rush',NULL,NULL,NULL,'2020-04-17 23:40:40.085373',1,4,1),(2,'Matter Jam',NULL,NULL,NULL,'2020-04-17 23:41:08.422955',3,5,2),(3,'Microtonal Mountain Jazz',NULL,NULL,NULL,'2020-04-17 23:41:42.712281',4,6,3),(4,'thank u, next',NULL,NULL,NULL,'2020-04-17 23:42:19.955287',5,7,4),(5,'Ocean Base',NULL,NULL,NULL,'2020-04-17 23:43:00.827230',6,8,5);
 /*!40000 ALTER TABLE `track_track` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -710,4 +719,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-17 17:33:59
+-- Dump completed on 2020-04-17 18:49:13
