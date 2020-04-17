@@ -3,6 +3,7 @@ import ArtistPage from "./ArtistPage";
 import UserSearch from "./UserSearch";
 import SingleAlbumPage from "./SingleAlbumPage";
 import TracksPage from "./TracksPage";
+import Reports from "./Reports";
 // Message Component
 function Message(props) {
   if (props.searchedUser) return <h1>{props.searchedUser}</h1>;
@@ -82,8 +83,23 @@ class Homepage extends React.Component {
           selectedAlbum={this.state.selectedAlbum}
           ifBackButtonClicked={this.ifBackButtonClicked}
         />
+        <Reports/>
       </div>
     );
   }
 }
+
+/* const mapStateToProps = (state) => ({
+    album_pastmonth_count: state.albums.album_pastmonth_count,
+
+});
+
+export default connect(mapStateToProps, {getAlbumsUser, getAlbumsFromPastMonth, CheatViews })(ArtistPage);
+
+
+
+ */
+
+
+
 export default Homepage;

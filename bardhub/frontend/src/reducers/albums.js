@@ -37,7 +37,11 @@ export default function (state = intialState, action) {
         ...state,
         albums: action.payload,
       };
-
+    case GET_ALBUMS_PASTMONTH:
+        return {
+            ...state, 
+        album_pastmonth_count: action.payload };
+  
     case GET_ALBUMS_USER:
       return {
         ...state,

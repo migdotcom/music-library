@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_USER } from "./types";
+import { GET_USER , GET_USERTOTALPLAYCOUNT } from "./types";
 
 //GET USER, currently only one implemented for ArtistPage
 export const getUser = username => dispatch => {

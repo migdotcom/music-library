@@ -24,30 +24,31 @@ class UserViewSet(viewsets.ModelViewSet):
     permissions_classes = [permissions.AllowAny]
     serializer_class = UserSerializer
    
-# class UserTotalPlaycount(viewsets.ModelViewSet):
-    # def get_queryset(self):
-        # user_id = self.request.query_params.get('user_id')
-        # #need to protect against SQL injection with the quotes in the future
-        # #"Chiptunes"
-        # # query = "SELECT SUM(Count) AS Result FROM album_album WHERE User_id=" +user_id
-        # # with connection.cursor() as cursor:
-            # # cursor.execute(query)
-            # # row = cursor.fetchone()
-            # # print("ROW IS:        ")
-            # # print(row)
-            # # print("TYPE OF ROW: ")
-            # # print(type(row))
-            # # newdict = {int(row[0]) }
-        # # return(newdict)
-        # #query = "SELECT * FROM album_album WHERE User_id=" +user_id
-        # #queryset = Album.objects.raw(query);
-        # queryset = Album.objects.filter(User = user_id).annotate(total_playcount=Count('Count'))
-        # return queryset
-    # #We're gonna get this info and then on the front end summarize it into a single number, and explain to professor that getting it to work with our framework otherwise would be impossible to finish in our time limit
-    # permissions_classes = [  
-        # permissions.AllowAny ]
+class UserTotalPlaycount(viewsets.ModelViewSet):
+    def get_queryset(self):
+        user_id = self.request.query_params.get('user_id')
+        #need to protect against SQL injection with the quotes in the future
+        #"Chiptunes"
+        # query = "SELECT SUM(Count) AS Result FROM album_album WHERE User_id=" +user_id
+        # with connection.cursor() as cursor:
+            # cursor.execute(query)
+            # row = cursor.fetchone()
+            # print("ROW IS:        ")
+            # print(row)
+            # print("TYPE OF ROW: ")
+            # print(type(row))
+            # newdict = {int(row[0]) }
+        # return(newdict)
+        #query = "SELECT * FROM album_album WHERE User_id=" +user_id
+        #queryset = Album.objects.raw(query);
+        queryset = Album.objects.filter(User = user_id)
+        #.annotate(total_playcount=Count('Count'))
+        return queryset
+    #We're gonna get this info and then on the front end summarize it into a single number, and explain to professor that getting it to work with our framework otherwise would be impossible to finish in our time limit
+    permissions_classes = [  
+        permissions.AllowAny ]
     
-    # serializer_class = AlbumSerializer
+    serializer_class = AlbumSerializer
     
 def dfetchone(cursor):
     columns = [col[0] for col in cursor.description]

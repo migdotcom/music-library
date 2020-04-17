@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import propTypes from "prop-types";
 import { getAlbumsUser, getAlbumsFromPastMonth, CheatViews } from "../../actions/albums";
-//import { getUserTotalPlaycount } from "../../actions/users";
+import { getUserTotalPlaycount } from "../../actions/users";
 export class ArtistPage extends Component {
   static propTypes = {
     albums: propTypes.array,
@@ -14,7 +14,7 @@ export class ArtistPage extends Component {
   constructor(props) {
     super(props);
     console.log(props);
-    this.state = { albums: [], selectedAlbum: null };
+    this.state = { albums: [], selectedAlbum: null, userTotalPlaycount: 12123213 };
   }
 
   componentDidMount() {
@@ -22,7 +22,10 @@ export class ArtistPage extends Component {
     this.setState({ albums: [] });
     this.props.getAlbumsUser(this.props.searchedUser);
     this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
-
+    this.setState({userTotalPlaycount: this.props.getUserTotalPlaycount("apogii")});
+    console.log("State after didmount: ");
+    console.log(this.state.userTotalPlaycount);
+    //getAlbumsFromPastMonth();
   }
 
   viewSingleAlbumPage(selectedAlbum) {
@@ -82,7 +85,7 @@ export class ArtistPage extends Component {
           </tbody>
         </table>
  <div> 
-            <p> album pastmonth_count: {this.props.album_pastmonth_count} </p>
+            <h1> Report 1: Albums posted in the past month: {this.props.album_pastmonth_count} </h1>
             </div>
       </Fragment>
     );
@@ -92,7 +95,8 @@ export class ArtistPage extends Component {
 const mapStateToProps = (state) => ({
   albums: state.albums.albums,
     album_pastmonth_count: state.albums.album_pastmonth_count,
+    userTotalPlaycount: state.users.userTotalPlaycount
 
 });
 
-export default connect(mapStateToProps, {getAlbumsUser, getAlbumsFromPastMonth, CheatViews })(ArtistPage);
+export default connect(mapStateToProps, {getAlbumsUser, getAlbumsFromPastMonth, CheatViews, getUserTotalPlaycount })(ArtistPage);
