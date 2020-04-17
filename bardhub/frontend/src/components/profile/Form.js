@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import propTypes from "prop-types";
 import { addTrack } from "../../actions/tracks";
+
 
 export class Form extends Component {
   state = {
-    Album: "",
     Name: "",
     URL: "",
     Licensing_rights: "",
@@ -14,10 +14,15 @@ export class Form extends Component {
     Playlist: [],
   };
   static propTypes = {
-    addTrack: PropTypes.func.isRequired,
+    addTrack: propTypes.func.isRequired,
   };
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+
+
+  onChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -25,8 +30,6 @@ export class Form extends Component {
     const track = { Artist, Album, Name, URL, Licensing_rights, Notes };
     this.props.addTrack(track);
     this.setState = {
-      Artist: "",
-      Album: "",
       Name: "",
       URL: "",
       Licensing_rights: "",
@@ -35,7 +38,7 @@ export class Form extends Component {
   };
 
   render() {
-    const { Artist, Album, Name, URL, Licensing_rights, Notes } = this.state;
+    const {  Name, URL, Licensing_rights, Notes } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Track</h2>
@@ -48,16 +51,6 @@ export class Form extends Component {
               name="Name"
               onChange={this.onChange}
               value={Name}
-            />
-          </div>
-          <div className="form-group">
-            <label> Artist</label>
-            <input
-              className="form-control"
-              type="text"
-              name="Artist"
-              onChange={this.onChange}
-              value={Artist}
             />
           </div>
           <div className="form-group">
@@ -80,32 +73,19 @@ export class Form extends Component {
                 onChange={this.onChange}
                 value={Licensing_rights}
               />
-            </div>
-            <div className="form-group">
-              <div className="form-group">
-                <label>Album</label>
-                <input
-                  className="form-control"
-                  type="text"
-                  name="Album"
-                  onChange={this.onChange}
-                  value={Album}
-                />
-              </div>
-              <div className="form-group"></div>
+           </div>
+           <div className="form-group"></div>
               <div className="form-group">
                 <div className="form-group">
                   <label> Artist Notes</label>
                   <input
                     className="form-control"
-                    type="message"
+                    type="text"
                     name="Notes"
                     onChange={this.onChange}
                     value={Notes}
                   />
-                </div>
-              </div>
-              <div className="form-group"></div>
+             </div>
             </div>
             <button type="submit" className="btn btn-primary">
               Submit

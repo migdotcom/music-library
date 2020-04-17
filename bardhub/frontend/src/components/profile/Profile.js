@@ -20,8 +20,7 @@ export class Tracks extends Component {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Artist</th>
-              <th>Album</th>
+              <th>Notes</th>
               <th>Name</th>
               <th>Licensing rights </th>
               <th />
@@ -29,9 +28,8 @@ export class Tracks extends Component {
           </thead>
           <tbody>
             {this.props.tracks.map((track) => (
-              <tr key={track.id}>
+              <tr key={track.Notes}>
                 <td>{track.Artist}</td>
-                <td>{track.Album}</td>
                 <td>{track.Name}</td>
                 <td>{track.Licensing_rights}</td>
                 <td>

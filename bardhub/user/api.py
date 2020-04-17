@@ -21,7 +21,7 @@ class UserViewSet(viewsets.ModelViewSet):
         if username is not None: #queryset = Album.objects.all().order_by('-Time_stamp')[: 5]
             queryset = User.objects.filter(username = username)
         return queryset
-    permissions_classes = [permissions.AllowAny]
+    permission_classes = [permissions.AllowAny]
     serializer_class = UserSerializer
    
 class UserTotalPlaycount(generics.GenericAPIView):
@@ -66,3 +66,17 @@ class CheatFollowers(generics.GenericAPIView):
             result_user = dfetchone(cursor)
         return Response({"user": result_user})
     permission_classes = [permissions.IsAuthenticated]
+
+class UserUpdate(viewsets.ViewSet):
+    def update(self):
+        queryset = User.objects.all()
+        id = self.request.query_params.get('id', None)
+        name = self.request.query_params.get('Display_name', None)
+        if id is not None:
+            #queryset = Album.objects.all().order_by('-Time_stamp')[:5]
+            queryset = User.objects.filter(id=id).update(Display_name=name)
+        return queryset
+    permission_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = UserSerializer
