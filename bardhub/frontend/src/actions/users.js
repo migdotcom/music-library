@@ -2,6 +2,26 @@ import axios from "axios";
 
 import { GET_USER , GET_USERTOTALPLAYCOUNT } from "./types";
 
+// Setup config with token - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().login.token;
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  // If token, add to headers config
+  if (token) {
+    config.headers['Authorization'] = `Token ${token}`;
+  }
+
+  return config;
+};
+
 //GET USER, currently only one implemented for ArtistPage
 export const getUser = username => dispatch => {
     axios
@@ -14,34 +34,15 @@ export const getUser = username => dispatch => {
 };
 
 //getUser functionality plus more
-export const getUserTotalPlaycount = username => dispatch => {
+export const getUserTotalPlaycount = () => (dispatch, getState) => {
     axios
-    .get("/api/users/", 
-    {
-        params: 
-        {
-            username: username
-        }
-    }
-    )
-	.then(res => {
+    .get("/api/userTotalPlaycount", tokenConfig(getState))
+    .then(res => {
         console.log(res.data);
-        var user_id = res.data.id;
-        axios
-        .get("/api/userTotalPlaycount/", {
-            params: {
-                user_id: user_id
-        } 
-        } )
-        .then(res2 => {
-            console.log(res2.data);
-            dispatch({
+        dispatch({
                 type: GET_USERTOTALPLAYCOUNT,
-                payload: res2.data
+                payload: res.data
             });
-        })
-        .catch(err => console.log(err));    
-        })
-        //outer 
-        .catch(err => console.log(err));  
-};
+    })
+    .catch(err => console.log(err));   
+ };   

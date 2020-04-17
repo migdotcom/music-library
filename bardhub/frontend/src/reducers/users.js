@@ -15,9 +15,8 @@ export default function(state = initialState, action) {
     case GET_USERTOTALPLAYCOUNT:
     console.log(state.userTotalPlaycount);
   return  {
-
       ...state,
-      userTotalPlaycount: [...state.userTotalPlaycount, action.payload]
+      userTotalPlaycount: action.payload
   };
     default:
       return state;
