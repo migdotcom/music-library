@@ -14,11 +14,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-
-class UserUpdate(viewsets.ModelViewSet):
-
-    def get_queryset(self):
-        queryset = User.objects.all();
+class UserUpdate(viewsets.ViewSet):
+    def update(self):
+        queryset = User.objects.all()
         id = self.request.query_params.get('id', None)
         name = self.request.query_params.get('Display_name', None)
         if id is not None:
@@ -29,7 +27,3 @@ class UserUpdate(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = UserSerializer
-
-
-
-
