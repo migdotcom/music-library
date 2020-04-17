@@ -6,7 +6,7 @@ import TracksPage from "./TracksPage";
 import Reports from "./Reports";
 // Message Component
 function Message(props) {
-  if (props.searchedUser) return <h1>{props.searchedUser}</h1>;
+  if (props.searchedUser) return <h1>Viewing artist: {props.searchedUser}</h1>;
   else return <h1>Please Search for User</h1>;
 }
 

@@ -87,6 +87,10 @@ export class ArtistPage extends Component {
  <div> 
             <h1> Report 1: Albums posted in the past month: {this.props.album_pastmonth_count} </h1>
             </div>
+            
+             <div> 
+            <h1> Report 2: Total playcount for logged-in user: {this.props.userTotalPlaycount.userTotalPlaycount} </h1>
+            </div>
       </Fragment>
     );
   }
