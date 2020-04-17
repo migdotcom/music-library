@@ -6,6 +6,7 @@ import {
   GET_ALBUMS_NEWEST,
   GET_ALBUMS_USER,
   GET_ALBUMS_PASTMONTH,
+  ADD_ALBUMS,
   UPDATE_ALBUM
 } from "./types";
 

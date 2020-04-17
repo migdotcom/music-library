@@ -47,6 +47,7 @@ export class CreateAlbum extends Component {
               name="Name"
               onChange={this.onChange}
               value={Name}
+              required
             />
           </div>
           <div className="form-group">
@@ -67,6 +68,7 @@ export class CreateAlbum extends Component {
               accept="image/png, image/jpeg"
               name="Cover_image"
               onChange={this.onImageChange}
+              required
             />
           </div>
           <div className="form-group">
