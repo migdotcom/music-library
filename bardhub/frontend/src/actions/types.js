@@ -10,7 +10,7 @@ export const ADD_ALBUMS = "ADD_ALBUMS";
 export const GET_ALBUMS_NEWEST = "GET_ALBUMS_NEWEST";
 export const GET_ALBUMS_USER = "GET_ALBUMS_USER";
 export const GET_ALBUMS_PASTMONTH = "GET_ALBUMS_PASTMONTH";
-export const UPDATE_VIEWS = "UPDATE_VIEWS";
+export const UPDATE_ALBUM = "UPDATE_ALBUM";
 
 export const GET_USER = "GET_USER";
 export const GET_SEARCH = "GET_SEARCH";

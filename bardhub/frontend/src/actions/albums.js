@@ -5,7 +5,8 @@ import {
   DELETE_ALBUMS,
   GET_ALBUMS_NEWEST,
   GET_ALBUMS_USER,
-  GET_ALBUMS_PASTMONTH, UPDATE_VIEWS
+  GET_ALBUMS_PASTMONTH,
+  UPDATE_ALBUM
 } from "./types";
 
 //GETS ALBUMS
@@ -73,6 +74,32 @@ export const deleteAlbums = (id) => (dispatch) => {
 };
 
 //ADD ALBUMS
+export const makeAlbum = (Album) => (dispatch, getState) => {
+  console.log(Album);
+  axios
+    .post("/api/albums/create", Album, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: ADD_ALBUMS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const editAlbum = (Album) => (dispatch, getState) => {
+  axios
+    .post("/api/albums/edit", Album, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_ALBUM,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+//ADD ALBUMS
 export const addAlbums = (Album) => (dispatch) => {
   axios
     .post("/api/albums/", Album)
@@ -124,7 +151,7 @@ export const IncView = album_id => dispatch => {
     .post("/api/albums/inc-views", {id: album_id}, config)
     .then(res => {
       dispatch({
-        type: UPDATE_VIEWS,
+        type: UPDATE_ALBUM,
         payload: res.data
       });
     })
@@ -141,7 +168,31 @@ export const CheatViews = album_id => dispatch => {
     axios
     .post("/api/albums/inc-views/cheat", {id: album_id}, config)
     .then(res => {
-      console.log(res)
+      // console.log(res)
+      dispatch({
+        type: UPDATE_ALBUM,
+        payload: res.data
+      });
     })
     .catch(err => console.log(err));
+};
+
+// Setup config with token - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().login.token;
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+
+  // If token, add to headers config
+  if (token) {
+    config.headers['Authorization'] = `Token ${token}`;
+  }
+
+  return config;
 };

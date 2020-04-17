@@ -1,5 +1,7 @@
 from .models import Album
-from rest_framework import viewsets, permissions, generics
+from rest_framework import viewsets, permissions, generics, status
+from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
 from .serializers import AlbumSerializer
 from django.db import connection
 from rest_framework.response import Response
@@ -19,6 +21,7 @@ class AlbumViewSet(viewsets.ModelViewSet):
         id = self.request.query_params.get('id', None)
         if id is not None:
             queryset = Album.objects.filter(User=id)
+        print(queryset)
         return queryset
     permissions_classes = [
         permissions.AllowAny
@@ -44,14 +47,59 @@ class AlbumViewSetTracks(viewsets.ModelViewSet):
     ]
     serializer_class = AlbumSerializer
 
+def dfetchone(cursor):
+    columns = [col[0] for col in cursor.description]
+    return dict(zip(columns, cursor.fetchone()))
+
+def dfetchall(cursor):
+    columns = [col[0] for col in cursor.description]
+    return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+class MakeAlbum(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+    def post(self, request, *args, **kwargs):
+        print(request)
+        request.data["User"] = request.user.id
+        album_serializer = AlbumSerializer(data=request.data, partial=True)
+        # album_data = album_serializer.data
+        # album_data["User"] = request.user
+        # album_serializer = AlbumSerializer(data=album_data)
+        if album_serializer.is_valid():
+            album_serializer.save()
+            print(album_serializer.data)
+            return Response(album_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print('error', album_serializer.errors)
+            return Response(album_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class EditAlbum(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+    def post(self, request, *args, **kwargs):
+        new_album_serializer = AlbumSerializer(data=request.data)
+        queryset = Album.objects.filter(id=new_album_serializer.data["id"], User=request.user);
+        if queryset.exists():
+            album_serializer = AlbumSerializer(queryset, data=request.data, partial=True)
+            if album_serializer.is_valid():
+                album_serializer.save()
+                return Response(album_serializer.data)
+            else:
+                print('error', album_serializer.errors)
+                return Response(album_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            print("Incorrect id, or invalid user")
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+
 class IncViewCount(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]
     def post(self, request, *args, **kwargs):
         album_id = request.data.get("id")
         with connection.cursor() as cursor:
             cursor.execute("UPDATE album_album SET album_album.Count = album_album.Count + 1 WHERE album_album.id = %s", [album_id])
-            # response_data = list(Album.objects.raw("SELECT id, Count, Description FROM album_album WHERE album_album.id = %s", [album_id]))[0]
-            return Response({})
+            cursor.execute("SELECT id, Count, Description FROM album_album WHERE album_album.id = %s", [album_id])
+            album = dfetchone(cursor)
+            return Response({"album": album})
 
 class CheatViewCount(generics.GenericAPIView):
     permission_classes = [permissions.AllowAny]
@@ -59,8 +107,9 @@ class CheatViewCount(generics.GenericAPIView):
         album_id = request.data.get("id")
         with connection.cursor() as cursor:
             cursor.execute("UPDATE album_album SET album_album.Count = 50 WHERE album_album.id = %s", [album_id])
-            # response_data = list(Album.objects.raw("SELECT id, Count, Description FROM album_album WHERE album_album.id = %s", [album_id]))[0]
-            return Response({})
+            cursor.execute("SELECT id, Count, Description FROM album_album WHERE album_album.id = %s", [album_id])
+            album = dfetchone(cursor)
+            return Response({"album": album})
 
 # AlbumNewestViewSet
 class AlbumNewestViewSet(viewsets.ModelViewSet):

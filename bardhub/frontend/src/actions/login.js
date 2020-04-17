@@ -39,6 +39,10 @@ export const doFollowers = (id) => (dispatch, getState) => {
     .post('/api/users_followers', JSON.stringify({ id }), tokenConfig(getState))
     .then((res) => {
       console.log(res);
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      })
     })
     .catch((err) => {
       dispatch(returnErrors(err.response.data, err.response.status));

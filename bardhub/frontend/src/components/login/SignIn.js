@@ -49,6 +49,7 @@ export class SignIn extends Component {
               name="email"
               onChange={this.onChange}
               value={email}
+              required
             />
           </div>
           {(errors && errors.email) ? <div>{errors.email}</div>:<div></div>}
@@ -60,6 +61,7 @@ export class SignIn extends Component {
               name="password"
               onChange={this.onChange}
               value={password}
+              required
             />
           </div>
           {(errors && errors.password) ? <div>{errors.password}</div>:<div></div>}

@@ -6,6 +6,7 @@ import Header from "./layout/Header";
 import Dashboard from "./ArtistPage/Dashboard";
 
 import NewAlbum_Dashboard from "./newAlbum/NewAlbum_Dashboard";
+import CreateAlbum from "./newAlbum/CreateAlbum";
 
 import NewsFeed_Dashboard from "./NewsFeed/NewsFeed_Dashboard";
 
@@ -56,6 +57,7 @@ class App extends Component {
   <div className="container">       
   <Switch>         
       <PrivateRoute exact path="/" component={Dashboard} />
+      <PrivateRoute exact path="/makealbum" component={CreateAlbum} />
       <Route exact path="/register" component={CreateAccount} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/newsfeed" component={NewsFeed_Dashboard} />

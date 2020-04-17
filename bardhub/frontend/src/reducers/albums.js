@@ -4,7 +4,8 @@ import {
   ADD_ALBUMS,
   GET_ALBUMS_NEWEST,
   GET_ALBUMS_USER,
-  GET_ALBUMS_PASTMONTH
+  GET_ALBUMS_PASTMONTH,
+  UPDATE_ALBUM
 } from "../actions/types.js";
 
 const intialState = {
@@ -42,7 +43,16 @@ export default function (state = intialState, action) {
         ...state,
         albums: action.payload,
       };
-
+    case UPDATE_ALBUM:
+      return {
+        ...state,
+        albums: state.albums.map((album) => {
+          if(action.payload.album.id == album.id){
+            return Object.assign(album, action.payload.album);
+          }
+          return album;
+        })
+      };
     default:
       return state;
   }

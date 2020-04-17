@@ -18,7 +18,6 @@ class UserViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = User.objects.all()
         username = self.request.query_params.get('username')
-        print(username)
         if username is not None: #queryset = Album.objects.all().order_by('-Time_stamp')[: 5]
             queryset = User.objects.filter(username = username)
         return queryset
@@ -50,15 +49,25 @@ class UserViewSet(viewsets.ModelViewSet):
     
     # serializer_class = AlbumSerializer
     
+def dfetchone(cursor):
+    columns = [col[0] for col in cursor.description]
+    return dict(zip(columns, cursor.fetchone()))
+
+def dfetchall(cursor):
+    columns = [col[0] for col in cursor.description]
+    return [dict(zip(columns, row)) for row in cursor.fetchall()]
 
 class AddFollower(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
-        followed_user_id = request.data.get("id")
+        # followed_user_id = request.data.get("id")
         user_id = request.user.id
+        result_user = {}
         with connection.cursor() as cursor:
             cursor.execute("UPDATE user_user SET user_user.Followers = user_user.Followers + 1 WHERE user_user.id = %s", [user_id])
+            cursor.execute("SELECT id, Followers FROM user_user WHERE user_user.id = %s", [user_id])
+            result_user = dfetchone(cursor)
             # cursor.execute("INSERT INTO user_user_Followed (from_user_id, to_user_id) VALUES (%s, %s)", [user_id, followed_user_id])
-        return Response({})
+        return Response({"user": result_user})
     permission_classes = [permissions.IsAuthenticated]
 
 class CheatFollowers(generics.GenericAPIView):
@@ -67,5 +76,7 @@ class CheatFollowers(generics.GenericAPIView):
         result_user = {}
         with connection.cursor() as cursor:
             cursor.execute("UPDATE user_user SET user_user.Followers = 50 WHERE user_user.id = %s", [user_id])
-        return Response({})
+            cursor.execute("SELECT id, Followers FROM user_user WHERE user_user.id = %s", [user_id])
+            result_user = dfetchone(cursor)
+        return Response({"user": result_user})
     permission_classes = [permissions.IsAuthenticated]

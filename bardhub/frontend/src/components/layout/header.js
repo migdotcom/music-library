@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logout, CheatFollowers } from '../../actions/login';
@@ -9,23 +9,32 @@ export class header extends Component {
     static propTypes = {
       auth: PropTypes.object.isRequired,
       logout: PropTypes.func.isRequired,
-	  CheatFollowers: PropTypes.func.isRequired
+	    CheatFollowers: PropTypes.func.isRequired
 
     };
     render() {
       const { isAuthenticated, user } = this.props.auth;
       const logout_button = (
+        <Fragment>
         <li className="nav-item">
           <button onClick={this.props.logout} className="nav-link btn">
               Logout
           </button>
-        </li>)
-      const login_button = (
+        </li>
         <li className="nav-item">
-          <Link to="/login" className="nav-link">
-              Login
-          </Link>
-</li>)
+            <Link to="/makealbum" className="nav-link">
+                Create Album
+            </Link>
+        </li>
+        </Fragment>)//
+      const login_button = (
+        <Fragment>
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+               Login
+            </Link>
+          </li>
+        </Fragment>)//
       const follower_button = (
         <li className="nav-item">
           <button onClick={this.props.CheatFollowers} className="nav-link btn">
@@ -51,7 +60,7 @@ export class header extends Component {
                 </li>
                 {isAuthenticated ? logout_button : login_button}
                 {isAuthenticated ? follower_button : <div></div>}
-                <li> className="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown link
                   </a>

@@ -6,7 +6,7 @@ class Album(models.Model):
     User = models.ForeignKey('user.User', on_delete=models.CASCADE, blank=True, null=True)
     Description = models.CharField(max_length=255, default=None, blank=True, null=True)
     Name = models.CharField(max_length=80)
-    Cover_image = models.CharField(max_length=255, default=None, blank=True, null=True )
+    Cover_image = models.FileField(default=None, null=True, upload_to="album_images")
     Count = models.IntegerField(default=0)
     Time_stamp = models.DateTimeField(auto_now_add=True)
 

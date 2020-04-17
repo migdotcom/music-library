@@ -30,7 +30,7 @@ export class ArtistPage extends Component {
     console.log("Clicked album: " + this.state.selectedAlbum);
   }
   render() {
-
+    console.log(this.props.albums);
     return (
       <Fragment>
         <h3>Albums for specific artist</h3>
