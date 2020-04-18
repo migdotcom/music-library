@@ -46,10 +46,11 @@ export const getTracksAlbum = (albumName) => (dispatch) => {
 //GETS ALL TRACKS
 export const getTracks = id => (dispatch) => {
   axios
-    .get("/api/tracks", {
-      params: { Album: id },
+    .get("/api/tracks-album/", {
+      params: { id },
     })
     .then((res) => {
+      console.log(res.data, id)
       dispatch({
         type: GET_TRACKS,
         payload: res.data,
