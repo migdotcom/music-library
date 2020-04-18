@@ -14,3 +14,7 @@ to join: track, playlist with track_track_playlist , then track -> track.Tag_id 
 to start, get all the genres from a playlist
 
 maybe need to work backwards? ---> no
+
+Top genre in playlist works. 
+Now can store in temporary table. 
+Now I need to pass in all playlists for a user to this query. so first i need to select all playlist ids for a user. 
