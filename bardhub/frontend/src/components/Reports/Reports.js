@@ -6,6 +6,11 @@ import { gettracksOfGenre } from "../../actions/reports";
 import { TrackDisplay } from "../ArtistPage/TrackDisplay";
 import propTypes from "prop-types";
 
+function RenderTrack(props){
+  let { track } = props;
+  return(<p>{"Album: " + track.Album + "; Track: " + track.Track + "; Artist: " + track.Artist}</p>);//
+}
+
 export class Reports extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +30,7 @@ export class Reports extends Component {
 
     console.log(this.state);
   }
+
   
   render() {
     console.log(this.props.tracksOfGenre);
@@ -35,10 +41,7 @@ export class Reports extends Component {
             <h3> Total Number of Albums Posted in the past Month: {this.props.album_pastmonth_count} </h3>
             <h3> Report 2: Total playcount for logged-in user: {this.props.userTotalPlaycount.userTotalPlaycount} </h3>
             <h3> Report 3: Tracks for genre "Chiptune" : </h3>
-            <div>
-            {this.props.tracksOfGenre.map((track) => (TrackDisplay({ track })))}
-            </div>
-
+            {this.props.tracksOfGenre.map((track) => (RenderTrack({ track })))}
         </div>
       </Fragment>
             );
