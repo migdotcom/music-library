@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import ArtistPage from "./ArtistPage";
 import UserSearch from "./UserSearch";
-import SingleAlbumPage from "./SingleAlbumPage";
+//import SingleAlbumPage from "./SingleAlbumPage";
 import TracksPage from "./TracksPage";
 import Reports from "./Reports";
 // Message Component
@@ -31,9 +31,9 @@ function ConditionalView(props) {
         // <div key="Track_display">
         //   <TracksPage key={selectedAlbum} message={selectedAlbum} />
         // </div>,
-        <SingleAlbumPage
+        /* <SingleAlbumPage
           message={props.messageToParent + ": singleAlbumMessage"}
-        />,
+        />, */
       ];
     else return <BackButton clickFunc={ifBackButtonClicked} />;
   //AlbumPage

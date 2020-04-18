@@ -1,3 +1,6 @@
+We can just drop individual tables instead of the whole db! when making changes
+
+
 need to do npm install and npm run-script, finally  npm run dev
 some of the below are steps and some are actual console commands
 

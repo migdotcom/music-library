@@ -1,0 +1,14 @@
+SELECT tag.Genre, COUNT(tag.Genre) AS 'Tracks with Genre' FROM playlist_playlist AS playlist
+INNER JOIN
+   track_track_playlist AS middle
+   ON playlist.id = middle.playlist_id
+   INNER JOIN
+   track_track AS track
+   ON middle.track_id = track.id
+   INNER JOIN 
+   tag_tag AS tag 
+   ON track.Tag_id = tag.id
+WHERE playlist.id = pass_playlistId_here
+ GROUP BY tag.Genre
+    ORDER BY `Tracks with Genre` DESC
+    LIMIT 1

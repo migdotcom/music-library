@@ -1,0 +1,14 @@
+SELECT A.album_id, A.id, B.genre
+FROM track_track A join tag_tag B on A.tag_id=B.id
+WHERE A.id = '1'
+
+FIXED: 
+SELECT A.album_id, A.id AS track_id, B.genre AS genre
+FROM track_track A join tag_tag B on A.tag_id=B.id
+WHERE genre = pass_genre_here
+-Nicholas
+
+Notes: 
+so i have created a query to where it shows u tracks of the specific genre. I was thinking maybe have a genre tab and have user either search for a genre OR have buttons of different genre and when they click it, it shows them the tracks associated with that genre.
+So as for insert, have ('1', 'Jazz'),(‘2’, ‘Rock’), (‘3’, ‘Pop’) etc.
+-Adithya

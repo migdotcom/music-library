@@ -1,0 +1,14 @@
+TRIGGER IDEAS 
+
+When a user adds a new album, text is added to their Bio saying "New album out now!!! {AlbumName} released {albumObject.Time stamp}"
+
+Delete: 
+
+
+If a playlist has enough tracks of a certain genre, 
+
+Do "Most common genre in playlist" 
+
+to join: track, playlist with track_track_playlist , then track -> track.Tag_id , which gets a unique one to one tag. which then we get a singular Genre from. 
+
+to start, get all the genres from a playlist

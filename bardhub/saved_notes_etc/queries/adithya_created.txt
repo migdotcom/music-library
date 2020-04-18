@@ -1,0 +1,74 @@
+//Search for Specific Genre
+//('1','Country')
+SELECT A.album_id, A.id, B.genre
+FROM track_track A join tag_tag B on A.tag_id=B.id
+WHERE A.id = '1'
+
+('2','Pop')
+SELECT A.album_id, A.id, B.genre
+FROM track_track A join tag_tag B on A.tag_id=B.id
+WHERE A.id = '2'
+
+('3','Rock')
+SELECT A.album_id, A.id, B.genre
+FROM track_track A join tag_tag B on A.tag_id=B.id
+WHERE A.id = '3'
+
+('4', 'Blues')
+SELECT A.album_id, A.id, B.genre
+FROM track_track A join tag_tag B on A.tag_id=B.id
+WHERE A.id = '4'
+
+('5', 'Rap')
+
+SELECT A.album_id, A.id, B.genre
+FROM track_track A join tag_tag B on A.tag_id=B.id
+WHERE A.id = '5'
+
+//Users with more than 4 tracks in the album 
+//Actually, this shows albums with over a certain number of views (viewCount)
+SELECT A.username Name, B.count 'Count of Tracks'
+FROM user_user as A join album_album as B on A.id = B.user_id
+WHERE count>4
+
+
+//User most to least popular --> artist edition
+//Only shows users who are Artists
+SELECT username, followers
+FROM user_user as A 
+WHERE followers > 50 
+GROUP BY username
+ORDER BY followers DESC
+
+//User most to least popular --> those who are not artist
+SELECT username, followers
+FROM user_user as A 
+WHERE followers < 50 
+GROUP BY username
+ORDER BY followers DESC
+
+
+//Total Number of User in the system
+SELECT id, COUNT(*)
+FROM user_user
+
+//Total Numbers of Albums in the system
+SELECT id, COUNT(*)
+FROM album_album
+
+//Total Number of Tracks in the system 
+SELECT id, COUNT(*)
+FROM track_track
+
+//User with Average number of tracks
+/Again it shows the average ViewCount
+SELECT A.username Name, AVG(B.count)'Average Count of Tracks'
+FROM user_user as A join album_album as B on A.id = B.user_id
+GROUP BY A.username
+
+//Made names more accurate
+SELECT A.username User, AVG(B.count)'Average Album Views'
+FROM user_user as A join album_album as B on A.id = B.user_id
+GROUP BY A.username
+
+-Edits Nicholas

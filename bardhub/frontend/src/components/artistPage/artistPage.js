@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import propTypes from "prop-types";
 import { getAlbumsUser, getAlbumsFromPastMonth, CheatViews } from "../../actions/albums";
-import { getUserTotalPlaycount } from "../../actions/users";
+import { getUserTotalPlaycount , getUser } from "../../actions/users";
 export class ArtistPage extends Component {
   static propTypes = {
     albums: propTypes.array,
@@ -14,18 +14,17 @@ export class ArtistPage extends Component {
   constructor(props) {
     super(props);
     console.log(props);
-    this.state = { albums: [], selectedAlbum: null, userTotalPlaycount: 12123213 };
+    this.state = { albums: [], selectedAlbum: null, userTotalPlaycount: null, userData: [] };
   }
 
   componentDidMount() {
-    console.log(this.props.searchedUser);
     this.setState({ albums: [] });
     this.props.getAlbumsUser(this.props.searchedUser);
+    this.props.getUser(this.props.searchedUser);
     this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
     this.setState({userTotalPlaycount: this.props.getUserTotalPlaycount("apogii")});
-    console.log("State after didmount: ");
-    console.log(this.state.userTotalPlaycount);
-    //getAlbumsFromPastMonth();
+    console.log("State: ");
+    console.log(this.state);
   }
 
   viewSingleAlbumPage(selectedAlbum) {
@@ -33,10 +32,10 @@ export class ArtistPage extends Component {
     console.log("Clicked album: " + this.state.selectedAlbum);
   }
   render() {
-    console.log(this.props.albums);
+          {console.log(this.state)};
     return (
       <Fragment>
-        <h3>Albums for specific artist</h3>
+        <h3>{this.props.searchedUser}'s Albums</h3>
         <div className="justify-content-center">
           <div className="col-lg-10">
             {this.props.albums.map((album) => (
@@ -97,10 +96,11 @@ export class ArtistPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    userData: state.users.users,
   albums: state.albums.albums,
     album_pastmonth_count: state.albums.album_pastmonth_count,
     userTotalPlaycount: state.users.userTotalPlaycount
 
 });
 
-export default connect(mapStateToProps, {getAlbumsUser, getAlbumsFromPastMonth, CheatViews, getUserTotalPlaycount })(ArtistPage);
+export default connect(mapStateToProps, {getUser, getAlbumsUser, getAlbumsFromPastMonth, CheatViews, getUserTotalPlaycount })(ArtistPage);
