@@ -7,6 +7,8 @@ import Dashboard from "./ArtistPage/Dashboard";
 
 import NewAlbum_Dashboard from "./newAlbum/NewAlbum_Dashboard";
 import CreateAlbum from "./newAlbum/CreateAlbum";
+import EditAlbum from "./newAlbum/EditAlbum";
+import UserAlbums from "./profile/UserAlbums";
 
 import NewsFeed_Dashboard from "./NewsFeed/NewsFeed_Dashboard";
 
@@ -22,31 +24,6 @@ class App extends Component {
      componentDidMount() {
     store.dispatch(loadUser());
   }
-  routingFunction() {
-        <Router>
-          <Fragment>
-            <Header />
-            <div className="container">
-              <Switch>
-               <PrivateRoute exact path="/" component={Dashboard} />
-               <Route exact path="/register" component={CreateAccount} />
-               <Route exact path="/login" component={SignIn} />
-               <Route exact path="/newsfeed" component={NewsFeed_Dashboard} />
-              </Switch>
-            </div>
-          </Fragment>
-        </Router>    
-  }
-  /* 
-  <Fragment>
-          <Header />
-          <div className="container">
-            <Dashboard />
-          </div>
-          <div className="container">
-            <NewAlbum_Dashboard />
-          </div>
-        </Fragment> */
         
   render() {     
   return (  
@@ -58,6 +35,8 @@ class App extends Component {
   <Switch>         
       <PrivateRoute exact path="/" component={Dashboard} />
       <PrivateRoute exact path="/makealbum" component={CreateAlbum} />
+      <PrivateRoute exact path="/albums" component={UserAlbums} />
+      <PrivateRoute path="/editalbum/:id" component={EditAlbum} />
       <Route exact path="/register" component={CreateAccount} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/newsfeed" component={NewsFeed_Dashboard} />

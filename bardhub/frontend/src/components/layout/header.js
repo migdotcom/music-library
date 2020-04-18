@@ -14,7 +14,7 @@ export class header extends Component {
     };
     render() {
       const { isAuthenticated, user } = this.props.auth;
-      const logout_button = (
+      const authenticated = (
         <Fragment>
         <li className="nav-item">
           <button onClick={this.props.logout} className="nav-link btn">
@@ -22,12 +22,17 @@ export class header extends Component {
           </button>
         </li>
         <li className="nav-item">
-            <Link to="/makealbum" className="nav-link">
-                Create Album
+            <Link to="/albums" className="nav-link">
+                Albums
             </Link>
         </li>
+        <li className="nav-item">
+          <button onClick={this.props.CheatFollowers} className="nav-link btn">
+             Cheat Followers
+          </button>
+        </li>
         </Fragment>)//
-      const login_button = (
+      const guest = (
         <Fragment>
           <li className="nav-item">
             <Link to="/login" className="nav-link">
@@ -35,12 +40,6 @@ export class header extends Component {
             </Link>
           </li>
         </Fragment>)//
-      const follower_button = (
-        <li className="nav-item">
-          <button onClick={this.props.CheatFollowers} className="nav-link btn">
-             Cheat Followers
-          </button>
-        </li>)
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
             <a className="navbar-brand" href="#">BardHub</a>
@@ -58,8 +57,7 @@ export class header extends Component {
                 <li className="nav-item">
                   <Link className="btn" to="/newsfeed">NewsFeed</Link>
                 </li>
-                {isAuthenticated ? logout_button : login_button}
-                {isAuthenticated ? follower_button : <div></div>}
+                {isAuthenticated ? authenticated : guest}
                 <li className="nav-item dropdown">
                   <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Dropdown link

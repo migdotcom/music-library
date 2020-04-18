@@ -13,5 +13,5 @@ router.register('api/albums-pastmonth', AlbumsFromPastMonth, 'albums_pastmonth')
 urlpatterns = router.urls +[path('api/albums/inc-views', IncViewCount.as_view()),
 							path('api/albums/inc-views/cheat', CheatViewCount.as_view()),
 							path('api/albums/create', MakeAlbum.as_view()),
-							path('api/albums_edit', EditAlbum.as_view())]
+							path('api/albums/edit', EditAlbum.as_view())]
 

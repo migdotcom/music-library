@@ -76,13 +76,13 @@ class EditAlbum(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
     def post(self, request, *args, **kwargs):
-        new_album_serializer = AlbumSerializer(data=request.data)
-        queryset = Album.objects.filter(id=new_album_serializer.data["id"], User=request.user);
+        print(request.data)
+        queryset = Album.objects.filter(id=request.data.get("id"), User=request.user)
         if queryset.exists():
-            album_serializer = AlbumSerializer(queryset, data=request.data, partial=True)
+            album_serializer = AlbumSerializer(queryset[0], data=request.data, partial=True)
             if album_serializer.is_valid():
                 album_serializer.save()
-                return Response(album_serializer.data)
+                return Response({"album": album_serializer.data})
             else:
                 print('error', album_serializer.errors)
                 return Response(album_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
