@@ -21,7 +21,7 @@ export class header extends Component {
                 Albums
             </Link>
         </li>
-        <li>
+        <li className="nav-item">
            <Link to="/reports" className="nav-link">
                 Reports
             </Link>

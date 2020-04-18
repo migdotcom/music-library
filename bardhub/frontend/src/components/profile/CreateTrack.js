@@ -10,7 +10,7 @@ export class CreateTrack extends Component {
     Song: null,
     Licensing_rights: "",
     Notes: "",
-    Tag: null,
+    Genre: "",
     Playlist: [],
   };
   static propTypes = {
@@ -43,11 +43,14 @@ onSongChange = e => {
     form_data.append("Licensing_rights", this.state.Licensing_rights);
     form_data.append("Notes", this.state.Notes);
     form_data.append("Album", this.props.album.id);
+    if(this.state.Genre!=""){
+      form_data.append("Genre", this.state.Genre);
+    }
     this.props.addTrack(form_data);
   };
 
   render() {
-    const {  Name, Song, Licensing_rights, Notes } = this.state;
+    const {  Name, Song, Licensing_rights, Notes, Genre } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Track</h2>
@@ -95,6 +98,19 @@ onSongChange = e => {
                     name="Notes"
                     onChange={this.onChange}
                     value={Notes}
+                  />
+             </div>
+            </div>
+            <div className="form-group"></div>
+              <div className="form-group">
+                <div className="form-group">
+                  <label> Genre </label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="Genre"
+                    onChange={this.onChange}
+                    value={Genre}
                   />
              </div>
             </div>

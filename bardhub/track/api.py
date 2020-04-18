@@ -1,4 +1,8 @@
+import sys
+sys.path.append('../tag')
 from .models import Track
+from tag.models import Tag
+from tag.serializers import TagSerializer
 from rest_framework import viewsets, permissions, status
 from .serializers import TrackSerializer
 from rest_framework.views import APIView
@@ -37,15 +41,51 @@ class MakeTrack(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
     def post(self, request, *args, **kwargs):
-        request.data["Artist"] = request.user.id
+        data = request.data
+        data["Artist"] = request.user.id
+        tag_serial = None
+        if(data.get("Genre")):
+            tag_serial = TagSerializer(data={"Genre": data.get("Genre")}, partial=True)
+            if(tag_serial.is_valid()):
+                tag_serial.save()
+                data["Tag"] = tag_serial.data["id"]
+                data.pop("Genre")
+            else:
+                print('Invalid Genre error', track_serializer.errors)
+                return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         track_serializer = TrackSerializer(data=request.data)
-        # album_data = album_serializer.data
-        # album_data["User"] = request.user
-        # album_serializer = AlbumSerializer(data=album_data)
         if request.data["Album"] and track_serializer.is_valid():
             track_serializer.save()
-            print(track_serializer.data)
             return Response(track_serializer.data, status=status.HTTP_201_CREATED)
         else:
+            if(tag_serial):
+                tag_serial.delete()
             print('error', track_serializer.errors)
             return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class EditTrack(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        queryset = Track.objects.filter(id=data.get("id"), Artist=request.user)
+        if queryset.exists():
+            if(data.get("Genre")):
+                tag_serial = TagSerializer(data={"Genre": data.get("Genre")}, partial=True)
+                if(tag_serial.is_valid()):
+                    tag_serial.save()
+                    data["Tag"] = tag_serial.data["id"]
+                    data.pop("Genre")
+                else:
+                    print('Invalid Genre error', track_serializer.errors)
+                    return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            track_serializer = TrackSerializer(queryset[0], data=data)
+            if track_serializer.is_valid():
+                track_serializer.save()
+                return Response({track_serializer.data})
+            else:
+                print('error', track_serializer.errors)
+                return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            print("Incorrect id, or invalid user")
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
