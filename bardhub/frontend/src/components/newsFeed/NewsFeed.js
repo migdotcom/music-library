@@ -147,68 +147,8 @@ export class NewsFeed extends Component {
     return (
       <Fragment>
         <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
-          <ol className="carousel-indicators">
-            <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="3"></li>
-            <li data-target="#carouselExampleCaptions" data-slide-to="4"></li>
-          </ol>
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img className="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src={this.imageAlbumOfTheDay(0)} width="800" height="400"/>
-              <div className="carousel-caption d-md-block">
-                <div>
-                    <h6 className="text-white font-weight-bold"> New Album:</h6>
-                    {this.sayAlbumOfTheDay(0)}
-                    <h5 className="text-white  font-weight-bold">  </h5>
-                    <h6 className="text-white font-weight-normal">  </h6>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img className="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src={this.imageAlbumOfTheDay(1)} width="800" height="400"/>
-              <div className="carousel-caption d-md-block">
-                <div>
-                    <h6 className="text-white font-weight-bold"> New Album:</h6>
-                    {this.sayAlbumOfTheDay(1)}
-                    <h5 className="text-white  font-weight-bold">  </h5>
-                    <h6 className="text-white font-weight-normal">  </h6>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img className="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src={this.imageAlbumOfTheDay(2)} width="800" height="400"/>
-              <div className="carousel-caption d-md-block">
-                <div>
-                    <h6 className="text-white font-weight-bold"> New Album:</h6>
-                    {this.sayAlbumOfTheDay(2)}
-                    <h5 className="text-white  font-weight-bold">  </h5>
-                    <h6 className="text-white font-weight-normal">  </h6>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img className="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src={this.imageAlbumOfTheDay(3)} width="800" height="400"/>
-              <div className="carousel-caption d-md-block">
-                <div>
-                    <h6 className="text-white font-weight-bold"> New Album:</h6>
-                    {this.sayAlbumOfTheDay(3)}
-                    <h5 className="text-white  font-weight-bold">  </h5>
-                    <h6 className="text-white font-weight-normal">  </h6>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img className="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src={this.imageAlbumOfTheDay(4)} width="800" height="400"/>
-              <div className="carousel-caption d-md-block">
-                <div>
-                    <h6 className="text-white font-weight-bold"> New Album:</h6>
-                    {this.sayAlbumOfTheDay(4)}
-                    <h5 className="text-white  font-weight-bold">  </h5>
-                    <h6 className="text-white font-weight-normal">  </h6>
-                </div>
-              </div>
               {this.sayAlbumOfTheDay()}
             </div>
             <div className="carousel-item">
