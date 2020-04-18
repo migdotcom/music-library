@@ -17,13 +17,13 @@ export class header extends Component {
       const authenticated = (
         <Fragment>
         <li className="nav-item">
-          <button onClick={this.props.logout} className="nav-link btn">
-              Logout
-          </button>
-        </li>
-        <li className="nav-item">
             <Link to="/albums" className="nav-link">
                 Albums
+            </Link>
+        </li>
+        <li>
+           <Link to="/reports" className="nav-link">
+                Reports
             </Link>
         </li>
         <li className="nav-item">
@@ -32,10 +32,11 @@ export class header extends Component {
              Cheat Followers
           </button>
 
-
-            <Link to="/reports" className="nav-link">
-                Reports
-            </Link>
+        </li>
+       <li className="nav-item">
+          <button onClick={this.props.logout} className="nav-link btn">
+              Logout
+          </button>
         </li>
         </Fragment>)//
       const guest = (
@@ -48,35 +49,19 @@ export class header extends Component {
         </Fragment>)//
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
-            <a className="navbar-brand" href="#">BardHub</a>
+            <Link to="/" className="navbar-brand">BardHub</Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">Profile <span className="sr-only">(current)</span></a>
+                  <Link to="/" className="nav-link">Search</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/">Features</a>
-                </li>
-                <li className="nav-item">
-                  <Link className="btn" to="/newsfeed">NewsFeed</Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="btn" to="/reports">Reports</Link>
+                  <Link className="btn nav-link" to="/newsfeed">Newest</Link>
                 </li>
                 {isAuthenticated ? authenticated : guest}
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
-                  </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a className="dropdown-item" href="#">Action</a>
-                    <a className="dropdown-item" href="#">Another action</a>
-                    <a className="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li>
               </ul>
             </div>
           </nav>

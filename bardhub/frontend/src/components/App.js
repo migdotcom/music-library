@@ -39,7 +39,7 @@ class App extends Component {
   <Header />      
   <div className="container">       
   <Switch>         
-      <PrivateRoute exact path="/" component={Dashboard} />
+      <Route exact path="/" component={Dashboard} />
       <PrivateRoute exact path="/makealbum" component={CreateAlbum} />
       <PrivateRoute exact path="/albums" component={UserAlbums} />
       <PrivateRoute path="/editalbum/:id" component={EditAlbum} />
