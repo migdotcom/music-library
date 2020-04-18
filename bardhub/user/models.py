@@ -9,7 +9,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     Bio = models.CharField(max_length=255, default=None, blank=True, null=True)
     Artist_trigger = models.IntegerField(default = 0)
     Followers = models.IntegerField(default=0)
-    Image = models.CharField(max_length=255, default=None, blank=True, null=True )
+    Image = models.FileField(default=None, null=True, upload_to="profile_images")
     last_login = models.DateTimeField(auto_now=True)
     username = models.CharField(max_length=80)
     Time_stamp = models.DateTimeField(auto_now_add=True)
