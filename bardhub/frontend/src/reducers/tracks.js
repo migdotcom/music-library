@@ -4,7 +4,7 @@ import {
   ADD_TRACK,
   GET_ALBUMS_USER,
   GET_TRACKS_ALBUM,
-  UPDATE_TRACK
+  UPDATE_TRACK,
   GET_TRACKS_NEWEST,
 } from "../actions/types.js";
 

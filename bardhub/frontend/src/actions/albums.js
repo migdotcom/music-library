@@ -146,22 +146,6 @@ export const getAlbumsNewestOne = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-// GET NEWEST ALBUMS: TOP 5
-export const getAlbumsNewest = () => (dispatch) => {
-  axios
-    .get("/api/albums-newest", {
-      params: {},
-    })
-    .then((res) => {
-      console.log("-------------------------", res.data)
-      dispatch({
-        type: GET_ALBUMS_NEWEST,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
 export const getAlbumsNewest = () => (dispatch) => {
   axios
     .get("/api/albums-newest", {

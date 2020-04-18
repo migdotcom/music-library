@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .api import TrackViewSet, TracksOfAlbumsViewSet, TrackOfUser, MakeTrack, EditTrack, TrackByID
+from .api import TrackViewSet, TracksOfAlbumsViewSet, TrackOfUser, MakeTrack, EditTrack, TrackByID, TrackNewest
 from django.urls import path
 
 router = routers.DefaultRouter()

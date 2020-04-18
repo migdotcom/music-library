@@ -17,25 +17,9 @@ import NewEvent from "../NewEvent/NewEvent";
 export class NewsFeed extends Component {
   static propTypes = {
     albums: propTypes.array,
-
     getAlbumsNewest: propTypes.func.isRequired,
-    // tracks: propTypes.array,
-    // getTracks: propTypes.func.isRequired,
-    // playlists: propTypes.array,
-    // getPlaylist: propTypes.func.isRequired,
-  };
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            albums: ["blank"],
-            // tracks: ["blank"],
-            // playlists: ["blank"]
-        }
-
     albums_topCounts: propTypes.array,
     getAlbumsNewestOne: propTypes.func.isRequired,
-    getAlbumsNewest: propTypes.func.isRequired,
     tracks: propTypes.array,
     getTracksNewest: propTypes.func.isRequired,
     events: propTypes.array,

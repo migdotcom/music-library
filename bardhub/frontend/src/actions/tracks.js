@@ -68,7 +68,9 @@ export const getTrackID = id => (dispatch) => {
     })
     .then((res) => {
       console.log(res.data, id)
-
+    } )
+    
+}
 //GETS ALL TRACKS
 export const getTracksNewest = () => (dispatch) => {
   axios
