@@ -32,10 +32,6 @@ export class header extends Component {
              Cheat Followers
           </button>
 
-            <Link to="/maketrack" className="nav-link">
-                Create Track
-            </Link>
-
         </li>
         </Fragment>)//
       const guest = (
