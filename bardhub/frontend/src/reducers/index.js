@@ -6,6 +6,7 @@ import playlists from "./playlists";
 import tags from "./tags";
 import errors from "./errors";
 import users from "./users";
+import reports from "./reports";
 
 export default combineReducers({
   login,
@@ -14,5 +15,6 @@ export default combineReducers({
   playlists,
   errors,
   tags,
-  users
+  users,
+  reports
 });

@@ -36,3 +36,5 @@ export const ADD_PLAYLIST = "ADD_PLAYLIST";
 
 
 export const GET_TAGS = "GET_TAGS";
+
+export const GET_tracksOfGenre = "GET_tracksOfGenre";
