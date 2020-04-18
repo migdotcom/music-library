@@ -1,0 +1,14 @@
+Open console/ command prompt as administrator. 
+navigate to MySQL server directory
+on windows this is: 
+cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+now you can run the command below:
+
+mysqldump -u root -p bardhub > bardhub_backup.sql
+
+copy the resulting .sql file and paste it in music-library/bardhub. 
+
+TO IMPORT: 
+
+Drop the previous DB (maybe necessary idk)? 
+Drag the .sql file into your query view in MySQL Workbench and run it
