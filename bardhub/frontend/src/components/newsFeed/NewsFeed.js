@@ -111,11 +111,11 @@ export class NewsFeed extends Component {
             Newest Track
         </div>
           <div className="card-body bg-dark">
-            <h5 className="card-title text-white">{trackNames[trackNames.length - 1]}</h5>
-            <p className="card-text text-white">Licensing_rights: {trackLicensing_rights[trackLicensing_rights.length - 1] != null ? trackLicensing_rights[trackLicensing_rights.length - 1] : "not yet"}</p>
+            <h5 className="card-title text-white">{trackNames[0]}</h5>
+            <p className="card-text text-white">Licensing_rights: {trackLicensing_rights[0] != null ? trackLicensing_rights[0] : "not yet"}</p>
           </div>
           <div className="card-footer text-muted">
-            Created {trackTime_stamp[trackTime_stamp.length - 1].toString().substring(0, 10)}
+            Created {trackTime_stamp[0].toString().substring(0, 10)}
           </div>
         </div>
       )
