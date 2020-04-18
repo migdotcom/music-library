@@ -18,8 +18,9 @@ class tracksOfGenre(generics.GenericAPIView):
              INNER JOIN user_user ON A.Artist_id = user_user.id
              WHERE B.genre = %s """ , [genre]
              )
-            result = dfetchone(cursor)
-            
+            result = dfetchall(cursor)
+            if(not result):
+                result = []
         return Response({"tracksOfGenre": result})
     permission_classes = [  permissions.AllowAny]
     serializer_class = genreSerializer

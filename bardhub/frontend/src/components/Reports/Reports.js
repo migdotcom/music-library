@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { getAlbumsFromPastMonth } from "../../actions/albums";
 import { getUserTotalPlaycount  } from "../../actions/users";
 import { gettracksOfGenre } from "../../actions/reports";
+import { TrackDisplay } from "../ArtistPage/TrackDisplay";
+import propTypes from "prop-types";
 
 export class Reports extends Component {
   constructor(props) {
@@ -11,22 +13,31 @@ export class Reports extends Component {
     this.state = { album_pastmonth_count: null, user_total_playcount: null , tracksOfGenre: []};
   }
 
+  static propTypes = {
+    tracksOfGenre: propTypes.array,
+    userTotalPlaycount: propTypes.userTotalPlaycount
+  };
+
   componentDidMount() {
     this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
     this.setState({userTotalPlaycount: this.props.getUserTotalPlaycount()});
-    this.setState({tracksOfGenre: this.props.gettracksOfGenre("Pop")});
+    this.setState({tracksOfGenre: this.props.gettracksOfGenre({genre: "Chiptune"})});
 
     console.log(this.state);
   }
   
   render() {
+    console.log(this.props.tracksOfGenre);
     return (
       <Fragment>
         <h1>Reports</h1>
         <div className="justify-content-center">
             <h3> Total Number of Albums Posted in the past Month: {this.props.album_pastmonth_count} </h3>
             <h3> Report 2: Total playcount for logged-in user: {this.props.userTotalPlaycount.userTotalPlaycount} </h3>
-            <h3> Report 3: Tracks for genre "Pop" : {console.log(this.props.tracksOfGenre)} </h3>
+            <h3> Report 3: Tracks for genre "Chiptune" : </h3>
+            <div>
+            {this.props.tracksOfGenre.map((track) => (TrackDisplay({ track })))}
+            </div>
 
         </div>
       </Fragment>

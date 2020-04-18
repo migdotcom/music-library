@@ -11,7 +11,7 @@ export default function (state = intialState, action) {
     case GET_tracksOfGenre:
       return {
         ...state,
-        tracksOfGenre: action.payload,
+        tracksOfGenre: action.payload.tracksOfGenre,
       };
     default:
       return state;
