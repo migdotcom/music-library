@@ -1,0 +1,39 @@
+//If an artist wants to create an event in their RecordLabel City. 
+
+SELECT A.username Name, C.city City
+FROM user_user AS A 
+	JOIN artist_artist as B 
+	ON A.id = B.user_id 
+	JOIN recordLabel_recordlabel as C 
+	ON B.recordlabel_id= C.id
+WHERE C.City = (SELECT location 
+		FROM event_event)
+
+//FIXED
+SELECT A.username Name, C.city City
+FROM user_user AS A 
+	JOIN artist_artist as B 
+	ON A.id = B.user_id 
+	JOIN recordLabel_recordlabel as C 
+	ON B.recordlabel_id= C.id
+WHERE C.City IN (SELECT location 
+		FROM event_event)
+
+//Album with the most tracks shows up and follows a descending order
+SELECT name,count
+FROM album_album
+WHERE count =1
+GROUP BY name
+ORDER BY count DESC
+
+//Fixed
+SELECT name,count
+FROM album_album
+GROUP BY name
+ORDER BY count DESC
+
+//Table for User with total number of albums and total number of views //Fixed
+SELECT A.username Name, count(B.id) 'Number of Albums', B.count 'Number of Views'
+FROM user_user as A join album_album as B on A.id = B.user_id
+GROUP BY A.username
+
