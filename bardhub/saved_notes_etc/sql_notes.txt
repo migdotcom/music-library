@@ -1,0 +1,23 @@
+I've noticed that some queries that SHOULD work in MySQL don't work in Workbench. Such as CREATE TABLE, CREATE VIEW, etc. , I'm guessing things that affect top-level structure. SELECT statements and things that don't change the structure are fine as far as I know. 
+Also, while in Workbench using newlines after sql commands works to separate the commands, if you copy and paste the query into sql command line, it won't copy the newlines and will create errors, so you have to manually put spaces between keywords where you normally would just newline. 
+User is a reserved keyword in mysql, can't use it as a column alias
+
+//Creating temporary tables
+USE schooldb;
+
+SELECT name, age, gender
+INTO #MaleStudents
+FROM student
+WHERE gender = 'Male'
+
+Take a look at the above query. Here we created a temporary table “#MaleStudents” which stores the name, age, and gender of all the male student records from student table. To define a temporary table, we use the INTO statement after the SELECT statement. The name of a temporary table must start with a hash (#).
+
+MySQL Server doesn't support the SELECT ... INTO TABLE Sybase SQL extension. Instead, MySQL Server supports the INSERT INTO ... SELECT standard SQL syntax, which is basically the same thing. See Section 13.2.6.1, “INSERT ... SELECT Statement”. For example:
+
+
+INSERT INTO tbl_temp2 (fld_id)
+    SELECT tbl_temp1.fld_order_id
+    FROM tbl_temp1 WHERE tbl_temp1.fl
+
+Alternatively, you can use SELECT ... INTO OUTFILE or CREATE TABLE ... SELECT.
+

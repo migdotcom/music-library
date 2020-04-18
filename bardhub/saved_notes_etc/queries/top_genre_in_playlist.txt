@@ -12,3 +12,75 @@ WHERE playlist.id = pass_playlistId_here
  GROUP BY tag.Genre
     ORDER BY `Tracks with Genre` DESC
     LIMIT 1
+
+DROP TABLE IF EXISTS bardhub.top_playlist_genre;
+CREATE TEMPORARY TABLE top_playlist_genre
+(
+	genre VARCHAR(70),
+    genreCount INT
+    );
+
+
+INSERT INTO top_playlist_genre
+(
+SELECT tag.Genre, COUNT(tag.Genre) AS 'Tracks with Genre' 
+FROM playlist_playlist AS playlist 
+INNER JOIN
+   track_track_playlist AS middle 
+   ON playlist.id = middle.playlist_id
+   INNER JOIN 
+   track_track AS track 
+   ON middle.track_id = track.id
+   INNER JOIN  
+   tag_tag AS tag  
+   ON track.Tag_id = tag.id 
+WHERE playlist.id = 1 
+ GROUP BY tag.Genre
+    ORDER BY `Tracks with Genre` DESC 
+    LIMIT 1
+    )
+    ;
+SELECT * FROM top_playlist_genre;
+   
+//Get all playlists from a user
+SELECT playlist.id AS 'playlist id' 
+FROM playlist_playlist AS playlist 
+INNER JOIN
+   playlist_playlist_user AS middle 
+   ON playlist.id = middle.playlist_id
+   INNER JOIN 
+   user_user
+   ON middle.user_id = user_user.id
+WHERE user_user.id = pass_userid_here
+
+//Everything combined
+SELECT tag.Genre, COUNT(tag.Genre) AS 'Tracks with Genre' 
+FROM playlist_playlist AS playlist 
+INNER JOIN
+   track_track_playlist AS middle 
+   ON playlist.id = middle.playlist_id
+   INNER JOIN 
+   track_track AS track 
+   ON middle.track_id = track.id
+   INNER JOIN  
+   tag_tag AS tag  
+   ON track.Tag_id = tag.id 
+WHERE playlist.id IN 
+(
+SELECT playlist.id AS 'playlist id' 
+FROM playlist_playlist AS playlist 
+INNER JOIN
+   playlist_playlist_user AS middle 
+   ON playlist.id = middle.playlist_id
+   INNER JOIN 
+   user_user
+   ON middle.user_id = user_user.id
+WHERE user_user.id = pass_userid_here
+)
+ GROUP BY tag.Genre
+    ORDER BY `Tracks with Genre` DESC 
+    LIMIT 
+    1;
+
+Some notes about this: It will return only the top 1 genre with its count, so if there are tied genres (Pop has 10 tracks in user's playlists and Rock has 10 tracks in user's playlists), only one of them will show. Which one, I don't know. 
+Also, if a song is in multiple playlists, it will count multiple times. Which is actually good as it will more accurately reflect the user's favorite preference. 

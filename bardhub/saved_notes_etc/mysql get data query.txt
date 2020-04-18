@@ -1,2 +1,0 @@
-mysql -u root -p 123456 bardhub -B -e "select * from
-\'person\';" | sed 's/\t/","/g;s/^/"/;s/$/"/;s/\n//g' > bardhub_data.csv
