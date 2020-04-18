@@ -27,9 +27,15 @@ export class header extends Component {
             </Link>
         </li>
         <li className="nav-item">
+
           <button onClick={this.props.CheatFollowers} className="nav-link btn">
              Cheat Followers
           </button>
+
+            <Link to="/maketrack" className="nav-link">
+                Create Track
+            </Link>
+
         </li>
         </Fragment>)//
       const guest = (

@@ -7,8 +7,13 @@ import Dashboard from "./ArtistPage/Dashboard";
 
 import NewAlbum_Dashboard from "./newAlbum/NewAlbum_Dashboard";
 import CreateAlbum from "./newAlbum/CreateAlbum";
+
 import EditAlbum from "./newAlbum/EditAlbum";
 import UserAlbums from "./profile/UserAlbums";
+
+import CreateTrack from "./newTrack/CreateTrack";
+
+
 
 import NewsFeed_Dashboard from "./NewsFeed/NewsFeed_Dashboard";
 
@@ -37,6 +42,7 @@ class App extends Component {
       <PrivateRoute exact path="/makealbum" component={CreateAlbum} />
       <PrivateRoute exact path="/albums" component={UserAlbums} />
       <PrivateRoute path="/editalbum/:id" component={EditAlbum} />
+      <PrivateRoute exact path="/maketrack" component={CreateTrack} />
       <Route exact path="/register" component={CreateAccount} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/newsfeed" component={NewsFeed_Dashboard} />
