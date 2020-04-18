@@ -14,7 +14,7 @@ import EditAlbum from "./newAlbum/EditAlbum";
 import UserAlbums from "./profile/UserAlbums";
 import CreateTrack from "./profile/CreateTrack";
 
-
+import Reports from "./Reports/Reports"
 
 import NewsFeed_Dashboard from "./NewsFeed/NewsFeed_Dashboard";
 
@@ -49,6 +49,7 @@ class App extends Component {
       <Route exact path="/register" component={CreateAccount} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/newsfeed" component={NewsFeed_Dashboard} />
+      <Route exact path="/reports" component={Reports} />
   </Switch>    
   </div>   
   </Fragment>
