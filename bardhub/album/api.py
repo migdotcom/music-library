@@ -135,6 +135,7 @@ class CheatViewCount(generics.GenericAPIView):
 # AlbumNewestViewSet
 class AlbumNewestViewSet(viewsets.ModelViewSet):
     queryset = Album.objects.all().order_by('-Time_stamp')[:5]
+
     permissions_classes = [
         permissions.AllowAny
     ]
@@ -146,6 +147,7 @@ class AlbumNewestOneViewSet(viewsets.ModelViewSet):
     permissions_classes = [
         permissions.AllowAny
     ]
+    serializer_class = AlbumSerializer
     
 class AlbumsFromPastMonth(viewsets.ModelViewSet):
     #in MySQL: 

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import propTypes from "prop-types";
 import { getTracks } from "../../actions/tracks";
-import { getAlbumID } from "../../actions/albums";
+import { getAlbumID, IncView } from "../../actions/albums";
 import { AlbumDisplay } from "./AlbumDisplay";
 import { TrackDisplay } from "./TrackDisplay";
 
@@ -14,11 +14,13 @@ export class AlbumPage extends Component {
     tracks: propTypes.array,
     getTracks: propTypes.func.isRequired,
     getAlbumID: propTypes.func.isRequired,
+    IncView: propTypes.func.isRequired,
   };
 
   componentDidMount() {
      this.setState({tracks: []});
      this.props.getAlbumID(this.props.album.id);
+     this.props.IncView(this.props.album.id);
 	   this.props.getTracks(this.props.album.id);
   }
 
@@ -46,4 +48,4 @@ function mapStateToProps (state, ownprops){
   return {tracks: state.tracks.tracks, album}
 };
 
-export default connect(mapStateToProps, { getTracks, getAlbumID })(AlbumPage);
+export default connect(mapStateToProps, { getTracks, getAlbumID, IncView })(AlbumPage);

@@ -144,6 +144,20 @@ export const getAlbumsNewestOne = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getAlbumsNewest = () => (dispatch) => {
+  axios
+    .get("/api/albums-newest", {
+      params: {},
+    })
+    .then((res) => {
+      dispatch({
+        type: GET_ALBUMS_NEWEST,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 var count;
 export const getAlbumsFromPastMonth = () => dispatch => {
   axios
