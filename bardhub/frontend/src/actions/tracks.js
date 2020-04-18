@@ -6,7 +6,6 @@ import {
   ADD_TRACK,
   GET_TRACKS_USER,
   GET_TRACKS_ALBUM,
-  ADD_TRACK,
 } from "./types";
 
 //GETS TRACKS OF AN ALBUM
