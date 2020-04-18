@@ -8,6 +8,7 @@ import tags from "./tags";
 import errors from "./errors";
 import users from "./users";
 import events from "./events";
+import reports from "./reports";
 
 export default combineReducers({
   login,
@@ -19,4 +20,5 @@ export default combineReducers({
   tags,
   users,
   events,
+  reports
 });

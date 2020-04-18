@@ -3,9 +3,11 @@ FROM track_track A join tag_tag B on A.tag_id=B.id
 WHERE A.id = '1'
 
 FIXED: 
-SELECT A.album_id, A.id AS track_id, B.genre AS genre
+SELECT album_album.Name as "Album", A.Name as "Track", user_user.username as "Artist"
 FROM track_track A join tag_tag B on A.tag_id=B.id
-WHERE genre = pass_genre_here
+INNER JOIN album_album ON A.album_id = album_album.id
+INNER JOIN user_user ON A.Artist_id = user_user.id
+WHERE genre = "Chiptune"
 -Nicholas
 
 Notes: 

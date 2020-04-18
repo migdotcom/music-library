@@ -1,5 +1,8 @@
 from rest_framework import serializers
 
+class genreSerializer(serializers.Serializer):
+    genre = serializers.CharField(max_length=99)
+    
 class ReportSerializer():
     def __init__(self, row):
         self.row = row
