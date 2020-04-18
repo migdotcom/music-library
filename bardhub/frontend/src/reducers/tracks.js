@@ -5,6 +5,7 @@ import {
   GET_ALBUMS_USER,
   GET_TRACKS_ALBUM,
   UPDATE_TRACK
+  GET_TRACKS_NEWEST,
 } from "../actions/types.js";
 
 const intialState = {
@@ -45,6 +46,11 @@ export default function (state = intialState, action) {
         ...state,
         tracks: action.payload,
       };
+      case GET_TRACKS_NEWEST:
+        return {
+          ...state,
+          tracks: action.payload,
+        };
     default:
       return state;
   }

@@ -3,12 +3,22 @@ sys.path.append('../tag')
 from .models import Track
 from tag.models import Tag
 from tag.serializers import TagSerializer
-from rest_framework import viewsets, permissions, status
 from .serializers import TrackSerializer, DeepTrackSerializer
+from rest_framework import viewsets, permissions, generics, status
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
+from .serializers import TrackSerializer
 from django.db import connection
 from rest_framework.response import Response
+
+# TracksNewestViewSet
+class TrackNewest(viewsets.ModelViewSet):
+    queryset = Track.objects.all().order_by('-Time_stamp')[:5]
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = TrackSerializer
+
 
 class TrackViewSet(viewsets.ModelViewSet):
     queryset = Track.objects.all()
@@ -44,12 +54,30 @@ class TracksOfAlbumsViewSet(viewsets.ModelViewSet):
 
 
 class TrackOfUser(viewsets.ModelViewSet):
-    queryset = Track.objects.all()
+    def get_queryset(self):
+        queryset = Track.objects.all()
+        id = self.request.query_params.get('UserId', None)
+        print(id, " ========= ")
+        if id is not None:
+            queryset = Track.objects.filter(Artist=id)
+            print(queryset, " ========= ")
+        return queryset
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = DeepTrackSerializer
 
+# fecth helper
+def dfetchone(cursor):
+    columns = [col[0] for col in cursor.description]
+    return dict(zip(columns, cursor.fetchone()))
+
+def dfetchall(cursor):
+    columns = [col[0] for col in cursor.description]
+    return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+
+# MakeTrack
 class MakeTrack(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
@@ -102,3 +130,4 @@ class EditTrack(APIView):
         else:
             print("Incorrect id, or invalid user")
             return Response({}, status=status.HTTP_400_BAD_REQUEST)
+

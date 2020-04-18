@@ -32,11 +32,13 @@ export class header extends Component {
              Cheat Followers
           </button>
 
+
         </li>
        <li className="nav-item">
           <button onClick={this.props.logout} className="nav-link btn">
               Logout
           </button>
+
         </li>
         </Fragment>)//
       const guest = (

@@ -10,7 +10,7 @@ import {
 
 const intialState = {
   albums: [],
-  album_pastmonth_count: null
+  album_pastmonth_count: null,
 };
 
 export default function (state = intialState, action) {
