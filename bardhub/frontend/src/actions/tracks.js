@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   GET_TRACKS,
+  GET_TRACKS_NEWEST,
   DELETE_TRACK,
   ADD_TRACK,
   GET_TRACKS_USER,
@@ -51,6 +52,21 @@ export const getTracks = id => (dispatch) => {
     })
     .then((res) => {
       console.log(res.data, id)
+      dispatch({
+        type: GET_TRACKS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+//GETS ALL TRACKS
+export const getTracksNewest = () => (dispatch) => {
+  axios
+    .get("/api/tracks-newest/", {
+    })
+    .then((res) => {
+      console.log("======== inside track newest", res.data)
       dispatch({
         type: GET_TRACKS,
         payload: res.data,

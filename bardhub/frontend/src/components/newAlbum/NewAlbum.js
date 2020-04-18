@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
+import { Link }  from 'react-router-dom';
+
 import propTypes from "prop-types";
 import { getAlbums, deleteAlbums } from "../../actions/albums";
 
@@ -11,13 +13,14 @@ export class NewAlbum extends Component {
     deleteAlbums: propTypes.func.isRequired
   };
 
-constructor(props) {
-	super(props)
-	this.state =
-		{albums: ["blank"]     } }
+  constructor(props) {
+    super(props)
+    this.state =
+      { albums: ["blank"] }
+  }
 
   componentDidMount() {
-	      this.props.getAlbums();
+    this.props.getAlbums();
   }
 
   render() {
@@ -30,19 +33,25 @@ constructor(props) {
               <th>ID</th>
               <th>Name</th>
               <th>Description</th>
-              <th>Was Born At</th>
+              <th>Date Created</th>
               <th />
             </tr>
           </thead>
           <tbody>
-          {this.props.albums.map(album => (
+            {this.props.albums.map(album => (
               <tr key={album.id.toString(10)}>
-                <td>{album.id.toString(10)}</td>
-                <td>{album.Name}</td>
-				<td>{album.Description}</td>
-				<td>{album.Time_stamp}</td>
+                <td>
+                  {album.id.toString(10)}
+                </td>
+                <td>
+                  <Link to={"/useralbum/" + album.id.toString(10)} className="nav-link">
+                    {album.Name}
+                  </Link>
+                  </td>
+                <td>{album.Description}</td>
+                <td>{album.Time_stamp.toString().substring(0, 10)}</td>
               </tr>
-		  ))}
+            ))}
           </tbody>
         </table>
       </Fragment>

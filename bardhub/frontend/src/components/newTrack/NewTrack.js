@@ -2,13 +2,13 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import propTypes from "prop-types";
-import { getTrack, deleteTrack } from "../../actions/tracks";
+import { getTracksNewest, deleteTracks } from "../../actions/tracks";
 
 export class NewTrack extends Component {
   static propTypes = {
     tracks: propTypes.array,
-    getTrack: propTypes.func.isRequired,
-    deleteTrack: propTypes.func.isRequired
+    getTracksNewest: propTypes.func.isRequired,
+    deleteTracks: propTypes.func.isRequired
   };
 
 constructor(props) {
@@ -17,20 +17,20 @@ constructor(props) {
 		{tracks: ["blank"]     } }
 
   componentDidMount() {
-	      this.props.getTrack();
+	      this.props.getTracksNewest();
   }
 
   render() {
     return (
       <Fragment>
-        <h2>Newest Album!</h2>
+        <h2>Newest Track</h2>
         <table className="table table-striped">
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Description</th>
-              <th>Was Born At</th>
+              <th>Licensing_rights</th>
+              <th>Date Created</th>
               <th />
             </tr>
           </thead>
@@ -39,8 +39,8 @@ constructor(props) {
               <tr key={track.id.toString(10)}>
                 <td>{track.id.toString(10)}</td>
                 <td>{track.Name}</td>
-				<td>{track.Description}</td>
-				<td>{track.Time_stamp}</td>
+				<td>{track.Licensing_rights!= null ? track.Licensing_rights : "not yet"}</td>
+				<td>{track.Time_stamp.toString().substring(0, 10)}</td>
               </tr>
 		  ))}
           </tbody>
@@ -55,4 +55,4 @@ const mapStateToProps = state => ({
   tracks: state.tracks.tracks
 });
 
-export default connect(mapStateToProps, { getTrack, deleteTrack })(NewTrack);
+export default connect(mapStateToProps, { getTracksNewest, deleteTracks })(NewTrack);

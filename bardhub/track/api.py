@@ -1,10 +1,19 @@
 from .models import Track
-from rest_framework import viewsets, permissions, status
-from .serializers import TrackSerializer
+from rest_framework import viewsets, permissions, generics, status
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
+from .serializers import TrackSerializer
 from django.db import connection
 from rest_framework.response import Response
+
+# TracksNewestViewSet
+class TrackNewest(viewsets.ModelViewSet):
+    queryset = Track.objects.all().order_by('-Time_stamp')[:5]
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = TrackSerializer
+
 
 class TrackViewSet(viewsets.ModelViewSet):
     queryset = Track.objects.all()
@@ -27,25 +36,65 @@ class TracksOfAlbumsViewSet(viewsets.ModelViewSet):
 
 
 class TrackOfUser(viewsets.ModelViewSet):
-    queryset = Track.objects.all()
+    def get_queryset(self):
+        queryset = Track.objects.all()
+        id = self.request.query_params.get('UserId', None)
+        print(id, " ========= ")
+        if id is not None:
+            queryset = Track.objects.filter(Artist=id)
+            print(queryset, " ========= ")
+        return queryset
     permissions_classes = [
         permissions.AllowAny
     ]
     serializer_class = TrackSerializer
 
+# fecth helper
+def dfetchone(cursor):
+    columns = [col[0] for col in cursor.description]
+    return dict(zip(columns, cursor.fetchone()))
+
+def dfetchall(cursor):
+    columns = [col[0] for col in cursor.description]
+    return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+
+# MakeTrack
 class MakeTrack(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
     def post(self, request, *args, **kwargs):
+        print("request.data", request.data)
+        print("this is user.id == ", request.user.id)
+        print("this is user.id == ", request.user.id)
+        mutable = request.POST._mutable
+        request.POST._mutable = True
         request.data["Artist"] = request.user.id
-        track_serializer = TrackSerializer(data=request.data)
-        # album_data = album_serializer.data
-        # album_data["User"] = request.user
-        # album_serializer = AlbumSerializer(data=album_data)
-        if request.data["Album"] and track_serializer.is_valid():
+        request.POST._mutable = mutable
+        track_serializer = TrackSerializer(data=request.data, partial=True)
+        if track_serializer.is_valid():
             track_serializer.save()
             print(track_serializer.data)
             return Response(track_serializer.data, status=status.HTTP_201_CREATED)
         else:
             print('error', track_serializer.errors)
             return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class EditTrack(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
+    def post(self, request, *args, **kwargs):
+        print(request.data)
+        queryset = Track.objects.filter(id=request.data.get("id"), Artist=request.user)
+        if queryset.exists():
+            track_serializer = TrackSerializer(queryset[0], data=request.data, partial=True)
+            if track_serializer.is_valid():
+                track_serializer.save()
+                return Response({"track": track_serializer.data})
+            else:
+                print('error', track_serializer.errors)
+                return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            print("Incorrect id, or invalid user")
+            return Response({}, status=status.HTTP_400_BAD_REQUEST)
+

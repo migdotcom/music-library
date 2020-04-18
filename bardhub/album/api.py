@@ -122,10 +122,11 @@ class AlbumNewestViewSet(viewsets.ModelViewSet):
 
 # AlbumNewestViewSet
 class AlbumNewestOneViewSet(viewsets.ModelViewSet):
-    queryset = Album.objects.all().order_by('-Time_stamp')[:1]
+    queryset = Album.objects.all().order_by('-Count')[:1]
     permissions_classes = [
         permissions.AllowAny
     ]
+    serializer_class = AlbumSerializer
     
 class AlbumsFromPastMonth(viewsets.ModelViewSet):
     #in MySQL: 

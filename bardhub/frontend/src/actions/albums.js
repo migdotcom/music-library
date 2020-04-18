@@ -4,6 +4,7 @@ import {
   GET_ALBUMS,
   DELETE_ALBUMS,
   GET_ALBUMS_NEWEST,
+  GET_ALBUMS_NEWEST_ONE,
   GET_ALBUMS_USER,
   GET_ALBUMS_PASTMONTH,
   ADD_ALBUMS,
@@ -120,6 +121,23 @@ export const getAlbumsNewestOne = () => (dispatch) => {
       params: {},
     })
     .then((res) => {
+      console.log("================ ", res.data)
+      dispatch({
+        type: GET_ALBUMS_NEWEST_ONE,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+// GET NEWEST ALBUMS: TOP 5
+export const getAlbumsNewest = () => (dispatch) => {
+  axios
+    .get("/api/albums-newest", {
+      params: {},
+    })
+    .then((res) => {
+      console.log("-------------------------", res.data)
       dispatch({
         type: GET_ALBUMS_NEWEST,
         payload: res.data,
