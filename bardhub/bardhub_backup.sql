@@ -381,7 +381,7 @@ CREATE TABLE `knox_authtoken` (
 
 LOCK TABLES `knox_authtoken` WRITE;
 /*!40000 ALTER TABLE `knox_authtoken` DISABLE KEYS */;
-INSERT INTO `knox_authtoken` VALUES ('e8ab2ce0610f5c1d5d5be735804749e9da0daa7da53c1d22f770d14bb88b6a8cfb39db4afec67c1e5e59d78c6b3829f377f4b2d07a1dae393791c9802f24106e','9c6f77ec8a2906f8','2020-04-18 15:45:48.402600',1,'2020-04-19 01:45:48.402600','7c1fde3e');
+INSERT INTO `knox_authtoken` VALUES ('7214c96280c5c0a779811ec9115cbd75bdccab7a35d300e9441dcf81af3fc07e9109867809438bb756cb36b22211ca77fdbda1b62d04da0a64036640a2882b0e','1a1d2670668d4f58','2020-04-18 16:17:34.541482',8,'2020-04-19 02:17:34.540482','2e686305');
 /*!40000 ALTER TABLE `knox_authtoken` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -642,7 +642,7 @@ CREATE TABLE `user_user` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `Music_player_id` (`Music_player_id`),
   CONSTRAINT `user_user_Music_player_id_9cc90a2f_fk_musicplay` FOREIGN KEY (`Music_player_id`) REFERENCES `musicplayersetting_musicplayersetting` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -651,7 +651,7 @@ CREATE TABLE `user_user` (
 
 LOCK TABLES `user_user` WRITE;
 /*!40000 ALTER TABLE `user_user` DISABLE KEYS */;
-INSERT INTO `user_user` VALUES (1,'pbkdf2_sha256$180000$b5rEATfdPs0M$t4iEWMP/hSZPy+UnJhxB+vHac6CMVcNSphhO39z1Ugk=','handofgod@gmail.com',NULL,0,0,'','2020-04-17 21:47:32.669881','handofgod','2020-04-17 21:47:05.285346',1,1,NULL),(4,'123456','apogiimusic@gmail.com','N.Randall',0,49,'','2020-04-17 22:23:17.738744','apogii','2020-04-17 22:23:17.738744',0,0,NULL),(5,'123456','bbs@bgnat.com','Brown Bag',1,200,'','2020-04-17 22:24:00.557875','Brown Bag Special','2020-04-17 22:24:00.557875',0,0,NULL),(6,'123456','sikorasaur@sik.com','Getting better with grind',0,13,'','2020-04-17 22:24:33.196954','sikorasaur','2020-04-17 22:24:33.196954',0,0,NULL),(7,'123456','arianagrande@gmail.com','So lit',1,9000000,'','2020-04-17 22:26:04.837217','Ariana Grande','2020-04-17 22:26:04.837217',0,0,NULL),(8,'123456','cidetraq@gmail.com',NULL,0,27,'','2020-04-17 22:26:44.131042','cidetraq','2020-04-17 22:26:35.312451',1,0,NULL);
+INSERT INTO `user_user` VALUES (1,'pbkdf2_sha256$180000$b5rEATfdPs0M$t4iEWMP/hSZPy+UnJhxB+vHac6CMVcNSphhO39z1Ugk=','handofgod@gmail.com',NULL,0,0,'','2020-04-17 21:47:32.669881','handofgod','2020-04-17 21:47:05.285346',1,1,NULL),(4,'pbkdf2_sha256$180000$fQBuFOhrcySM$pj3DO7cAumHnRhjnapYxr2U2mGkbAZfm6iyzRm4MPjs=','apogiimusic@gmail.com','N.Randall',0,49,'','2020-04-17 22:23:17.738744','apogii','2020-04-17 22:23:17.738744',0,0,NULL),(5,'pbkdf2_sha256$180000$fQBuFOhrcySM$pj3DO7cAumHnRhjnapYxr2U2mGkbAZfm6iyzRm4MPjs=','bbs@bgnat.com','Brown Bag',1,200,'','2020-04-17 22:24:00.557875','Brown Bag Special','2020-04-17 22:24:00.557875',0,0,NULL),(6,'pbkdf2_sha256$180000$fQBuFOhrcySM$pj3DO7cAumHnRhjnapYxr2U2mGkbAZfm6iyzRm4MPjs=','sikorasaur@sik.com','Getting better with grind',0,13,'','2020-04-17 22:24:33.196954','sikorasaur','2020-04-17 22:24:33.196954',0,0,NULL),(7,'pbkdf2_sha256$180000$fQBuFOhrcySM$pj3DO7cAumHnRhjnapYxr2U2mGkbAZfm6iyzRm4MPjs=','arianagrande@gmail.com','So lit',1,9000000,'','2020-04-17 22:26:04.837217','Ariana Grande','2020-04-17 22:26:04.837217',0,0,NULL),(8,'pbkdf2_sha256$180000$fQBuFOhrcySM$pj3DO7cAumHnRhjnapYxr2U2mGkbAZfm6iyzRm4MPjs=','cidetraq@gmail.com',NULL,0,27,'','2020-04-17 22:26:44.131042','cidetraq','2020-04-17 22:26:35.312451',1,0,NULL),(9,'pbkdf2_sha256$180000$fQBuFOhrcySM$pj3DO7cAumHnRhjnapYxr2U2mGkbAZfm6iyzRm4MPjs=','testcopyencryption@gmail.com',NULL,0,0,'','2020-04-18 16:16:47.424195','testCopyEncryption','2020-04-18 16:16:47.424195',0,0,NULL);
 /*!40000 ALTER TABLE `user_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -720,4 +720,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-18 10:48:15
+-- Dump completed on 2020-04-18 11:18:33
