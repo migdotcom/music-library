@@ -2,7 +2,6 @@ import React, { Fragment, Component } from "react";
 import ArtistPage from "./ArtistPage";
 import UserSearch from "./UserSearch";
 import TracksPage from "./TracksPage";
-import Reports from "./Reports";
 // Message Component
 function Message(props) {
   if (props.searchedUser) return <h1>Viewing artist: {props.searchedUser}</h1>;
@@ -76,7 +75,6 @@ class Homepage extends React.Component {
           selectedAlbum={this.state.selectedAlbum}
           ifBackButtonClicked={this.ifBackButtonClicked}
         />
-        <Reports/>
       </div>
     );
   }

@@ -32,8 +32,8 @@ export class header extends Component {
              Cheat Followers
           </button>
 
-            <Link to="/maketrack" className="nav-link">
-                Create Track
+            <Link to="/reports" className="nav-link">
+                Reports
             </Link>
 
         </li>
@@ -62,6 +62,9 @@ export class header extends Component {
                 </li>
                 <li className="nav-item">
                   <Link className="btn" to="/newsfeed">NewsFeed</Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="btn" to="/reports">Reports</Link>
                 </li>
                 {isAuthenticated ? authenticated : guest}
                 <li className="nav-item dropdown">
