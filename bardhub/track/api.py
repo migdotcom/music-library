@@ -1,8 +1,8 @@
 from .models import Track
-from rest_framework import viewsets, permissions, generics, status
+from rest_framework import viewsets, permissions, status
+from .serializers import TrackSerializer
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
-from .serializers import TrackSerializer
 from django.db import connection
 from rest_framework.response import Response
 
@@ -33,50 +33,19 @@ class TrackOfUser(viewsets.ModelViewSet):
     ]
     serializer_class = TrackSerializer
 
-# fecth helper
-def dfetchone(cursor):
-    columns = [col[0] for col in cursor.description]
-    return dict(zip(columns, cursor.fetchone()))
-
-def dfetchall(cursor):
-    columns = [col[0] for col in cursor.description]
-    return [dict(zip(columns, row)) for row in cursor.fetchall()]
-
-
-# MakeTrack
 class MakeTrack(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
     def post(self, request, *args, **kwargs):
-        print("request.data", request.data)
-        print("this is user.id == ", request.user.id)
-        mutable = request.POST._mutable
-        request.POST._mutable = True
         request.data["Artist"] = request.user.id
-        request.POST._mutable = mutable
-        track_serializer = TrackSerializer(data=request.data, partial=True)
-        if track_serializer.is_valid():
+        track_serializer = TrackSerializer(data=request.data)
+        # album_data = album_serializer.data
+        # album_data["User"] = request.user
+        # album_serializer = AlbumSerializer(data=album_data)
+        if request.data["Album"] and track_serializer.is_valid():
             track_serializer.save()
             print(track_serializer.data)
             return Response(track_serializer.data, status=status.HTTP_201_CREATED)
         else:
             print('error', track_serializer.errors)
             return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-class EditTrack(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    parser_classes = (MultiPartParser, FormParser)
-    def post(self, request, *args, **kwargs):
-        new_track_serializer = TrackSerializer(data=request.data)
-        queryset = Track.objects.filter(id=new_track_serializer.data["id"], User=request.user);
-        if queryset.exists():
-            track_serializer = TrackSerializer(queryset, data=request.data, partial=True)
-            if track_serializer.is_valid():
-                track_serializer.save()
-                return Response(track_serializer.data)
-            else:
-                print('error', track_serializer.errors)
-                return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            print("Incorrect id, or invalid user")
-            return Response({}, status=status.HTTP_400_BAD_REQUEST)

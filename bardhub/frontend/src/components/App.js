@@ -4,12 +4,15 @@ import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 
 import Header from "./layout/Header";
 import Dashboard from "./ArtistPage/Dashboard";
+import AlbumPage from "./ArtistPage/AlbumPage";
+import UserAlbumPage from "./profile/UserAlbumPage";
 
 import NewAlbum_Dashboard from "./newAlbum/NewAlbum_Dashboard";
 import CreateAlbum from "./newAlbum/CreateAlbum";
 
 import EditAlbum from "./newAlbum/EditAlbum";
 import UserAlbums from "./profile/UserAlbums";
+import CreateTrack from "./profile/CreateTrack";
 
 import CreateTrack from "./newTrack/CreateTrack";
 
@@ -42,7 +45,9 @@ class App extends Component {
       <PrivateRoute exact path="/makealbum" component={CreateAlbum} />
       <PrivateRoute exact path="/albums" component={UserAlbums} />
       <PrivateRoute path="/editalbum/:id" component={EditAlbum} />
-      <PrivateRoute exact path="/maketrack" component={CreateTrack} />
+      <PrivateRoute path="/useralbum/:id" component={UserAlbumPage} />
+      <PrivateRoute path="/addtrack/:id" component={CreateTrack} />
+      <Route path="/album/:id" component={AlbumPage} />
       <Route exact path="/register" component={CreateAccount} />
       <Route exact path="/login" component={SignIn} />
       <Route exact path="/newsfeed" component={NewsFeed_Dashboard} />

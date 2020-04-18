@@ -6,8 +6,7 @@ import { getTracksAlbum } from "../../actions/tracks";
 
 export class TracksPage extends Component {
   static propTypes = {
-    tracks: propTypes.array,
-    getTracksAlbum: propTypes.func.isRequired,
+    tracks: propTypes.array.isRequired,
   };
 
   constructor(props) {

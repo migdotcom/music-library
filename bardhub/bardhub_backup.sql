@@ -381,7 +381,7 @@ CREATE TABLE `knox_authtoken` (
 
 LOCK TABLES `knox_authtoken` WRITE;
 /*!40000 ALTER TABLE `knox_authtoken` DISABLE KEYS */;
-INSERT INTO `knox_authtoken` VALUES ('be762a7486fd26f22068f7fa32accf337cfe4ddfcf9368cab8ae7597fa6380d6b7ce4045c3638a248305082016ac9d65869484ad6e1cc0323b34e198bab3fea9','3c9fee47b8c1b220','2020-04-17 21:58:22.401827',1,'2020-04-18 07:58:22.401827','23c9a855'),('c0997c0f49155560cd4dd04f6d804ffcc5c5b8bbd5a02073978e736f03c1c598fc2185ddc3bd06aa9138b4d19e5cad98232928a8ac8358fb710832117e71785d','696617abb8a052cc','2020-04-18 00:42:29.176311',1,'2020-04-18 10:42:29.175312','3491c835');
+INSERT INTO `knox_authtoken` VALUES ('e8ab2ce0610f5c1d5d5be735804749e9da0daa7da53c1d22f770d14bb88b6a8cfb39db4afec67c1e5e59d78c6b3829f377f4b2d07a1dae393791c9802f24106e','9c6f77ec8a2906f8','2020-04-18 15:45:48.402600',1,'2020-04-19 01:45:48.402600','7c1fde3e');
 /*!40000 ALTER TABLE `knox_authtoken` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -631,7 +631,7 @@ CREATE TABLE `user_user` (
   `Bio` varchar(255) DEFAULT NULL,
   `Artist_trigger` int NOT NULL,
   `Followers` int NOT NULL,
-  `Image` varchar(255) DEFAULT NULL,
+  `Image` varchar(100) NOT NULL,
   `last_login` datetime(6) NOT NULL,
   `username` varchar(80) NOT NULL,
   `Time_stamp` datetime(6) NOT NULL,
@@ -651,7 +651,7 @@ CREATE TABLE `user_user` (
 
 LOCK TABLES `user_user` WRITE;
 /*!40000 ALTER TABLE `user_user` DISABLE KEYS */;
-INSERT INTO `user_user` VALUES (1,'pbkdf2_sha256$180000$b5rEATfdPs0M$t4iEWMP/hSZPy+UnJhxB+vHac6CMVcNSphhO39z1Ugk=','handofgod@gmail.com',NULL,0,0,NULL,'2020-04-17 21:47:32.669881','handofgod','2020-04-17 21:47:05.285346',1,1,NULL),(4,'123456','apogiimusic@gmail.com','N.Randall',0,49,NULL,'2020-04-17 22:23:17.738744','apogii','2020-04-17 22:23:17.738744',0,0,NULL),(5,'123456','bbs@bgnat.com','Brown Bag',1,200,NULL,'2020-04-17 22:24:00.557875','Brown Bag Special','2020-04-17 22:24:00.557875',0,0,NULL),(6,'123456','sikorasaur@sik.com','Getting better with grind',0,13,NULL,'2020-04-17 22:24:33.196954','sikorasaur','2020-04-17 22:24:33.196954',0,0,NULL),(7,'123456','arianagrande@gmail.com','So lit',1,9000000,NULL,'2020-04-17 22:26:04.837217','Ariana Grande','2020-04-17 22:26:04.837217',0,0,NULL),(8,'123456','cidetraq@gmail.com',NULL,0,27,NULL,'2020-04-17 22:26:44.131042','cidetraq','2020-04-17 22:26:35.312451',1,0,NULL);
+INSERT INTO `user_user` VALUES (1,'pbkdf2_sha256$180000$b5rEATfdPs0M$t4iEWMP/hSZPy+UnJhxB+vHac6CMVcNSphhO39z1Ugk=','handofgod@gmail.com',NULL,0,0,'','2020-04-17 21:47:32.669881','handofgod','2020-04-17 21:47:05.285346',1,1,NULL),(4,'123456','apogiimusic@gmail.com','N.Randall',0,49,'','2020-04-17 22:23:17.738744','apogii','2020-04-17 22:23:17.738744',0,0,NULL),(5,'123456','bbs@bgnat.com','Brown Bag',1,200,'','2020-04-17 22:24:00.557875','Brown Bag Special','2020-04-17 22:24:00.557875',0,0,NULL),(6,'123456','sikorasaur@sik.com','Getting better with grind',0,13,'','2020-04-17 22:24:33.196954','sikorasaur','2020-04-17 22:24:33.196954',0,0,NULL),(7,'123456','arianagrande@gmail.com','So lit',1,9000000,'','2020-04-17 22:26:04.837217','Ariana Grande','2020-04-17 22:26:04.837217',0,0,NULL),(8,'123456','cidetraq@gmail.com',NULL,0,27,'','2020-04-17 22:26:44.131042','cidetraq','2020-04-17 22:26:35.312451',1,0,NULL);
 /*!40000 ALTER TABLE `user_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -720,4 +720,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-17 21:20:44
+-- Dump completed on 2020-04-18 10:48:15

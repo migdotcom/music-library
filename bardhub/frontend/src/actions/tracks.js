@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   GET_TRACKS,
   DELETE_TRACK,
+  ADD_TRACK,
   GET_TRACKS_USER,
   GET_TRACKS_ALBUM,
   ADD_TRACK,
@@ -44,10 +45,10 @@ export const getTracksAlbum = (albumName) => (dispatch) => {
 };
 
 //GETS ALL TRACKS
-export const getTracks = () => (dispatch) => {
+export const getTracks = id => (dispatch) => {
   axios
     .get("/api/tracks", {
-      params: {},
+      params: { Album: id },
     })
     .then((res) => {
       dispatch({
@@ -72,23 +73,9 @@ export const deleteTracks = (id) => (dispatch) => {
 };
 
 //ADD TRACKS
-export const addTrack = (Track) => (dispatch) => {
+export const addTrack = (Track) => (dispatch, getState) => {
   axios
-    .post("/api/tracks", Track)
-    .then((res) => {
-      dispatch({
-        type: ADD_TRACK,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
-//MAKE TRACKS
-export const makeTrack = (Track) => (dispatch, getState) => {
-  console.log(Track);
-  axios
-    .post("/api/tracks/create", Track, tokenConfig(getState))
+    .post("/api/maketrack", Track, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: ADD_TRACK,

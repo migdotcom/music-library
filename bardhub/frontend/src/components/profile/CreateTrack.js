@@ -4,20 +4,25 @@ import propTypes from "prop-types";
 import { addTrack } from "../../actions/tracks";
 
 
-export class Form extends Component {
+export class CreateTrack extends Component {
   state = {
     Name: "",
-    URL: "",
+    Song: null,
     Licensing_rights: "",
     Notes: "",
     Tag: null,
     Playlist: [],
   };
   static propTypes = {
+    album: propTypes.object.isRequired,
     addTrack: propTypes.func.isRequired,
   };
 
-
+onSongChange = e => {
+    this.setState({
+      Song: e.target.files[0]
+    })
+  };
 
   onChange = (e) => {
     e.preventDefault();
@@ -26,19 +31,18 @@ export class Form extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { Artist, Album, Name, URL, Licensing_rights, Notes } = this.state;
-    const track = { Artist, Album, Name, URL, Licensing_rights, Notes };
-    this.props.addTrack(track);
-    this.setState = {
-      Name: "",
-      URL: "",
-      Licensing_rights: "",
-      Notes: "",
-    };
+    console.log(this.state);
+    let form_data = new FormData();
+    form_data.append("Name", this.state.Name);
+    form_data.append("Song", this.state.Song, this.state.Song.name);
+    form_data.append("Licensing_rights", this.state.Licensing_rights);
+    form_data.append("Notes", this.state.Notes);
+    form_data.append("Album", this.props.album.id);
+    this.props.addTrack(form_data);
   };
 
   render() {
-    const {  Name, URL, Licensing_rights, Notes } = this.state;
+    const {  Name, Song, Licensing_rights, Notes } = this.state;
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Add Track</h2>
@@ -51,16 +55,18 @@ export class Form extends Component {
               name="Name"
               onChange={this.onChange}
               value={Name}
+              required
             />
           </div>
           <div className="form-group">
-            <label>Cover</label>
+            <label>Song</label>
             <input
               className="form-control"
-              type="text"
-              name="URL"
-              onChange={this.onChange}
-              value={URL}
+              type="file"
+              accept="audio/mp3, audio/ogg, audio/wav"
+              name="Song"
+              onChange={this.onSongChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -88,7 +94,7 @@ export class Form extends Component {
              </div>
             </div>
             <button type="submit" className="btn btn-primary">
-              Submit
+              Create!
             </button>
           </div>
         </form>
@@ -97,4 +103,11 @@ export class Form extends Component {
   }
 }
 
-export default connect(null, { addTrack })(Form);
+function mapStateToProps (state, ownprops){
+  let id = ownprops.match.params.id;
+  id = parseInt(id);
+  let album = state.albums.albums.filter((album) => album.id == id)[0];
+  return { album }
+};
+
+export default connect(mapStateToProps, { addTrack })(CreateTrack);
