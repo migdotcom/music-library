@@ -58,27 +58,6 @@ export class UserAlbums extends Component {
             </Link>
           </div>
         </div>
-
-        <table className="table table-striped">
-          <thead>
-            <tr></tr>
-          </thead>
-          <tbody>
-            {this.props.albums.map((album) => (
-              <tr key={album.id}>
-                <td>
-                  <a
-                    href="#"
-                    onClick={() => this.viewSingleAlbumPage(album.Name)}
-                  >
-                    {" "}
-                    {album.Name}{" "}
-                  </a>{" "}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </Fragment>
     );
   }
