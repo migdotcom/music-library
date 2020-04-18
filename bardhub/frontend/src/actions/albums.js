@@ -25,6 +25,22 @@ export const getAlbums = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getAlbumID = id => (dispatch) =>{
+  axios.get("/api/albums-byid", {
+        params: {
+          id
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: GET_ALBUMS_USER,
+          payload: res.data,
+        });
+      })
+      .catch((err) => console.log(err));
+};
+
 //GET ALL ALBUMS OF AN USER
 export const getAlbumsUser = (userName) => (dispatch) => {
   axios

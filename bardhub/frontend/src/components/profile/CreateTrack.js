@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import propTypes from "prop-types";
 import { addTrack } from "../../actions/tracks";
-
+import { getAlbumID } from "../../actions/albums";
 
 export class CreateTrack extends Component {
   state = {
@@ -16,7 +16,12 @@ export class CreateTrack extends Component {
   static propTypes = {
     album: propTypes.object.isRequired,
     addTrack: propTypes.func.isRequired,
+    getAlbumID: propTypes.func.isRequired
   };
+
+componentDidMount() {
+     this.props.getAlbumID(this.props.album.id);
+  }
 
 onSongChange = e => {
     this.setState({
@@ -107,7 +112,10 @@ function mapStateToProps (state, ownprops){
   let id = ownprops.match.params.id;
   id = parseInt(id);
   let album = state.albums.albums.filter((album) => album.id == id)[0];
+  if(album == null){
+    album = { id }
+  }
   return { album }
 };
 
-export default connect(mapStateToProps, { addTrack })(CreateTrack);
+export default connect(mapStateToProps, { addTrack, getAlbumID })(CreateTrack);

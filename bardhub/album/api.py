@@ -28,6 +28,26 @@ class AlbumViewSet(viewsets.ModelViewSet):
     ]
     serializer_class = AlbumSerializer
 
+class AlbumViewSetByID(viewsets.ModelViewSet):
+    def get_queryset(self):
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
+        #
+        # Freaking hard to find this params passing method
+        #
+        queryset = Album.objects.all()
+        id = self.request.query_params.get('id', None)
+        if id is not None:
+            queryset = Album.objects.filter(id=id)
+        print(queryset)
+        return queryset
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = AlbumSerializer
+
 class AlbumViewSetTracks(viewsets.ModelViewSet):
     def get_queryset(self):
         """
