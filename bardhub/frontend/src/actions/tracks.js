@@ -3,6 +3,7 @@ import axios from "axios";
 import {
   GET_TRACKS,
   DELETE_TRACK,
+  ADD_TRACK,
   GET_TRACKS_USER,
   GET_TRACKS_ALBUM,
 } from "./types";
@@ -43,10 +44,10 @@ export const getTracksAlbum = (albumName) => (dispatch) => {
 };
 
 //GETS ALL TRACKS
-export const getTracks = () => (dispatch) => {
+export const getTracks = id => (dispatch) => {
   axios
     .get("/api/tracks", {
-      params: {},
+      params: { Album: id },
     })
     .then((res) => {
       dispatch({
@@ -71,9 +72,9 @@ export const deleteTracks = (id) => (dispatch) => {
 };
 
 //ADD TRACKS
-export const addTrack = (Track) => (dispatch) => {
+export const addTrack = (Track) => (dispatch, getState) => {
   axios
-    .post("/api/tracks/", Track)
+    .post("/api/maketrack", Track, tokenConfig(getState))
     .then((res) => {
       dispatch({
         type: ADD_TRACK,
@@ -81,4 +82,24 @@ export const addTrack = (Track) => (dispatch) => {
       });
     })
     .catch((err) => console.log(err));
+};
+
+// Setup config with token - helper function
+export const tokenConfig = (getState) => {
+  // Get token from state
+  const token = getState().login.token;
+
+  // Headers
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+
+  // If token, add to headers config
+  if (token) {
+    config.headers['Authorization'] = `Token ${token}`;
+  }
+
+  return config;
 };

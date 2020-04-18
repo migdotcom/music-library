@@ -5,7 +5,7 @@ class Track(models.Model):
 	Artist = models.ForeignKey('user.User', on_delete=models.CASCADE, blank=True, null =True)
 	Album = models.ForeignKey('album.Album', on_delete=models.CASCADE, blank=True, null=True)
 	Name = models.CharField(max_length=80, default=None, blank=True, null=True)
-	URL = models.CharField(max_length=512, default=None, blank=True, null=True)
+	Song = models.FileField(default=None, null=True, upload_to="album_tracks")
 	Playlist = models.ManyToManyField('playlist.Playlist', blank=True)
 	Licensing_rights = models.CharField(max_length=80, default=None, blank=True, null=True)
 	Notes = models.CharField(max_length=255, default=None, blank=True, null=True)

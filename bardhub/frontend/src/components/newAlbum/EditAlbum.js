@@ -56,7 +56,7 @@ export class EditAlbum extends Component {
     return (
       <div className="card card-body mt-4 mb-4">
         <h2>Edit Album</h2>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit.bind(this)}>
           <div className="form-group">
             <label>Album Name</label>
             <input
