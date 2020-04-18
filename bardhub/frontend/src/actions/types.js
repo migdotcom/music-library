@@ -3,6 +3,7 @@ export const DELETE_TRACK = "DELETE_TRACK";
 export const ADD_TRACK = "ADD_TRACK";
 export const GET_TRACKS_ALBUM = "GET_TRACKS_ALBUM";
 export const GET_TRACKS_USER = "GET_TRACKS_USER";
+export const UPDATE_TRACK = "UPDATE_TRACK";
 
 export const GET_ALBUMS = "GET_ALBUMS";
 export const DELETE_ALBUMS = "DELETE_ALBUMS";

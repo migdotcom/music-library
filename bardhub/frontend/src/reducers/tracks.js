@@ -4,6 +4,7 @@ import {
   ADD_TRACK,
   GET_ALBUMS_USER,
   GET_TRACKS_ALBUM,
+  UPDATE_TRACK
 } from "../actions/types.js";
 
 const intialState = {
@@ -28,6 +29,16 @@ export default function (state = intialState, action) {
       return {
         ...state,
         tracks: [...state.tracks, action.payload],
+      };
+    case UPDATE_TRACK:
+      return {
+        ...state,
+        tracks: state.tracks.map((track) => {
+          if(action.payload.id == track.id){
+            return Object.assign(track, action.payload.track);
+          }
+          return track;
+        })
       };
     case GET_TRACKS_ALBUM:
       return {

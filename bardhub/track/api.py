@@ -4,7 +4,7 @@ from .models import Track
 from tag.models import Tag
 from tag.serializers import TagSerializer
 from rest_framework import viewsets, permissions, status
-from .serializers import TrackSerializer
+from .serializers import TrackSerializer, DeepTrackSerializer
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.db import connection
@@ -15,7 +15,20 @@ class TrackViewSet(viewsets.ModelViewSet):
     permissions_classes = [
         permissions.AllowAny
     ]
-    serializer_class = TrackSerializer
+    serializer_class = DeepTrackSerializer
+
+
+class TrackByID(viewsets.ModelViewSet):
+    def get_queryset(self):
+        queryset = Track.objects.all()
+        id = self.request.query_params.get('id', None)
+        if id is not None:
+            queryset = Track.objects.filter(id=id)
+        return queryset
+    permissions_classes = [
+        permissions.AllowAny
+    ]
+    serializer_class = DeepTrackSerializer
 
 class TracksOfAlbumsViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
@@ -27,7 +40,7 @@ class TracksOfAlbumsViewSet(viewsets.ModelViewSet):
     permissions_classes = [
         permissions.AllowAny
     ]
-    serializer_class = TrackSerializer
+    serializer_class = DeepTrackSerializer
 
 
 class TrackOfUser(viewsets.ModelViewSet):
@@ -35,7 +48,7 @@ class TrackOfUser(viewsets.ModelViewSet):
     permissions_classes = [
         permissions.AllowAny
     ]
-    serializer_class = TrackSerializer
+    serializer_class = DeepTrackSerializer
 
 class MakeTrack(APIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -82,7 +95,7 @@ class EditTrack(APIView):
             track_serializer = TrackSerializer(queryset[0], data=data)
             if track_serializer.is_valid():
                 track_serializer.save()
-                return Response({track_serializer.data})
+                return Response(track_serializer.data)
             else:
                 print('error', track_serializer.errors)
                 return Response(track_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

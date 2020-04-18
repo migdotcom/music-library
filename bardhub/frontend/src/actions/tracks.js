@@ -6,6 +6,7 @@ import {
   ADD_TRACK,
   GET_TRACKS_USER,
   GET_TRACKS_ALBUM,
+  UPDATE_TRACK
 } from "./types";
 
 //GETS TRACKS OF AN ALBUM
@@ -59,6 +60,21 @@ export const getTracks = id => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+export const getTrackID = id => (dispatch) => {
+  axios
+    .get("/api/tracks-byid/", {
+      params: { id },
+    })
+    .then((res) => {
+      console.log(res.data, id)
+      dispatch({
+        type: GET_TRACKS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
 //DELETE TRACKS
 export const deleteTracks = (id) => (dispatch) => {
   axios
@@ -79,6 +95,18 @@ export const addTrack = (Track) => (dispatch, getState) => {
     .then((res) => {
       dispatch({
         type: ADD_TRACK,
+        payload: res.data,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const editTrack = (Track) => (dispatch, getState) => {
+  axios
+    .post("/api/edittrack", Track, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: UPDATE_TRACK,
         payload: res.data,
       });
     })

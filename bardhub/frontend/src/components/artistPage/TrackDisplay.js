@@ -9,7 +9,7 @@ export function TrackDisplay(props){
                 <div>
                   <audio src={track.Song} controls />
                 </div>
-                <p>{track.Licensing_right} {track.Notes} {track.Time_stamp} {track.Artist}</p>
+                <p>{track.Licensing_right} {track.Notes} {track.Time_stamp} {track.Artist.username}</p>
                 {/* <td>{track.Tag}</td> */}
 		      </div>
 		    </div>

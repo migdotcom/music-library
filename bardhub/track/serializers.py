@@ -9,3 +9,9 @@ class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
         fields = '__all__'
+
+class DeepTrackSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Track
+        fields = '__all__'
+        depth = 1

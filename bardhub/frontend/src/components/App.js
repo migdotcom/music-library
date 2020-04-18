@@ -13,6 +13,7 @@ import CreateAlbum from "./newAlbum/CreateAlbum";
 import EditAlbum from "./newAlbum/EditAlbum";
 import UserAlbums from "./profile/UserAlbums";
 import CreateTrack from "./profile/CreateTrack";
+import EditTrack from "./profile/EditTrack";
 
 import Reports from "./Reports/Reports"
 
@@ -43,6 +44,7 @@ class App extends Component {
       <PrivateRoute exact path="/makealbum" component={CreateAlbum} />
       <PrivateRoute exact path="/albums" component={UserAlbums} />
       <PrivateRoute path="/editalbum/:id" component={EditAlbum} />
+      <PrivateRoute path="/edittrack/:id" component={EditTrack} />
       <PrivateRoute path="/useralbum/:id" component={UserAlbumPage} />
       <PrivateRoute path="/addtrack/:id" component={CreateTrack} />
       <Route path="/album/:id" component={AlbumPage} />
