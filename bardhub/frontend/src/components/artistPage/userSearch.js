@@ -43,7 +43,7 @@ export class userSearch extends Component {
         const { name } = this.state;
         return (
           <div className="card card-body mt-4 mb-4">
-            <h2>Search for User</h2>
+            <h2>Search {this.props.whichSearch}</h2>
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <label>Name</label>

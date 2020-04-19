@@ -4,6 +4,8 @@ import { getAlbumsFromPastMonth } from "../../actions/albums";
 import { getUserTotalPlaycount  } from "../../actions/users";
 import { gettracksOfGenre } from "../../actions/reports";
 import { TrackDisplay } from "../ArtistPage/TrackDisplay";
+import UserSearch from "../ArtistPage/UserSearch";
+//Repurpose UserSearch for general search
 import propTypes from "prop-types";
 
 function RenderTrack(props){
@@ -15,7 +17,7 @@ export class Reports extends Component {
   constructor(props) {
     super(props);
     console.log(props);
-    this.state = { album_pastmonth_count: null, user_total_playcount: null , tracksOfGenre: []};
+    this.state = { album_pastmonth_count: null, user_total_playcount: null , tracksOfGenre: [], searchedGenre: null};
   }
 
   static propTypes = {
@@ -23,14 +25,32 @@ export class Reports extends Component {
     userTotalPlaycount: propTypes.userTotalPlaycount
   };
 
-  componentDidMount() {
+componentDidMount() {
+    var passedGenreObj = {genre: this.state.searchedGenre};
     this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
     this.setState({userTotalPlaycount: this.props.getUserTotalPlaycount()});
-    this.setState({tracksOfGenre: this.props.gettracksOfGenre({genre: "Chiptune"})});
+    this.setState({tracksOfGenre: this.props.gettracksOfGenre(passedGenreObj)});
 
     console.log(this.state);
   }
 
+/*   componentDidMount() {
+    this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
+    this.setState({userTotalPlaycount: this.props.getUserTotalPlaycount()});
+    var passedGenreObj = {genre: "Pop"};
+    this.setState({tracksOfGenre: this.props.gettracksOfGenre(passedGenreObj));
+
+    console.log(this.state);
+  } } */
+
+    updatesearchedGenreFromChild = (data_from_child) => {
+    var passedGenreObj = {genre: this.state.searchedGenre};
+    console.log("state in updatesearchedGenreFromChild: ");
+    console.log(this.state);
+    this.setState({ searchedGenre: data_from_child });
+    this.setState({tracksOfGenre: this.props.gettracksOfGenre(passedGenreObj)});
+    console.log(this.state);
+    };
   
   render() {
     console.log(this.props.tracksOfGenre);
@@ -40,7 +60,14 @@ export class Reports extends Component {
         <div className="justify-content-center">
             <h3> Total Number of Albums Posted in the past Month: {this.props.album_pastmonth_count} </h3>
             <h3> Report 2: Total playcount for logged-in user: {this.props.userTotalPlaycount.userTotalPlaycount} </h3>
-            <h3> Report 3: Tracks for genre "Chiptune" : </h3>
+            <div> 
+            <UserSearch
+          messageToParent={this.updatesearchedGenreFromChild.bind(this)} whichSearch = "Genres"
+        />
+        </div>
+            <h3> Report 3: Tracks for genre {this.state.searchedGenre}: </h3>
+                {console.log("This.props.tracksOfGenre: ")}
+                {console.log(this.props.tracksOfGenre)}
             {this.props.tracksOfGenre.map((track) => (RenderTrack({ track })))}
         </div>
       </Fragment>

@@ -150,22 +150,15 @@ class AlbumNewestOneViewSet(viewsets.ModelViewSet):
     serializer_class = AlbumSerializer
     
 class AlbumsFromPastMonth(viewsets.ModelViewSet):
-    #in MySQL: 
     #in sqlite:
     # queryset = Album.objects.raw("SELECT * FROM album_album WHERE Time_stamp BETWEEN %s AND %s", [date('now','-1 month'), date('now','+1 day')]);
-
+    #in MySQL: 
     def get_queryset(self):
         queryset = Album.objects.raw('SELECT * FROM album_album WHERE Time_stamp BETWEEN date_sub(now(), interval 1 month) AND date_add(now(), interval 1 day)')
         return queryset
-    #We're gonna get this info and then on the front end summarize it into a single number, and explain to professor that getting it to work with our framework otherwise would be impossible to finish in our time limit
+    #We're gonna get this info and then on the front end summarize it into a single number
+    #This was done instead of a SUM or COUNT because when this was written we were running into errors implementing such queries. Not on the SQL side, but on the frameworks we were using.
     permissions_classes = [  
         permissions.AllowAny ]
     serializer_class = AlbumSerializer
-
-# def AlbumsFromPastMonth():
-    # query = "SELECT * FROM album_album WHERE Time_stamp BETWEEN date_sub(now(), interval 1 month) AND date_add(now(), interval 1 day)"
-    # with connection.cursor() as cursor:
-        # cursor.execute(query)
-        # albums_pastmonth_count = dfetchone(cursor)
-            # return Response({"albums_pastmonth_count": albums_pastmonth_count})
         
