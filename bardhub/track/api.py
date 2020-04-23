@@ -84,6 +84,10 @@ class MakeTrack(APIView):
     def post(self, request, *args, **kwargs):
         data = request.data
         data["Artist"] = request.user.id
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT id FROM album_album WHERE id = %s AND User_id = %s", [data["Album"], data["Artist"]])
+            if(not cursor.fetchone()):
+                return Response({"error": "Bad album id, or authenticated user does not own album"}, status=status.HTTP_400_BAD_REQUEST)
         tag_serial = None
         if(data.get("Genre")):
             tag_serial = TagSerializer(data={"Genre": data.get("Genre")}, partial=True)
