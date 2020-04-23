@@ -35,7 +35,7 @@ export const getUser = username => dispatch => {
 
 export const getUserTotalPlaycount = username => dispatch => {
     axios
-    .get("/api/userTotalPlaycount", username)
+    .get("/api/userTotalPlaycount", {params: username})
     .then(res => {
         console.log(res.data);
         dispatch({

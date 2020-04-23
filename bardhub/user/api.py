@@ -26,14 +26,22 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class UserTotalPlaycount(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
+        print(request.query_params)
         username = request.query_params.get('username')
         with connection.cursor() as cursor:
-            cursor.execute("SELECT SUM(COUNT) FROM album_album WHERE User IN ( SELECT id FROM user_user WHERE username = %s )", [username] )
-            result = cursor.fetchone()
-            
-        return Response({"userTotalPlaycount": result})
+            cursor.execute("SELECT id FROM user_user WHERE username = %s", [username])
+            user_id = cursor.fetchone()
+            if(user_id):
+                cursor.execute("SELECT SUM(COUNT) FROM album_album WHERE User_id IN ( SELECT id FROM user_user WHERE username = %s )", [username] )
+                result = cursor.fetchone()[0]
+                print(result)
+                if(not result):
+                    result = 0
+                return Response({"userTotalPlaycount": result})
+            else:
+                return Response({"userTotalPlaycount": "User Not Found"})
     permission_classes = [  
-        permissions.IsAuthenticated ]
+        permissions.AllowAny ]
 """
 Ryan + Nicholas Original Code    
 class UserTotalPlaycount(generics.GenericAPIView):

@@ -14,22 +14,13 @@ function RenderTrack(props){
 }
 
 export class Reports extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-    this.state = { album_pastmonth_count: null, user_total_playcount: null , tracksOfGenre: [], searchedGenre: null};
-  }
-
-  static propTypes = {
-    tracksOfGenre: propTypes.array,
-    userTotalPlaycount: propTypes.userTotalPlaycount
-  };
+  state = {
+    albums_pastmonth_count: null,
+    searched_genre: false,
+    searched_user: false};
 
 componentDidMount() {
-    var passedGenreObj = {genre: this.state.searchedGenre};
     this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
-    this.setState({userTotalPlaycount: this.props.getUserTotalPlaycount()});
-    this.setState({tracksOfGenre: this.props.gettracksOfGenre(passedGenreObj)});
 
     console.log(this.state);
   }
@@ -43,13 +34,17 @@ componentDidMount() {
     console.log(this.state);
   } } */
 
+  updatesearchedUserFromChild = (data_from_child) => {
+    var passedUserObj = {username: data_from_child};
+    this.props.getUserTotalPlaycount(passedUserObj)
+    this.setState({searched_user: true})
+    };
+  
+
     updatesearchedGenreFromChild = (data_from_child) => {
-    var passedGenreObj = {genre: this.state.searchedGenre};
-    console.log("state in updatesearchedGenreFromChild: ");
-    console.log(this.state);
-    this.setState({ searchedGenre: data_from_child });
-    this.setState({tracksOfGenre: this.props.gettracksOfGenre(passedGenreObj)});
-    console.log(this.state);
+    var passedGenreObj = {genre: data_from_child};
+    this.props.gettracksOfGenre(passedGenreObj)
+    this.setState({searched_genre: true})
     };
   
   render() {
@@ -59,16 +54,17 @@ componentDidMount() {
         <h1>Reports</h1>
         <div className="justify-content-center">
             <h3> Total Number of Albums Posted in the past Month: {this.props.album_pastmonth_count} </h3>
-            <h3> Report 2: Total playcount for logged-in user: {this.props.userTotalPlaycount.userTotalPlaycount} </h3>
+            <UserSearch
+          messageToParent={this.updatesearchedUserFromChild.bind(this)} whichSearch = "Users for Total Playcounts"
+        />
+            {!this.state.searched_user ? (<h3>Please Search for a User</h3>) : (<h3> Total playcount for searched user: {this.props.userTotalPlaycount.userTotalPlaycount} </h3>)}
             <div> 
             <UserSearch
-          messageToParent={this.updatesearchedGenreFromChild.bind(this)} whichSearch = "Genres"
+          messageToParent={this.updatesearchedGenreFromChild.bind(this)} whichSearch = "Genres for Tracks"
         />
         </div>
-            <h3> Report 3: Tracks for genre {this.state.searchedGenre}: </h3>
-                {console.log("This.props.tracksOfGenre: ")}
-                {console.log(this.props.tracksOfGenre)}
-            {this.props.tracksOfGenre.map((track) => (RenderTrack({ track })))}
+            
+            {!this.state.searched_genre ? (<h3>Please Search for a Genre</h3>) : (<h3> Tracks for searched genre: {this.props.tracksOfGenre.length == 0 ? (<p>No Tracks Found</p>) : this.props.tracksOfGenre.map((track) => (RenderTrack({ track })))}</h3>)}
         </div>
       </Fragment>
             );

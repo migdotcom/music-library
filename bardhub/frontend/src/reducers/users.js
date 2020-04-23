@@ -2,7 +2,7 @@ import { GET_USER, ADD_USER, GET_USERTOTALPLAYCOUNT } from "../actions/types.js"
 
 const initialState = {
   users: [], 
-  userTotalPlaycount: []
+  userTotalPlaycount: {}
 };
 
 export default function(state = initialState, action) {
