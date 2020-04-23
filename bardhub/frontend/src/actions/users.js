@@ -33,7 +33,19 @@ export const getUser = username => dispatch => {
     .catch(err => console.log(err));
 };
 
-//getUser functionality plus more
+export const getUserTotalPlaycount = username => dispatch => {
+    axios
+    .get("/api/userTotalPlaycount", username)
+    .then(res => {
+        console.log(res.data);
+        dispatch({
+                type: GET_USERTOTALPLAYCOUNT,
+                payload: res.data
+            });
+    })
+}
+
+/* //getUser functionality plus more (Ryan+ Nicholas original code) 
 export const getUserTotalPlaycount = () => (dispatch, getState) => {
     axios
     .get("/api/userTotalPlaycount", tokenConfig(getState))
@@ -45,4 +57,4 @@ export const getUserTotalPlaycount = () => (dispatch, getState) => {
             });
     })
     .catch(err => console.log(err));   
- };   
+ };    */

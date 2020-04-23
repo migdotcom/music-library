@@ -23,7 +23,19 @@ class UserViewSet(viewsets.ModelViewSet):
         return queryset
     permission_classes = [permissions.AllowAny]
     serializer_class = UserSerializer
-   
+
+class UserTotalPlaycount(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        username = request.query_params.get('username')
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT SUM(COUNT) FROM album_album WHERE User IN ( SELECT id FROM user_user WHERE username = %s )", [username] )
+            result = cursor.fetchone()
+            
+        return Response({"userTotalPlaycount": result})
+    permission_classes = [  
+        permissions.IsAuthenticated ]
+"""
+Ryan + Nicholas Original Code    
 class UserTotalPlaycount(generics.GenericAPIView):
     def get(self, request, *args, **kwargs):
         user_id = request.user.id
@@ -34,7 +46,7 @@ class UserTotalPlaycount(generics.GenericAPIView):
         return Response({"userTotalPlaycount": result})
     permission_classes = [  
         permissions.IsAuthenticated ]
-    
+""" 
 def dfetchone(cursor):
     columns = [col[0] for col in cursor.description]
     return dict(zip(columns, cursor.fetchone()))
