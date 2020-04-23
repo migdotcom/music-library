@@ -5,12 +5,14 @@ import {
   GET_ALBUMS_NEWEST,
   GET_ALBUMS_USER,
   GET_ALBUMS_PASTMONTH,
+  GET_ALBUMS_BETWEEN,
   UPDATE_ALBUM
 } from "../actions/types.js";
 
 const intialState = {
   albums: [],
   album_pastmonth_count: null,
+  albums_between: null
 };
 
 export default function (state = intialState, action) {
@@ -41,6 +43,11 @@ export default function (state = intialState, action) {
         return {
             ...state, 
         album_pastmonth_count: action.payload };
+
+    case GET_ALBUMS_BETWEEN:
+        return {
+            ...state, 
+        albums_between: action.payload.albums_between };
   
     case GET_ALBUMS_USER:
       return {

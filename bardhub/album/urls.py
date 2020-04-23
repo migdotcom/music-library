@@ -1,5 +1,5 @@
 from rest_framework import routers
-from .api import AlbumViewSet, AlbumViewSetByID, AlbumNewestViewSet, AlbumNewestOneViewSet, MakeAlbum, EditAlbum, AlbumViewSetTracks, AlbumsFromPastMonth, IncViewCount, CheatViewCount
+from .api import AlbumViewSet, AlbumViewSetByID, AlbumNewestViewSet, AlbumNewestOneViewSet, MakeAlbum, EditAlbum, AlbumViewSetTracks, AlbumsFromPastMonth, IncViewCount, CheatViewCount,NumAlbumsBetween
 from django.urls import path
 
 router = routers.DefaultRouter()
@@ -14,5 +14,6 @@ router.register('api/albums-byid', AlbumViewSetByID, 'albums_byid')
 urlpatterns = router.urls +[path('api/albums/inc-views', IncViewCount.as_view()),
 							path('api/albums/inc-views/cheat', CheatViewCount.as_view()),
 							path('api/albums/create', MakeAlbum.as_view()),
-							path('api/albums/edit', EditAlbum.as_view())]
+							path('api/albums/edit', EditAlbum.as_view()),
+							path('api/albums/between', NumAlbumsBetween.as_view())]
 

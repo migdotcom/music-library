@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getAlbumsFromPastMonth } from "../../actions/albums";
+import { getAlbumsFromPastMonth, getAlbumsBetween } from "../../actions/albums";
 import { getUserTotalPlaycount  } from "../../actions/users";
 import { gettracksOfGenre } from "../../actions/reports";
 import { TrackDisplay } from "../ArtistPage/TrackDisplay";
@@ -15,15 +15,12 @@ function RenderTrack(props){
 
 export class Reports extends Component {
   state = {
-    albums_pastmonth_count: null,
+    Date_from: "",
+    Date_to: "",
+    searched_between: false,
     searched_genre: false,
-    searched_user: false};
-
-componentDidMount() {
-    this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
-
-    console.log(this.state);
-  }
+    searched_user: false,
+    error: null};
 
 /*   componentDidMount() {
     this.setState({album_pastmonth_count: this.props.getAlbumsFromPastMonth()});
@@ -46,14 +43,58 @@ componentDidMount() {
     this.props.gettracksOfGenre(passedGenreObj)
     this.setState({searched_genre: true})
     };
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
   
+  onSubmit = e => {
+    e.preventDefault();
+    if(this.state.Date_from <= this.state.Date_to){
+      this.props.getAlbumsBetween(this.state.Date_from, this.state.Date_to);
+      this.setState({searched_between: true})
+    }
+    else{
+      this.setState({error: "Please make sure the start date is smaller than the end date!"})
+    }
+  };
+
   render() {
-    console.log(this.props.tracksOfGenre);
     return (
       <Fragment>
         <h1>Reports</h1>
         <div className="justify-content-center">
-            <h3> Total Number of Albums Posted in the past Month: {this.props.album_pastmonth_count} </h3>
+            <div className="card card-body mt-4 mb-4">
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                  <label>From</label>
+                  <input
+                    className="form-control"
+                    type="date"
+                    name="Date_from"
+                    onChange={this.onChange}
+                    value={this.state.Date_from}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>To</label>
+                  <input
+                    className="form-control"
+                    type="date"
+                    name="Date_to"
+                    onChange={this.onChange}
+                    value={this.state.Date_to}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <button type="submit" className="btn btn-primary">
+                    Search Album Count
+                  </button>
+                </div>
+                {this.state.error == null ? <div></div> : (<p>{this.state.error}</p>)}
+              </form>
+            </div>
+            {!this.state.searched_between ? (<h3>Please search for dates with the form above.</h3>) : (<h3> Total Number of Albums Posted in between {this.state.Date_from} and {this.state.Date_to}: {this.props.albums_between} </h3>)}
             <UserSearch
           messageToParent={this.updatesearchedUserFromChild.bind(this)} whichSearch = "Users for Total Playcounts"
         />
@@ -73,10 +114,10 @@ componentDidMount() {
 
 const mapStateToProps = (state) => (
 {
-album_pastmonth_count: state.albums.album_pastmonth_count, 
+    albums_between: state.albums.albums_between,
     userTotalPlaycount: state.users.userTotalPlaycount,
     tracksOfGenre: state.reports.tracksOfGenre
 
 });
 
-export default connect(mapStateToProps, {getAlbumsFromPastMonth, getUserTotalPlaycount , gettracksOfGenre})(Reports);
+export default connect(mapStateToProps, {getAlbumsFromPastMonth, getUserTotalPlaycount , gettracksOfGenre, getAlbumsBetween})(Reports);

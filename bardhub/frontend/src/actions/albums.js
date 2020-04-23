@@ -7,6 +7,7 @@ import {
   GET_ALBUMS_NEWEST_ONE,
   GET_ALBUMS_USER,
   GET_ALBUMS_PASTMONTH,
+  GET_ALBUMS_BETWEEN,
   ADD_ALBUMS,
   UPDATE_ALBUM
 } from "./types";
@@ -171,6 +172,19 @@ export const getAlbumsFromPastMonth = () => dispatch => {
     dispatch({
         type: GET_ALBUMS_PASTMONTH,
     payload: count });
+})
+};
+
+export const getAlbumsBetween = (start, end) => dispatch => {
+  console.log(start, end)
+  axios
+    .get("/api/albums/between", {params: { start, end }})
+    .then(res => {
+    console.log("Count of albums past month: ");
+    console.log(res.data);
+    dispatch({
+        type: GET_ALBUMS_BETWEEN,
+        payload: res.data });
 })
 };
 

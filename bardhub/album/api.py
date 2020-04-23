@@ -148,6 +148,20 @@ class AlbumNewestOneViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = AlbumSerializer
+
+class NumAlbumsBetween(generics.GenericAPIView):
+    def get(self, request, *args, **kwargs):
+        print(request.query_params)
+        start = request.query_params.get('start')
+        end = request.query_params.get('end')
+        print(start, end)
+        with connection.cursor() as cursor:
+            cursor.execute('SELECT id FROM album_album WHERE Time_stamp BETWEEN %s AND %s', [start, end])
+            result = len(cursor.fetchall())
+            print(result)
+            return Response({"albums_between": result})
+    permission_classes = [  
+        permissions.AllowAny ]
     
 class AlbumsFromPastMonth(viewsets.ModelViewSet):
     #in sqlite:
