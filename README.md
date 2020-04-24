@@ -6,7 +6,10 @@ A DJANGO/REACT Single Page Application for Music lovers and Artist to work/share
 
 
 ### Prerequisites
+NODEJS
+PYTHON
 PIPENV
+
 Create a virtual enviroment 
 ```
 pipenv shell
