@@ -1,6 +1,6 @@
 # BARDHUB-MUSIC
 
-A DJANGO/REACT Single Page 
+A DJANGO/REACT Single Page Application for Music lovers and Artist to work/share/colaborate in a more interactive way as a Community 
 
 ## Getting Started
 
