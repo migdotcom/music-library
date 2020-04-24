@@ -14,7 +14,6 @@ Download the project
 ```
 git clone https://github.com/migdotcom/music-library.git
 ```
-https://github.com/migdotcom/music-library.git
 Create a virtual enviroment 
 ```
 pipenv shell
