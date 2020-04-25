@@ -37,7 +37,7 @@ python manage.py runserver
 ```
 
 
-##To Run NPM  
+### To Run NPM  
 ```
 cd  inside bardhub
 npm install
