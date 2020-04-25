@@ -6,9 +6,10 @@ A DJANGO/REACT Single Page Application for Music lovers and Artist to work/share
 
 
 ### Prerequisites
-NODEJS
+NODE.JS
 PYTHON
 PIPENV
+
 
 Download the project
 ```
@@ -33,6 +34,14 @@ cd bardhub
 Run project 
 ```
 python manage.py runserver
+```
+
+
+##To Run NPM  
+```
+cd  inside bardhub
+npm install
+npm run dev
 ```
 
 
