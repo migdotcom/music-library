@@ -53,7 +53,7 @@ Add additional notes about how to deploy this on a live system
 * **Nicholas Randall** - *Initial work* 
 * **Viet trihn** - *Initial work*
 * **Ryan Haney** - *Initial work* - (https://github.com/yoshiquest)
-* **Adythia Nair** - *Initial work* 
+* **Adithya Nair** - *Initial work* 
 
 ## License
 
