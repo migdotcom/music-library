@@ -45,10 +45,6 @@ npm run dev
 ```
 
 
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
 ## Built With
 
 * [Django-REST-API](https://www.django-rest-framework.org) - The web framework used for APIs
